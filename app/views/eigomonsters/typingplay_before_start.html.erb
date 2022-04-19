@@ -1,0 +1,119 @@
+<%= include_gon %>
+<%# 効果音設定画面 %>
+<%= javascript_pack_tag 'audioSetting', 'data-turbolinks-track': 'reload' %>
+
+
+
+<div class="mastersrc">
+  <div class="typingsrc">
+    <div class="subtitle">
+      <h1 class="title">EigoMonsters</h1>
+        <h3 class="courseSettingWords">以下の内容でよろしければ、設定完了を押してください。</h3>
+            <%# タイピング種別によって遷移先を変える %>
+              <%= form_tag(controller: "eigomonsters", action: "typingplay_play") do %>
+                <div class="courseSettingSummary">
+                  <div class="typingCourseSummary">
+                    <div class="courseSettingCategoryWords">タイピング種別</div>
+                    <div class="typingCourseSummaryWords"><%= @typingCourseSet %></div>
+                  </div>
+                  <div class="engWordsDifficultySummary">
+                    <div class="courseSettingCategoryWords">英単語の難易度/出題範囲</div>
+                    <div class="engWordsDifficultySummaryWords"><%= @engWordsDifficultySet %></div>
+                      <% if @engWordsDifficultySet == "カスタム" then %>
+                        <div>
+                          <input type="number" name="numberFrom" value=<%= @numberFrom %> min="1" max="1200" class="numberFrom">
+                          〜<input type="number" name="numberTo" value=<%= @numberTo %> min="1" max="1200" class="numberTo">
+                        </div>
+                        <div class="blankAnnotation">※空白の場合No.1~300となります。</div>
+                      <% else %>
+                        <div class="numberDisabled">
+                          <input type="number" name="numberFrom" value=<%= @numberFrom %> min="1" max="1200" class="numberFromOpacity" disabled>
+                          <input type="hidden" name="numberFrom" value=<%= @numberFrom %> min="1" max="1200" >
+                          〜<input type="number" name="numberTo" value=<%= @numberTo %> min="1" max="1200" class="numberToOpacity" disabled>
+                            <input type="hidden" name="numberTo" value=<%= @numberTo %> min="1" max="1200" >
+                        </div>
+                      <% end %>
+                  </div>
+                  <div class="playModeSummary">
+                    <div class="courseSettingCategoryWords">プレイモード</div>
+                    <div class="playModeSummaryWords"><%= @playModeSet %></div>
+                  </div>
+                </div>
+                <div id="detailSettingRadioEntireScr" class="transparent">
+                  <div class="detailSettingRadioScr">
+                  <%# 問題の出題順の設定 %>
+                    <div class="detailSettingModeSummary">
+                      <div class="detailcourseSettingCategoryWords">問題の出題順</div>
+                      <div class="detailSettingRadioBtn">
+                        <div><input type="radio" name="questionOrderMode" value="番号順" id="questionOrderModeChoice1" <% if @questionOrderModeSet == "番号順" then %> checked <%end%>><label for="questionOrderModeChoice1">番号順</label></div>
+                        <div><input type="radio" name="questionOrderMode" value="ランダム" id="questionOrderModeChoice2" <% if @questionOrderModeSet == "ランダム" then %> checked <%end%>><label for="questionOrderModeChoice2">ランダム</label></div>
+                      </div>
+                    </div>
+                    <%# 英単語の発音の設定 %>
+                    <div class="detailSettingModeSummary">
+                      <div class="detailcourseSettingCategoryWords">英単語の発音</div>
+                      <div class="detailSettingRadioBtn">
+                        <div><input type="radio" name="pronounceMode" value="発音あり" id="pronounceModeOn" <% if @pronounceModeSet == "発音あり" then %> checked <%end%>><label for="pronounceModeOn">あり</label></div>
+                        <div><input type="radio" name="pronounceMode" value="発音なし" id="pronounceModeOff" <% if @pronounceModeSet == "発音なし" then %> checked <%end%>><label for="pronounceModeOff">なし</label></div>
+                      </div>
+                    </div>  
+                    <%# BGMの設定 %>
+                    <div class="detailSettingModeSummary">
+                      <div class="detailcourseSettingCategoryWords">BGM</div>
+                      <div class="detailSettingRadioBtn">
+                        <div><input type="radio" name="bgmMode" value="BGMあり" id="bgmModeOn" <% if @bgmModeSet == "BGMあり" then %> checked <%end%>><label for="bgmModeOn">あり</label></div>
+                        <div><input type="radio" name="bgmMode" value="BGMなし" id="bgmModeOff" <% if @bgmModeSet == "BGMなし" then %> checked <%end%>><label for="bgmModeOff">なし</label></div>
+                      </div>
+                    </div>
+                    <%# タイプ音の設定 %>
+                    <div class="detailSettingModeSummary">
+                      <div class="detailcourseSettingCategoryWords">タイプ音</div>
+                      <div class="detailSettingRadioBtn">
+                        <div><input type="radio" name="typeAudioMode" value="タイプ音あり" id="typeAudioModeOn" <% if @typeAudioModeSet == "タイプ音あり" then %> checked <%end%>><label for="typeAudioModeOn">あり</label></div>
+                        <div><input type="radio" name="typeAudioMode" value="タイプ音なし" id="typeAudioModeOff" <% if @typeAudioModeSet == "タイプ音なし" then %> checked <%end%>><label for="typeAudioModeOff">なし</label></div>
+                      </div>
+                    </div>
+                    <%# 正解音の設定 %>
+                    <div class="detailSettingModeSummary">
+                      <div class="detailcourseSettingCategoryWords">正解音</div>
+                      <div class="detailSettingRadioBtn">
+                        <div><input type="radio" name="correctAudioMode" value="正解音あり" id="correctAudioModeOn" <% if @correctAudioModeSet == "正解音あり" then %> checked <%end%>><label for="correctAudioModeOn">あり</label></div>
+                        <div><input type="radio" name="correctAudioMode" value="正解音なし" id="correctAudioModeOff" <% if @correctAudioModeSet == "正解音なし" then %> checked <%end%>><label for="correctAudioModeOff">なし</label></div>
+                      </div>
+                    </div>
+                    <%# ミス音の設定 %>
+                    <div class="detailSettingModeSummary">
+                      <div class="detailcourseSettingCategoryWords">ミス音</div>
+                      <div class="detailSettingRadioBtn">
+                        <div><input type="radio" name="incorrectAudioMode" value="ミス音あり" id="incorrectAudioModeOn" <% if @incorrectAudioModeSet == "ミス音あり" then %> checked <%end%>><label for="incorrectAudioModeOn">あり</label></div>
+                        <div><input type="radio" name="incorrectAudioMode" value="ミス音なし" id="incorrectAudioModeOff" <% if @incorrectAudioModeSet == "ミス音なし" then %> checked <%end%>><label for="incorrectAudioModeOff">なし</label></div>
+                      </div>
+                    </div>
+                  </div>
+                  <%# OKボタンの設定 %>
+                  <div id="detailSettingOk" class="detailSettingOk">
+                    <div class="detailSettingOkWords">OK</div>
+                  </div>
+                </div>
+                <div class="gameStartBtn">
+                  <%# タイピング種別によってコントローラーに渡す変数(Value)を変える %>
+                    <input type="hidden" name="typingCourse" value=<%= @typingCourseSet %>>
+                  <%# レベルによってコントローラーに渡す変数(Value)を変える %>
+                      <input type="hidden" name="engWordsDifficulty" value=<%= @engWordsDifficultySet %>>
+                  <%# プレイモードによってコントローラーに渡す変数(Value)を変える %>
+                      <input type="hidden" name="playMode" value=<%= @playModeSet %>>
+                  <%# submitの設定_(typingplay_play)に遷移 %>
+                    <input type="submit" formaction="typingplay_play" value="設定完了" class= "gameStartBtnWords">
+                </div>
+                <%# 詳細設定ボタン %>
+                <div id="detailSettingPopupDisplay" class="detailSettingPopupDisplay">
+                  <div class="detailSettingPopupDisplayWords">詳細設定</div>
+                </div>
+                <div class="courseSettingBackBtn">
+                  <%# submitの設定_(typingplay_index)に遷移 %>
+                <input type="submit" formaction="typingplay_index" value="コース選択画面に戻る" class= "courseSettingBackBtnWords">
+                </div>
+              <% end%>
+    </div>
+  </div>
+</div>

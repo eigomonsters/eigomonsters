@@ -1,0 +1,150 @@
+<%# 数値カウントアップのアニメーション %>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<%= include_gon %>
+<%# タイピング種別によって、使用するJavascriptファイルを変える %>
+<%= javascript_pack_tag @typingCourseJavascript, 'data-turbolinks-track': 'reload' %>
+
+<%# 以下、HTML %>
+<div class="mastersrc">
+  <div class="typingsrc">
+      <div id="allQuestionsListEntireScr" class="transparent">
+        <div class="allQuestionsListTableSrc">
+          <table class="allQuestionsListTable">
+            <thead>
+              <tr>
+                <th>出題<br>No.</th>
+                <th>英単語<br>リストNo.</th>
+                <th>発音</th>
+                <th>英単語</th>
+                <th>日本語訳</th>
+                <th>正解/<br>不正解</th>
+                <th>所要<br>時間</th>
+              </tr>
+            </thead>
+            <tbody id="allQuestionsList"></tbody>
+          </table>
+        </div>
+        <%# 閉じるボタンの設定 %>
+        <div id="closeAllQuestionsList">
+          <div class="closeAllQuestionsListWords">閉じる</div>
+        </div>
+      </div>
+      <div class="subtitle">
+        <%= form_tag(controller: "eigomonsters", action: "typingplay_before_start") do %>
+          <h1 class="title">EigoMonsters</h1>
+          <div id="displayBonusAddPlayTime"></div>
+          <div id="remainPlayingTime"></div>
+          <%# <div id="displayScoreEntire">
+            <div id="displayScore" class="transparent">0</div>
+            <div id="displayP" class="transparent">P</div>
+          </div> %>
+          <img id="meterImg" class="meter">
+          <div id="useKeyboardPopup" class="useKeyboardPopup">タイピング中はキーボードを使用します。</div>
+          <div id="pressEnterPopup" class="pressEnterPopup">【スペースかEnterキーを押すとスタートします】</div>
+
+          <%# 発音あり、BGMあり、 タイプ音あり、正解音あり、ミス音ありのいずれかの場合、音が出る注意を表示する %>
+          <% if @pronounceModeSet == "発音あり" || @bgmModeSet == "BGMあり" || @typeAudioModeSet == "タイプ音あり" || @correctAudioModeSet == "正解音あり" || @incorrectAudioModeSet == "ミス音あり" %>
+            <div id="annotationAudio" class="annotationAudio"><span class="annotationAudioPlay">！！！音が出ます！！！</span><br><span class="annotationAudioPublic">公共の場でプレイする場合は、周囲へのご配慮をお願いいたします。</span><br><span class="annotationAudioSetting">※音声の設定は詳細設定画面で変更できます。<br>※「発音なし」の設定でも、プレイ中「発音を聞く」ボタンで発音を聞くことができます。</span></div>
+          <% else %>
+            <div id="annotationAudio" class="annotationAudio"><span class="annotationAudioPublic">プレイ中、音声が出ません。</span><br><span class="annotationAudioSetting">※音声の設定は詳細設定画面で変更できます。<br>※「発音なし」の設定でも、プレイ中「発音を聞く」ボタンで発音を聞くことができます。</span></div>
+          <% end %>
+                
+              <%# ボタン押下による遷移時に渡す変数を定義する。 %>
+                  <%# タイピング種別によってコントローラーに渡す(Value)を変える %>
+                      <input type="hidden" name="typingCourse" value=<%= @typingCourseSet %>>
+                  <%# レベルによってコントローラーに渡す変数(Value)を変える %>
+                      <input type="hidden" name="engWordsDifficulty" value=<%= @engWordsDifficultySet %>>
+                  <%# 出題範囲の設定によってコントローラーに渡す変数(Value)を変える %>
+                      <input type="hidden" name="numberFrom" value=<%= @numberFrom %>>
+                      <input type="hidden" name="numberTo" value=<%= @numberTo %>>
+                  <%# プレイモードによってコントローラーに渡す変数(Value)を変える %>
+                      <input type="hidden" name="playMode" value=<%= @playModeSet %>>
+                  <%# 出題順の設定によってコントローラーに渡す変数(Value)を変える %>
+                      <input type="hidden" name="questionOrderMode" value=<%= @questionOrderModeSet %>>
+                  <%# 発音有無の設定によってコントローラーに渡す変数(Value)を変える %>
+                      <input type="hidden" name="pronounceMode" value=<%= @pronounceModeSet %>>
+                  <%# BGM有無によってコントローラーに渡す変数(Value)を変える %>
+                      <input type="hidden" name="bgmMode" value=<%= @bgmModeSet %>>
+                  <%# タイプ音有無によってコントローラーに渡す変数(Value)を変える %>
+                      <input type="hidden" name="typeAudioMode" value=<%= @typeAudioModeSet %>>
+                  <%# 正解音有無によってコントローラーに渡す変数(Value)を変える %>
+                      <input type="hidden" name="correctAudioMode" value=<%= @correctAudioModeSet %>>
+                  <%# ミス音有無によってコントローラーに渡す変数(Value)を変える %>
+                      <input type="hidden" name="incorrectAudioMode" value=<%= @incorrectAudioModeSet %>>
+
+          <div id="backBtnTypingPlay" class="backBtnTypingPlay">
+            <div class="courseCheckBackBtnTypingPlay">
+                  <%# submitの設定_(typingplay_index)に遷移 %>
+                <input type="submit" formaction="typingplay_before_start" value="詳細設定画面に戻る" class= "courseCheckBackBtnTypingPlayWords">
+            </div>
+            <div class="courseSettingBackBtnTypingPlay">
+                  <%# submitの設定_(typingplay_index)に遷移 %>
+                <input type="submit" formaction="typingplay_index" value="コース選択画面に戻る" class= "courseSettingBackBtnTypingPlayWords">
+            </div>
+          </div>
+          <div id="countDownPopup"></div>
+          <div id="closePopupClear"></div>
+          <div id="closePopup"></div>
+          <div id="closePopupTotalQuestionNum"></div>
+          <div id="closePopupFinalCorrectNum"></div>
+          <div id="closePopupFinalMaxConsecutiveCorrectNum"></div>
+          <div id="btnWrapperPlay" class="btn-wrapperplay">
+          <%# タイピング種別によって、表示する文字を変える %>
+            <% if @typingCourseSet == "英単語タイピング" then %>
+              <div id="displayWordJapanese"></div>
+              <div id="displayWordAnnotation"></div>
+              <div id="displayWord"></div>
+            <% else %> <%# @typingCourseSet == "日本語訳タイピング"の場合 %>
+              <div id="displayWordEnglish"></div>
+              <div id="displayWord"></div>
+              <div id="displayWordKanji"></div>
+            <% end %>
+          </div>
+          <div id="NumCorrectMidGamePlay" class="transparent">
+            <div id="displayNumCorrect" class="displayNumCorrect">
+              <div id="displayNumCorrectWord"></div>
+              <div id="displayAddCorrectNum"></div>
+              <div id="displayNumCorrectNum"></div>
+            </div>
+            <div id="displayConsecutiveNumCorrect" class="displayConsecutiveNumCorrect">
+              <div id="displayConsecutiveCorrectWord"></div>
+              <div id="displayAddConsecutiveCorrectNum"></div>
+              <div id="displayConsecutiveCorrectNum"></div>
+            </div>
+            <div id="displayMaxConsecutiveNumCorrect" class="displayMaxConsecutiveNumCorrect">
+              <div id="displayMaxConsecutiveCorrectWord"></div>
+              <div id="displayAddMaxConsecutiveCorrectNum"></div>
+              <div id="displayMaxConsecutiveCorrectNum"></div>
+            </div>
+          </div>
+          <img id="circleImg">
+          <div id="midGamePlay" class="midGamePlay">
+            <div id=pronounceAgainButton></div>
+            <div id=hintButton></div>
+            <div id=answerButton></div>
+            <div id=restartButtonMidGame class= "transparent">
+                <%# submitの設定_(typingplay_play)に遷移 %>
+                <input type="submit" formaction="typingplay_play" value="最初からやり直す" class = "restartButtonMidGame">
+            </div>
+            <div id=courseSettingBackButtonMidGame class= "transparent">
+                  <%# submitの設定_(typingplay_index)に遷移 %>
+                <input type="submit" formaction="typingplay_index" value="コース選択画面に戻る" class= "courseSettingBackButtonMidGame">
+            </div>
+          </div>
+          <div id="ondoku3Credit" class="ondoku3Credit">英単語の発音は<a href= 'https://ondoku3.com/' target="_blank" rel="noopener noreferrer" class="ondoku3CreditLink">音読さん</a>を使用しています。</div>
+          <div id="checkQuestions"></div>
+          <div class="afterEndBtn">
+            <div id="restartBtn" class= "transparent">
+                <%# submitの設定_(typingplay_play)に遷移 %>
+                <input type="submit" formaction="typingplay_play" value="もう一度遊ぶ" class = "restartBtn">
+            </div>
+            <div id="backBtn" class= "transparent">
+                  <%# submitの設定_(typingplay_index)に遷移 %>
+                <input type="submit" formaction="typingplay_index" value="コース選択画面に戻る" class = "backBtn">
+            </div>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>

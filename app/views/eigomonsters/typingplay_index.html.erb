@@ -1,0 +1,51 @@
+<div class="mastersrc">
+  <div class="typingsrc">
+    <div class="subtitle">
+      <h1 class="title">EigoMonsters</h1>
+        <h3 class="courseSettingWords">コースを選択し、OKを押してください。</h3>
+        <%= form_tag(controller: "eigomonsters", action: "typingplay_before_start")  do %>
+        <p class="courseSettingWordsParts1">タイピング種別</p>
+          <div class="inline-radio">
+              <div class="fukidashiPlayCourseJap"><input type="radio" name="typingCourse" value="日本語訳タイピング" <% if @typingCourseSet == "日本語訳タイピング" then %> checked <%end%>><label>日本語訳タイピング</label><p class="fukidashiPlayCourseJapParts">英単語に対応する日本語訳を答えていくコースです。</p></div>
+              <div class="fukidashiPlayCourseEng"><input type="radio" name="typingCourse" value="英単語タイピング" <% if @typingCourseSet == "英単語タイピング" then %> checked <%end%>><label>英単語タイピング</label><p class="fukidashiPlayCourseEngParts">日本語訳に対応する英単語を答えていくコースです。</p></div>
+          </div>
+        <p class="courseSettingWordsParts2">英単語の難易度/出題範囲</p>
+          <div class="inline-radio">
+              <div class="fukidashiPlayLevel1"><input type="radio" name="engWordsDifficulty" value="Level1" <% if @engWordsDifficultySet == "Level1" then %> checked <%end%>><label>Level 1</label><p class="fukidashiPlayLevel1Parts">英単語リストNo.1~300の基礎レベルの英単語が出題されます。</p></div>
+              <div class="fukidashiPlayLevel2"><input type="radio" name="engWordsDifficulty" value="Level2" <% if @engWordsDifficultySet == "Level2" then %> checked <%end%>><label>Level 2</label><p class="fukidashiPlayLevel2Parts">英単語リストNo.301~600の初級レベルの英単語が出題されます。</p></div>
+              <div class="fukidashiPlayLevel3"><input type="radio" name="engWordsDifficulty" value="Level3" <% if @engWordsDifficultySet == "Level3" then %> checked <%end%>><label>Level 3</label><p class="fukidashiPlayLevel3Parts">英単語リストNo.601~900の中級レベルの英単語が出題されます。</p></div>
+              <div class="fukidashiPlayLevel4"><input type="radio" name="engWordsDifficulty" value="Level4" <% if @engWordsDifficultySet == "Level4" then %> checked <%end%>><label>Level 4</label><p class="fukidashiPlayLevel4Parts">英単語リストNo.901~1200の上級レベルの英単語が出題されます。</p></div>
+              <div class="fukidashiPlayLevelCustom"><input type="radio" name="engWordsDifficulty" value="カスタム" <% if @engWordsDifficultySet == "カスタム" then %> checked <%end%>><label>カスタム</label><p class="fukidashiPlayLevelCustomParts">ゲーム開始前に出題される英単語リストの範囲を設定できます。</p></div>
+          </div>
+        <p class="courseSettingWordsParts3">プレイモード</p>
+          <div class="inline-radio">
+              <div class="fukidashiPlayModePractice"><input type="radio" name="playMode" value="練習" <% if @playModeSet == "練習" then %> checked <%end%>><label>練習</label><p class="fukidashiPlayModePracticeParts">常に答えが表示された状態でプレイするモードです。※5分</p></div>
+              <div class="fukidashiPlayModeUsual"><input type="radio" name="playMode" value="普通" <% if @playModeSet == "普通" then %> checked <%end%>><label>普通</label><p class="fukidashiPlayModeUsualParts">答えが非表示の状態でプレイするモードです。※5分</p></div>
+              <div class="fukidashiPlayModeTimeAttack"><input type="radio" name="playMode" value="タイムアタック" <% if @playModeSet == "タイムアタック" then %> checked <%end%>><label>タイムアタック</label><p class="fukidashiPlayModeTimeAttackParts">出題範囲すべてを正解するまでのタイムを測ります。※50分以内</p></div>
+          </div>
+          <br>
+          <div class="btn-wrapper">
+            <%# 英単語の難易度/出題範囲がカスタムの場合のみ、出題範囲を変数として渡す。 %>
+              <% if @engWordsDifficultySet == "カスタム" then %>
+                <input type="hidden" name="numberFrom" value=<%= @numberFrom %>>
+                <input type="hidden" name="numberTo" value=<%= @numberTo %>>
+              <% end %>
+            <%# 発音有無の設定によってコントローラーに渡す変数(Value)を変える %>
+                <input type="hidden" name="pronounceMode" value=<%= @pronounceModeSet %>>
+            <%# 出題順の設定によってコントローラーに渡す変数(Value)を変える %>
+                <input type="hidden" name="questionOrderMode" value=<%= @questionOrderModeSet %>>
+            <%# BGM有無によってコントローラーに渡す変数(Value)を変える %>
+                <input type="hidden" name="bgmMode" value=<%= @bgmModeSet %>>
+            <%# タイプ音有無によってコントローラーに渡す変数(Value)を変える %>
+                <input type="hidden" name="typeAudioMode" value=<%= @typeAudioModeSet %>>
+            <%# 正解音有無によってコントローラーに渡す変数(Value)を変える %>
+                <input type="hidden" name="correctAudioMode" value=<%= @correctAudioModeSet %>>
+            <%# ミス音有無によってコントローラーに渡す変数(Value)を変える %>
+                <input type="hidden" name="incorrectAudioMode" value=<%= @incorrectAudioModeSet %>>
+            <%# submitの設定_(typingplay_before_start)に遷移 %>
+              <input type="submit" formaction="typingplay_before_start" value="OK" class= "courseSettingOk">
+            <% end%>
+          </div>
+    </div>
+  </div>
+</div>

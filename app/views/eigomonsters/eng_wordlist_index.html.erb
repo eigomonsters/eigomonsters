@@ -1,0 +1,20 @@
+<div class="engWordListSrc">
+  <h1 class="title">英単語リスト</h1>
+  <%= form_with(url: search_eigomonsters_path, local: true, method: :get, class: "search-form") do |form| %>
+      <select name="lvelSelect" class="levelSelect">
+        <option value="Level1"<% if @wordListLevelSet == "Level1" then %> selected <%end%>>Level1_1~300</option>
+        <option value="Level2" <% if @wordListLevelSet == "Level2" then %> selected <%end%>>Level2_301~600</option>  
+        <option value="Level3" <% if @wordListLevelSet == "Level3" then %> selected <%end%>>Level3_601~900</option>  
+        <option value="Level4" <% if @wordListLevelSet == "Level4" then %> selected <%end%>>Level4_901~1200</option>  
+        <option value="すべて表示" <% if @wordListLevelSet == "すべて表示" then %> selected <%end%>>すべて表示</option>
+      </select>
+      <%= form.text_field :keyword, placeholder: "英単語を検索する", class: "search-input" %>
+      <%= form.submit "検索", class: "search-btn" %>
+    <% end %>
+  <div class="ondoku3CreditInWordlist">英単語の発音は<a href= 'https://ondoku3.com/' target="_blank" rel="noopener noreferrer" class="ondoku3CreditLinkInWordlist">音読さん</a>を使用しています。</div>
+  <div class="contents row">
+    <% @wordListAll.each do |word| %>
+      <%= render partial: "word", locals: { word: word } %>
+    <% end %>
+  </div>
+</div>

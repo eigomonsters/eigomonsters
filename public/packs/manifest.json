@@ -1,0 +1,44 @@
+{
+  "application.js": "/packs/js/application-b9a948297117e7bf627d.js",
+  "application.js.map": "/packs/js/application-b9a948297117e7bf627d.js.map",
+  "audioSetting.js": "/packs/js/audioSetting-8b4bb6181fae9aeeb41a.js",
+  "audioSetting.js.map": "/packs/js/audioSetting-8b4bb6181fae9aeeb41a.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs/js/application-b9a948297117e7bf627d.js"
+      ],
+      "js.map": [
+        "/packs/js/application-b9a948297117e7bf627d.js.map"
+      ]
+    },
+    "audioSetting": {
+      "js": [
+        "/packs/js/audioSetting-8b4bb6181fae9aeeb41a.js"
+      ],
+      "js.map": [
+        "/packs/js/audioSetting-8b4bb6181fae9aeeb41a.js.map"
+      ]
+    },
+    "typingplay_eng": {
+      "js": [
+        "/packs/js/typingplay_eng-4631bc97f9d46dce605a.js"
+      ],
+      "js.map": [
+        "/packs/js/typingplay_eng-4631bc97f9d46dce605a.js.map"
+      ]
+    },
+    "typingplay_jap": {
+      "js": [
+        "/packs/js/typingplay_jap-39f7decb69c0fcd77fc0.js"
+      ],
+      "js.map": [
+        "/packs/js/typingplay_jap-39f7decb69c0fcd77fc0.js.map"
+      ]
+    }
+  },
+  "typingplay_eng.js": "/packs/js/typingplay_eng-4631bc97f9d46dce605a.js",
+  "typingplay_eng.js.map": "/packs/js/typingplay_eng-4631bc97f9d46dce605a.js.map",
+  "typingplay_jap.js": "/packs/js/typingplay_jap-39f7decb69c0fcd77fc0.js",
+  "typingplay_jap.js.map": "/packs/js/typingplay_jap-39f7decb69c0fcd77fc0.js.map"
+}

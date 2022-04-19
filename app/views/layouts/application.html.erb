@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EigoMonsters</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700,900&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="inner">
+        <div class="nav">
+          <div class="nav__left">
+            <%= link_to "EigoMonsters", root_path, method: :get %>
+          </div>
+          <div class="nav__center">
+              <%= link_to "HOME", eigomonsters_path, method: :get, class: :nav__btn %>
+              <%= link_to "タイピングゲーム", typingplay_index_eigomonsters_path, method: :get, class: :nav__btn %>
+              <%= link_to "英単語リスト", eng_wordlist_index_eigomonsters_path, method: :get, class: :nav__btn %>
+              <%= link_to "EigoMonstersとは", about_eigomonsters_path, method: :get, class: :nav__btn %>
+              <a href= 'https://twitter.com/illustmon' target="_blank" rel="noopener noreferrer" class="snsIconTwitter"><img src="../../assets/twitterImage.png" alt="Twitter" height="30"></a>
+          </div>
+        </div>
+      </div>
+    </header>
+      <%= yield %>
+    <footer class="footer">
+        <p class="copyright">Copyright ©EigoMonsters All rights reserved.</p>
+    </footer>
+  </body>
+</html>

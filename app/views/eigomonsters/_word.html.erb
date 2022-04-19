@@ -1,0 +1,86 @@
+<div class="wordlistScr">
+  <div class = "wordlist">
+    <div onclick="obj=document.getElementById('<%= word.id %>').style; obj.display=(obj.display=='none')?'block':'none';"class="wordHeader" >
+      <a style="cursor:pointer;"><span class="triangle">▼</span> <%= word.id %>. <%= word.eng_word %></a>
+    </div>
+    <div id=<%= word.id %> style="display:none;clear:both;" class="wordDetail">
+      <div id="meaning" class="meaning">
+        <div id="meaning-left" class="meaning-left">
+          <div id="meaning-left-top" class="meaning-left-top">
+          <%# 英単語の意味１（品詞が同じ場合は一緒に表示）%>
+            <div id="part_of_speech_1" class="<%= "part_of_speech_1" if word.part_of_speech_1 != "-" %>">
+              <% if word.part_of_speech_1 != "-" %>
+              <%= word.part_of_speech_1 %>
+              <% else %>
+              <% end %>
+            </div>
+            <div id="jap_trans_1" class="jap_trans_1" >
+              <span style="border-bottom: solid 1px;"><%= word.jap_trans_1 %></span>
+            </div>
+          <%# 英単語の意味２〜４（品詞が同じ場合は一緒に表示）%>
+            <% if word.part_of_speech_2 != "" && word.part_of_speech_2 != nil %>
+                <% if word.part_of_speech_1 == word.part_of_speech_2 %>
+                    <div id="jap_trans_2" class="jap_trans_2" >
+                        、<%= word.jap_trans_2 %>
+                    </div>
+                <% else %>
+                    <div class="spacer">
+                    </div>
+                    <div id="part_of_speech_2" class="part_of_speech_2">
+                      <%= word.part_of_speech_2 %>
+                    </div>
+                    <div id="jap_trans_2" class="jap_trans_2" >
+                      <%= word.jap_trans_2 %>
+                    </div>
+                <% end %>
+                <% if word.part_of_speech_3 != "" && word.part_of_speech_3 != nil %>
+                    <div class="spacer">
+                    </div>
+                    <div id="part_of_speech_3" class="part_of_speech_3">
+                      <%= word.part_of_speech_3 %>
+                    </div>
+                    <div id="jap_trans_3" class="jap_trans_3" >
+                      <%= word.jap_trans_3 %>
+                    </div>
+                    <% if word.part_of_speech_4 != "" && word.part_of_speech_4 != nil %>
+                        <div class="spacer">
+                        </div>
+                        <div id="part_of_speech_4" class="part_of_speech_4">
+                          <%= word.part_of_speech_4 %>
+                        </div>
+                        <div id="jap_trans_4" class="jap_trans_4" >
+                          <%= word.jap_trans_4 %>
+                        </div>
+                    <% end %>
+                <% end %>
+            <% end %>
+          </div>
+          <%# 英単語に関する記述（現在未使用） %>
+          <div id="meaning-left-bottom" class="meaning-left-bottom">
+              <%= word.description %>
+          </div>
+          <%# 英単語の発音 %>
+          <div id="pronunciation" class="pronunciation">
+            <span class="pronunciationSignal">発音</span>
+              <% if word.pronunciation == "" || word.pronunciation == nil %>
+                [-]
+              <% else %>
+                [<%= word.pronunciation %>]<img src="../../assets/audioIcon.png" alt="発音" height="20" onclick="pronounce('<%= word.eng_word %>');" class="pronounceAudioInWordlist">
+                <script>
+                  // 発音ボタンを押下した際に、発音させる処理を定義する。
+                  function pronounce(eng_word){
+                    // résuméの場合は音声ファイルの検索ができないため、ファイルを変更
+                    if (eng_word == "résumé"){
+                      eng_word = "rezumei";
+                    };
+                    let pronunciation = new Audio('/assets/発音/'+ eng_word + '.mp3');
+                    pronunciation.play();
+                  };
+                </script>
+              <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
