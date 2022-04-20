@@ -22,10 +22,10 @@
     },
     "typingplay_eng": {
       "js": [
-        "/packs/js/typingplay_eng-ae9c0f2e139588836e4a.js"
+        "/packs/js/typingplay_eng-8ab338843e4e6f426ec2.js"
       ],
       "js.map": [
-        "/packs/js/typingplay_eng-ae9c0f2e139588836e4a.js.map"
+        "/packs/js/typingplay_eng-8ab338843e4e6f426ec2.js.map"
       ]
     },
     "typingplay_jap": {
@@ -37,8 +37,8 @@
       ]
     }
   },
-  "typingplay_eng.js": "/packs/js/typingplay_eng-ae9c0f2e139588836e4a.js",
-  "typingplay_eng.js.map": "/packs/js/typingplay_eng-ae9c0f2e139588836e4a.js.map",
+  "typingplay_eng.js": "/packs/js/typingplay_eng-8ab338843e4e6f426ec2.js",
+  "typingplay_eng.js.map": "/packs/js/typingplay_eng-8ab338843e4e6f426ec2.js.map",
   "typingplay_jap.js": "/packs/js/typingplay_jap-fa7e6b13fcae486e738b.js",
   "typingplay_jap.js.map": "/packs/js/typingplay_jap-fa7e6b13fcae486e738b.js.map"
 }

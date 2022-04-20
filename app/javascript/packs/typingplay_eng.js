@@ -846,12 +846,14 @@ function gameStart(){
 					// ただし、chromeの場合かつ、"f"が２つ並んでいる場合、別のclassを適応させる。
 					if (agent.indexOf("chrome") != -1
 						&& charArrayInDisplayWord[0].textContent == "f"
+						&& charArrayInDisplayWord.length > 1
 						&& charArrayInDisplayWord[1].textContent == "f"
 						&& addHalfRedFlag == "0") {
 						charArrayInDisplayWord[0].className = "addHalfRed";
 						addHalfRedFlag = "1";
 					} else if (agent.indexOf("chrome") != -1 // "addHalfRed適応後に、２つ目の"f"押下でadd_redに戻す。"f"が３つ並ぶことはないという前提。
 						&& charArrayInDisplayWord[0].textContent == "f"
+						&& charArrayInDisplayWord.length > 1
 						&& charArrayInDisplayWord[1].textContent == "f"
 						&& addHalfRedFlag == "1"){
 						charArrayInDisplayWord[0].className = "add_red";
