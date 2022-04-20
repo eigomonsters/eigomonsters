@@ -7,6 +7,9 @@ window.addEventListener('load', function(){
 // スペースかEnterキー押下によるゲームスタートを一回限りとするフラグを設定する。
 let gameStartEnterOnlyOnce = "0";
 
+// 使用しているブラウザを取得する。
+const agent = window.navigator.userAgent.toLowerCase()
+
 // スペースかEnterキーを押下するとゲーム開始のカウントダウンがスタートする。
 function keyDownGameStart(keyDownEnter){
 	if ((keyDownEnter.key === 'Enter' || keyDownEnter.key === " ") && gameStartEnterOnlyOnce == "0") {

@@ -22,23 +22,23 @@
     },
     "typingplay_eng": {
       "js": [
-        "/packs/js/typingplay_eng-4631bc97f9d46dce605a.js"
+        "/packs/js/typingplay_eng-ae9c0f2e139588836e4a.js"
       ],
       "js.map": [
-        "/packs/js/typingplay_eng-4631bc97f9d46dce605a.js.map"
+        "/packs/js/typingplay_eng-ae9c0f2e139588836e4a.js.map"
       ]
     },
     "typingplay_jap": {
       "js": [
-        "/packs/js/typingplay_jap-39f7decb69c0fcd77fc0.js"
+        "/packs/js/typingplay_jap-fa7e6b13fcae486e738b.js"
       ],
       "js.map": [
-        "/packs/js/typingplay_jap-39f7decb69c0fcd77fc0.js.map"
+        "/packs/js/typingplay_jap-fa7e6b13fcae486e738b.js.map"
       ]
     }
   },
-  "typingplay_eng.js": "/packs/js/typingplay_eng-4631bc97f9d46dce605a.js",
-  "typingplay_eng.js.map": "/packs/js/typingplay_eng-4631bc97f9d46dce605a.js.map",
-  "typingplay_jap.js": "/packs/js/typingplay_jap-39f7decb69c0fcd77fc0.js",
-  "typingplay_jap.js.map": "/packs/js/typingplay_jap-39f7decb69c0fcd77fc0.js.map"
+  "typingplay_eng.js": "/packs/js/typingplay_eng-ae9c0f2e139588836e4a.js",
+  "typingplay_eng.js.map": "/packs/js/typingplay_eng-ae9c0f2e139588836e4a.js.map",
+  "typingplay_jap.js": "/packs/js/typingplay_jap-fa7e6b13fcae486e738b.js",
+  "typingplay_jap.js.map": "/packs/js/typingplay_jap-fa7e6b13fcae486e738b.js.map"
 }
