@@ -85,11 +85,6 @@ a {
     }
 
 /*ヘダー右側にあるSNSのボタン_navの子要素*/
-    .snsIconTwitter{
-    }
-
-
-
 
     .nav__btn:hover{  /*ヘダー右側にあるナビのホバー時*/
       color: #fff;
