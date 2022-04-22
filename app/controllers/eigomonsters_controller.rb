@@ -47,8 +47,6 @@ class EigomonstersController < ApplicationController
       @wordListAll = Wordlist.search(params[:keyword]).where("id >= 1").where("id <= 300").order("id")
     end
   end
-  # def about
-  # end
 
   ## タイピングゲームコース選択画面。
   def typingplay_index
@@ -148,7 +146,7 @@ class EigomonstersController < ApplicationController
 
 
   ## タイピングゲームスタート前画面にコース設定画面で設定した変数を渡す。
-  def typingplay_before_start
+  def typingplay_setting
     if request.post? then
       # タイピング種別の判定
       if params['typingCourse'] == "英単語タイピング" then

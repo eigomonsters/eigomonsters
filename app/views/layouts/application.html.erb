@@ -21,13 +21,14 @@
               <%= link_to "タイピングゲーム", typingplay_index_eigomonsters_path, method: :get, class: :nav__btn %>
               <%= link_to "英単語リスト", eng_wordlist_index_eigomonsters_path, method: :get, class: :nav__btn %>
               <%= link_to "EigoMonstersとは", about_eigomonsters_path, method: :get, class: :nav__btn %>
-              <a href= 'https://twitter.com/eigomonsters' target="_blank" rel="noopener noreferrer" class="snsIconTwitter"><img src="../../assets/twitterImage.png" alt="Twitter" height="30"></a>
+              <%= link_to 'https://twitter.com/eigomonsters',target: :blank, rel: :noopener, rel: :noreferrer do %><%= image_tag 'twitterImage.png', class: :snsIconTwitter%> <% end %>
           </div>
         </div>
       </div>
     </header>
       <%= yield %>
     <footer class="footer">
+        <%= link_to "ご利用規約・プライバシーポリシー", policy_eigomonsters_path, method: :get, class: :policy %>
         <p class="copyright">Copyright ©EigoMonsters All rights reserved.</p>
     </footer>
   </body>

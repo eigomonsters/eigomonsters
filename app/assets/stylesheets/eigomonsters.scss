@@ -7,7 +7,7 @@
 //タイピングゲーム画面で使用
     .mastersrc {
       margin-top:100px;
-      height: 650px;
+      min-height: 640px;
       width: 100%;
       display: flex;
       justify-content: center;
@@ -19,7 +19,7 @@
       border:1px solid #000000;
       border-radius:12px;
       position: relative;
-      margin-top: 50px;
+      margin-top: 40px;
     }
 
     //コース選択画面の文字
@@ -1565,7 +1565,7 @@
     }
     .topPage {
       margin-top: 100px;
-      min-height: 650px;
+      min-height: 640px;
     }
 
 
@@ -1839,6 +1839,51 @@
     }
 }
 
+// 以上、aboutで使用---------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------
+
+
+// 以下、policyで使用--------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------
+
+.policySrc {
+  margin:0 auto;
+  margin-top: 100px;
+  min-height: 650px;
+  width:750px;
+}
+.policyTitle {
+  padding:20px;
+  color: #3b4043;
+  font-family:'メイリオ', 'Meiryo', sans-serif;
+  font-size:24px;
+  text-align:center;
+}
+.policySubTitle {
+  height:30px;
+  border-bottom:3px solid lightgray;
+  color: #3b4043;
+  font-family:'メイリオ', 'Meiryo', sans-serif;
+  font-size:20px;
+  text-align:center;
+}
+.policySection {
+  margin-bottom:60px;
+}
+.policySection li {
+  list-style: disc;
+  margin: 1.0em 0px;
+}
+.policySection p {
+  margin: 2em 0px;
+}
+.contact {
+  color:#87CEFA;
+  text-decoration: underline;
+}
+
+// 以上、policyで使用--------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------
 
 
 

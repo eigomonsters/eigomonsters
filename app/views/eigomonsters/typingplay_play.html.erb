@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="subtitle">
-        <%= form_tag(controller: "eigomonsters", action: "typingplay_before_start") do %>
+        <%= form_tag(controller: "eigomonsters", action: "typingplay_setting") do %>
           <h1 class="title">EigoMonsters</h1>
           <div id="displayBonusAddPlayTime"></div>
           <div id="remainPlayingTime"></div>
@@ -76,7 +76,7 @@
           <div id="backBtnTypingPlay" class="backBtnTypingPlay">
             <div class="courseCheckBackBtnTypingPlay">
                   <%# submitの設定_(typingplay_index)に遷移 %>
-                <input type="submit" formaction="typingplay_before_start" value="詳細設定画面に戻る" class= "courseCheckBackBtnTypingPlayWords">
+                <input type="submit" formaction="typingplay_setting" value="詳細設定画面に戻る" class= "courseCheckBackBtnTypingPlayWords">
             </div>
             <div class="courseSettingBackBtnTypingPlay">
                   <%# submitの設定_(typingplay_index)に遷移 %>

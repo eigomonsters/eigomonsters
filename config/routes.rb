@@ -11,8 +11,9 @@ Rails.application.routes.draw do
       get 'typingplay_play'
       post 'typingplay_play'
       get 'about'
-      get 'typingplay_before_start'
-      post 'typingplay_before_start'
+      get 'typingplay_setting'
+      post 'typingplay_setting'
+      get 'policy'
     end
   end
 end
