@@ -60,3 +60,5 @@ gem 'pry-rails'
 gem 'gon'
 
 gem 'audiojs-rails'
+
+gem "dotenv-rails"
