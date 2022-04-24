@@ -16,4 +16,13 @@ Rails.application.routes.draw do
       get 'policy'
     end
   end
+
+  resources :contacts, only: [:new, :create]
+    get 'contacts', to: 'contacts#new'
+    get 'contacts/confirm'
+    post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+    get 'contacts/back'
+    post 'contacts/back', to: 'contacts#back', as: 'back'
+    get 'contacts/done', to: 'contacts#done', as: 'done'
+    get 'contacts/error', to: 'contacts#error', as: 'error'
 end

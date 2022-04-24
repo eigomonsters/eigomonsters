@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="subtitle">
-        <%= form_tag(controller: "eigomonsters", action: "typingplay_setting") do %>
+        <%= form_with(model: :eigomonsters, url: typingplay_setting_eigomonsters_path, local: true, scope: :post) do %>
           <h1 class="title">EigoMonsters</h1>
           <div id="displayBonusAddPlayTime"></div>
           <div id="remainPlayingTime"></div>

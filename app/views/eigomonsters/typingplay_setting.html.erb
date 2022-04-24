@@ -10,7 +10,7 @@
       <h1 class="title">EigoMonsters</h1>
         <h3 class="courseSettingWords">以下の内容でよろしければ、設定完了を押してください。</h3>
             <%# タイピング種別によって遷移先を変える %>
-              <%= form_tag(controller: "eigomonsters", action: "typingplay_play") do %>
+              <%= form_with(model: :eigomonsters, url: typingplay_play_eigomonsters_path, local: true, scope: :post) do %>
                 <div class="courseSettingSummary">
                   <div class="typingCourseSummary">
                     <div class="courseSettingCategoryWords">タイピング種別</div>

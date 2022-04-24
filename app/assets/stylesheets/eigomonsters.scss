@@ -1614,10 +1614,12 @@
     }
 
     .menuBtnListSns { //menuOptionの子要素
-      width:55%;
+      width:80%;
       text-align: center;
       margin:0 auto;
       padding:12% 0;
+      display: flex;
+      justify-content: space-evenly;
     }
 
     .menuBtn { //menuBtnListとmenuBtnListProfileの子要素

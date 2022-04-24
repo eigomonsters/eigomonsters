@@ -1,0 +1,40 @@
+<div class="contactFormScr">
+  <div class="formTop">
+    <h1 class="confirmPageTitle">以下の内容で送信してよろしいですか？</h1>
+  </div>
+  <table>
+    <tbody>
+      <tr>
+        <td class="confirmWord">お名前</td>
+        <td class="confirmContent"><%= @contact.name %></td>
+      </tr>
+      <tr>
+        <td class="confirmWord">メールアドレス</td>
+        <td class="confirmContent"><%= @contact.email %></td>
+      </tr>
+      <tr>
+        <td class="confirmWord">件名</td>
+        <td class="confirmContent"><%= @contact.subject %></td>
+      </tr>
+      <tr>
+        <td class="confirmWord">お問い合わせ内容</td>
+        <td class="confirmContent"><%= @contact.message %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <%= form_for(@contact) do |f| %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :email %>
+    <%= f.hidden_field :subject %>
+    <%= f.hidden_field :message %>
+    <div><%= f.submit '送信', class: 'confirmSubmit' %></div>
+  <% end %>
+  <%= form_for @contact, url: back_path do |f| %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :email %>
+    <%= f.hidden_field :subject %>
+    <%= f.hidden_field :message %>
+    <div><%= f.submit '入力画面に戻る', class: 'confirmBack' %></div>
+  <% end %>
+</div>

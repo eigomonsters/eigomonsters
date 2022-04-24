@@ -3,7 +3,7 @@
     <div class="subtitle">
       <h1 class="title">EigoMonsters</h1>
         <h3 class="courseSettingWords">コースを選択し、OKを押してください。</h3>
-        <%= form_tag(controller: "eigomonsters", action: "typingplay_setting")  do %>
+        <%= form_with(model: :eigomonsters, url: typingplay_setting_eigomonsters_path, local: true, scope: :post) do %>
         <p class="courseSettingWordsParts1">タイピング種別</p>
           <div class="inline-radio">
               <div class="fukidashiPlayCourseJap"><input type="radio" name="typingCourse" value="日本語訳タイピング" <% if @typingCourseSet == "日本語訳タイピング" then %> checked <%end%>><label>日本語訳タイピング</label><p class="fukidashiPlayCourseJapParts">英単語に対応する日本語訳を答えていくコースです。</p></div>

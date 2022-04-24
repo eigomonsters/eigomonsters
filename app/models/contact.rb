@@ -1,12 +1,8 @@
 class Contact < ApplicationRecord
-  def change
-    create_table :contacts do |t|
-      t.string :name, null: false
-      t.string :email, null: false
-      t.integer :subject, default: 0, null: false
-      t.text :message, null: false
-
-      t.timestamps
-    end
-  end
+  validates :name, presence: true, length: { maximum: 20 }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, length: { maximum: 30 },
+                    format: { with: VALID_EMAIL_REGEX }
+  validates :subject, presence: true, length: { maximum: 30 }
+  validates :message, presence: true, length: { maximum: 500 }
 end

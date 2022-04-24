@@ -337,6 +337,10 @@ a {
       .prototype_image{
         width: 60%;
       }
+      .nav__btn{  /*ヘダー右側にあるナビのボタン_navの子要素*/
+        padding: 0.4em 1.0em;
+        font-size: 0.8em;
+      }
     }
 
  /* スマホ表示 */
