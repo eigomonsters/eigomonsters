@@ -26,7 +26,7 @@ class ContactsController < ApplicationController
   end
 
   def create
-    begin
+    #begin
       @contact = Contact.new(contact_params)
       if @contact.save
         ContactMailer.send_mail(@contact).deliver_now
@@ -34,9 +34,9 @@ class ContactsController < ApplicationController
       else
         render :new
       end
-    rescue
-      redirect_to action: :error
-    end
+    #rescue
+    #  redirect_to action: :error
+    #end
   end
 
   private
