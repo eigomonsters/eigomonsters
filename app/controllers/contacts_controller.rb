@@ -34,9 +34,9 @@ class ContactsController < ApplicationController
       else
         render :new
       end
-    #rescue
-    #  redirect_to action: :error
-    #end
+    rescue
+     redirect_to action: :error
+    end
   end
 
   private
