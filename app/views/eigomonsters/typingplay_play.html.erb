@@ -4,6 +4,17 @@
 <%= include_gon %>
 <%# タイピング種別によって、使用するJavascriptファイルを変える %>
 <%= javascript_pack_tag @typingCourseJavascript, 'data-turbolinks-track': 'reload' %>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6E8SPQDS8R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6E8SPQDS8R');
+</script>
+
+
 
 <%# 以下、HTML %>
 <div class="mastersrc">
