@@ -1340,6 +1340,11 @@
   margin:auto;
   margin-bottom: 20px;
 }
+// Chromeでのメーターの色変更
+meter::-webkit-meter-optimum-value {
+  background: rgb(50, 170, 50);
+  height: 100%;
+}
 
 .useKeyboardPopup {
   font-size: 1.2em;

@@ -55,61 +55,6 @@ function gameStart(){
 	// 表示する単語リストを定義する。
 	// chromeの場合"ff"が正常に動作しない。⇨対応済み
 
-	// 表示するメーターリストを定義する。
-	const imgArray =[
-		'/assets/メーターPNG/メーター0.png',
-		'/assets/メーターPNG/メーター10_yellow.png',
-		'/assets/メーターPNG/メーター20_yellow.png',
-		'/assets/メーターPNG/メーター30_yellow.png',
-		'/assets/メーターPNG/メーター40_yellow.png',
-		'/assets/メーターPNG/メーター50_yellow.png',
-		'/assets/メーターPNG/メーター60_yellow.png',
-		'/assets/メーターPNG/メーター70_yellow.png',
-		'/assets/メーターPNG/メーター80_yellow.png',
-		'/assets/メーターPNG/メーター90_yellow.png',
-		'/assets/メーターPNG/メーター100_yellow.png',
-		'/assets/メーターPNG/メーター10_green.png',
-		'/assets/メーターPNG/メーター20_green.png',
-		'/assets/メーターPNG/メーター30_green.png',
-		'/assets/メーターPNG/メーター40_green.png',
-		'/assets/メーターPNG/メーター50_green.png',
-		'/assets/メーターPNG/メーター60_green.png',
-		'/assets/メーターPNG/メーター70_green.png',
-		'/assets/メーターPNG/メーター80_green.png',
-		'/assets/メーターPNG/メーター90_green.png',
-		'/assets/メーターPNG/メーター100_green.png',
-		'/assets/メーターPNG/メーター10_blue.png',
-		'/assets/メーターPNG/メーター20_blue.png',
-		'/assets/メーターPNG/メーター30_blue.png',
-		'/assets/メーターPNG/メーター40_blue.png',
-		'/assets/メーターPNG/メーター50_blue.png',
-		'/assets/メーターPNG/メーター60_blue.png',
-		'/assets/メーターPNG/メーター70_blue.png',
-		'/assets/メーターPNG/メーター80_blue.png',
-		'/assets/メーターPNG/メーター90_blue.png',
-		'/assets/メーターPNG/メーター100_blue.png',
-		'/assets/メーターPNG/メーター10_pink.png',
-		'/assets/メーターPNG/メーター20_pink.png',
-		'/assets/メーターPNG/メーター30_pink.png',
-		'/assets/メーターPNG/メーター40_pink.png',
-		'/assets/メーターPNG/メーター50_pink.png',
-		'/assets/メーターPNG/メーター60_pink.png',
-		'/assets/メーターPNG/メーター70_pink.png',
-		'/assets/メーターPNG/メーター80_pink.png',
-		'/assets/メーターPNG/メーター90_pink.png',
-		'/assets/メーターPNG/メーター100_pink.png',
-		'/assets/メーターPNG/メーター10_red.png',
-		'/assets/メーターPNG/メーター20_red.png',
-		'/assets/メーターPNG/メーター30_red.png',
-		'/assets/メーターPNG/メーター40_red.png',
-		'/assets/メーターPNG/メーター50_red.png',
-		'/assets/メーターPNG/メーター60_red.png',
-		'/assets/メーターPNG/メーター70_red.png',
-		'/assets/メーターPNG/メーター80_red.png',
-		'/assets/メーターPNG/メーター90_red.png',
-		'/assets/メーターPNG/メーター100_red.png'
-	];
-
 	const romaMappingTableFirst = {
 		"あ":"a",
 		"い":"i",
@@ -392,7 +337,9 @@ function gameStart(){
 
 
 	// メーターの初期値を表示する。
-	document.getElementById("meterImg").src=imgArray[bonusCountMeter];
+	let meter = document.getElementById("meter")
+	meter.className = "meter"
+	meter.value = bonusCountMeter;
 	// ゲーム開始までをカウントダウン変数を定義する。
 	let countDownPopup = document.getElementById("countDownPopup");
 	// class属性を付与する。
@@ -409,15 +356,16 @@ function gameStart(){
 
 		// 以下、BGMありの場合、BGMを流す処理を定義する。---------------------------------------------
 	// ------------------------------------------------------------------------------------
+
+	let bgmAudio = new Audio('/assets/bgm1.mp3');
+	
 	if (bgmMode == "BGMあり") {
-		let bgmAudio = new Audio('/assets/bgm1.mp3');
 		var baseVol = 0.3;
-		var fadeSpeed = 100;
 		bgmAudio.volume = 0.1;
 		bgmAudio.play();
 		var start_func = setInterval(function() {
-			bgmAudio.volume = bgmAudio.volume + (baseVol / 100);
-			if(bgmAudio.volume >= baseVol - (baseVol / 100)) {
+			bgmAudio.volume = bgmAudio.volume + (baseVol / 200);
+			if(bgmAudio.volume >= baseVol - (baseVol / 200)) {
 				bgmAudio.volume = baseVol;
 				clearInterval(start_func);
 			}
@@ -430,7 +378,6 @@ function gameStart(){
 	// 以下、safariかつBGMなしの場合、BGMを音量0で流すことで一つ目の単語が発音されるようにする。--------
 	// ------------------------------------------------------------------------------------
 	if ((agent.indexOf("safari") != -1) && bgmMode == "BGMなし" && pronounceMode == "発音あり" ) {
-		let bgmAudio = new Audio('/assets/bgm1.mp3');
 		bgmAudio.volume = 0;
 		bgmAudio.play();
 		setInterval(function() {
@@ -506,7 +453,7 @@ function gameStart(){
 
 				// 表示するスタート時のプレイ可能時間を定義する。
 				// プレイモード：タイムアタックの場合は5分とする。
-				let initialPlayingTimeMSec = 300000;
+				let initialPlayingTimeMSec = 1000;
 
 				// プレイモード：タイムアタックの場合は50分とする。
 				if ( playMode == "タイムアタック") {
@@ -562,7 +509,7 @@ function gameStart(){
 
 						// メーターを初期値に戻す。
 						bonusCountMeter = 0;
-						document.getElementById("meterImg").src=imgArray[bonusCountMeter];
+						meter.value = bonusCountMeter;
 
 						// 「答えを見る」判定フラグを更新する。
 						answerOpenFlag = "1";
@@ -899,7 +846,7 @@ function gameStart(){
 					// 「問題を振り返る」ボタン押下で出題問題リストポップアップを開く。
 					checkQuestions.onclick = function() {
 						// メーターを非表示にする。
-						document.getElementById("meterImg").className = "transparent";
+						meter.className = "transparent";
 						// 出題問題リストを表示させる。
 						allQuestionsListEntireScr.className = "allQuestionsListEntireScr";
 						closeAllQuestionsList.className = "closeAllQuestionsList";
@@ -907,7 +854,7 @@ function gameStart(){
 					// 「閉じる」ボタン押下で出題問題リストポップアップを閉じる。
 						closeAllQuestionsList.onclick = function() {
 						// メーターを表示にさせる。
-						document.getElementById("meterImg").className = "meter";
+						meter.className = "meter";
 						// 出題問題リストを非表示にする。
 						allQuestionsListEntireScr.className = "transparent";
 						closeAllQuestionsList.className = "transparent";
@@ -1630,7 +1577,7 @@ function gameStart(){
 						}, 2000);
 					};
 					// 更新したメーターを表示する。
-					document.getElementById("meterImg").src=imgArray[bonusCountMeter];
+					meter.value = bonusCountMeter;
 
 					// 表示文字全てタイプした場合、スコアアップ処理を実施し、次の表示文字を作成する処理を実施する。
 					if(charArrayInDisplayWordJap.length === 0) {
