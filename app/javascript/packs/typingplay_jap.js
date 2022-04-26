@@ -453,7 +453,7 @@ function gameStart(){
 
 				// 表示するスタート時のプレイ可能時間を定義する。
 				// プレイモード：タイムアタックの場合は5分とする。
-				let initialPlayingTimeMSec = 1000;
+				let initialPlayingTimeMSec = 300000;
 
 				// プレイモード：タイムアタックの場合は50分とする。
 				if ( playMode == "タイムアタック") {
