@@ -1,3 +1,6 @@
+<%= provide(:title, 'TOEIC英単語タイピング【EigoMonsters】')%>
+<meta name="description" content="TOEICで頻出な英単語をタイピングゲームで学習することができます。「日本語訳を答えるコース」と「英単語を答えるコース」の2種類がございます。">
+<%= javascript_pack_tag 'indexTypingMovie', 'data-turbolinks-track': 'reload' %>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SCT4G2G6T4"></script>
 <script>
@@ -11,28 +14,43 @@
 
 
 <div class="topPage">
-  <h1 class="topPageTitle">英単語をタイピングゲームで学ぶ</h1>
-  <p class="engTitle">〜Learning English Words by Typing Game〜</p>
-  <div class="menuPopup">
-    <h2 class="menuTitle">MENU</h2>
-    <div class="menuOption">
-      <div class="menuBtnList">
-        <%= link_to "タイピングゲーム", typingplay_index_eigomonsters_path, method: :get, class: :menuBtn %>
-      </div>
-      <div class="menuBtnList">
-        <%= link_to "英単語リスト", eng_wordlist_index_eigomonsters_path, method: :get, class: :menuBtn %>
-      </div>
-      <div class="menuBtnList">
-        <%= link_to "EigoMonstersとは", about_eigomonsters_path, method: :get, class: :menuBtn %>
-      </div>
-      <div class="menuBtnListSns">
-        <div class="menuBtnListInquiry">
-          <%= link_to "お問い合わせ", contacts_path, class: :menuBtn %>
+  <h1 class="topPageTitle">TOEIC英単語タイピング</h1>
+  <p class="topPageTitleEng">〜Learning TOEIC English Words by Typing Game〜</p>
+  <div class="instantPlayJapAndEng">
+    <%= form_with(model: :eigomonsters, url: typingplay_play_eigomonsters_path, local: true, scope: :post) do %>
+      <%# タイピング種別によってコントローラーに渡す変数(Value)を変える %>
+        <input type="hidden" name="typingCourse" value="日本語訳タイピング" >
+      <%# submitの設定_(typingplay_play)に遷移 %>
+        <input id="instantPlayJapPopup" type="submit" formaction="eigomonsters/typingplay_play" value="日本語訳タイピング" class= "instantPlayJapPopup">
+      <div class="instantPlayJapContents">
+        <p class="instantPlayJapWords">英単語に対応する日本語訳を答えていくコースです。</p>
+        <%# Video %> 
+        <video id="japTypingMovie" src="../../assets/japTypingMovie.mp4" class="japTypingMovie" playsinline>
+          <p>ご使用のブラウザでは動画再生に対応していません</p>
+        </video>
+        <div class="instantPlayJapDetail">
+          <p>英単語の難易度/出題範囲 : Level 1</p>
+          <p>プレイモード : 練習</p>
         </div>
-        <%# <div class="menuBtnListTwitter">
-          <%= link_to 'Twitter', 'https://twitter.com/eigomonsters',target: :blank, rel: :noopener, rel: :noreferrer, class: :menuBtn %>
-        <%# </div> %>
       </div>
-    </div>
+    <% end %>
+    <%= form_with(model: :eigomonsters, url: typingplay_play_eigomonsters_path, local: true, scope: :post) do %>
+      <%# タイピング種別によってコントローラーに渡す変数(Value)を変える %>
+        <input type="hidden" name="typingCourse" value="英単語タイピング">
+      <%# submitの設定_(typingplay_play)に遷移 %>
+        <input id="instantPlayEngPopup" type="submit" formaction="eigomonsters/typingplay_play" value="英単語タイピング" class= "instantPlayEngPopup">
+      <div class="instantPlayEngContents">
+        <p class="instantPlayEngWords">日本語訳に対応する英単語を答えていくコースです。</p>
+        <%# Video %>
+        <video id="engTypingMovie" src="../../assets/engTypingMovie.mp4" class="engTypingMovie" playsinline>
+          <p>ご使用のブラウザでは動画再生に対応していません</p>
+        </video>
+        <div class="instantPlayEngDetail">
+          <p>英単語の難易度/出題範囲 : Level 1</p>
+          <p>プレイモード : 練習</p>
+        </div>
+      </div>
+    <% end %>
   </div>
+  <p class="instantPlayJapAndEngSetting">設定変更は<%= link_to "こちら", typingplay_index_eigomonsters_path, method: :get, class: :instantPlayLink %></p>
 </div>

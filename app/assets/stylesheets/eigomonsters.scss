@@ -1551,43 +1551,49 @@ meter::-webkit-meter-optimum-value {
   width:200px;
 }
 
-.imgSeason img {
-  width: 100%;
+
+//英単語リスト画面で使用
+.engWordListSrc {
+  margin-top: 100px;
+  min-height: 650px;
+}
+
+//EigoMonstersとはの画面で使用
+.aboutSrc {
+  margin-top: 100px;
+  min-height: 650px;
 }
 
 
+
 // 以下、Homeメニュー画面で使用------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------------------------------
+    .topPage {
+      margin-top: 100px;
+      min-height: 640px;
+    }
     .topPageTitle {
       color: #000000;
       font-family:'メイリオ', 'Meiryo', sans-serif;
       font-size:40px;
       text-align:center;
     }
-
-    .engTitle {
+    .topPageTitleEng {
       text-align: center;
       margin-bottom:20px;
     }
-    .topPage {
-      margin-top: 100px;
-      min-height: 640px;
+
+
+    .instantPlayJapAndEng {
+      display: flex;
+      width:900px;
+      margin: 0 auto;
+      justify-content: space-evenly;
+      position: relative;
     }
 
-
-//英単語リスト画面で使用
-    .engWordListSrc {
-      margin-top: 100px;
-      min-height: 650px;
-    }
-
-//EigoMonstersとはの画面で使用
-    .aboutSrc {
-      margin-top: 100px;
-      min-height: 650px;
-    }
-
-
-    .menuPopup {
+    // タイピングゲームへの遷移ボタン
+    .instantPlayJapPopup, .instantPlayEngPopup {
       height: 440px;
       min-height:400px;
       max-height: 500px;
@@ -1597,78 +1603,70 @@ meter::-webkit-meter-optimum-value {
       border-radius: 12px;
       background-color: #f1f8fe;
       background:rgba(241,248,254,0.5);
-    }
-
-    .menuTitle { //menuPopupの子要素
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 50px;
-      color: black;
+      font-size: 24px;
+      color: rgb(70, 70, 70);;
       font-family:'メイリオ', 'Meiryo', sans-serif;
-      height:30%
+      padding-bottom:300px;
+      font-weight: bold;
     }
-
-    .menuOption { //menuPopupの子要素
-      height: 70%;
-    }
-
-    .menuBtnList { //menuOptionの子要素
+    // ボタン内部の文言、MovieのCSS
+    .instantPlayJapContents, .instantPlayEngContents {
+      position:absolute;
+      width:330px;
       text-align: center;
-      padding:5% 0;
+      top:100px;
+      pointer-events: none;
+      z-index: 1;
     }
-
-    .menuBtnListSns { //menuOptionの子要素
-      width:80%;
+    .instantPlayJapWords, .instantPlayEngWords {
+      font-size: 12px;
+    }
+    .japTypingMovie, .engTypingMovie {
+      margin-top:36px;
+      height:160px;
+    }
+    .instantPlayJapDetail, .instantPlayEngDetail {
+      margin-top: 30px;
+      font-size: 12px;
+    }
+    .instantPlayJapAndEngSetting {
+      margin-top: 30px;
+      font-size: 12px;
       text-align: center;
-      margin:0 auto;
-      padding:12% 0;
-      display: flex;
-      justify-content: space-evenly;
     }
-
-    .menuBtn { //menuBtnListとmenuBtnListProfileの子要素
-      font-size: 0.8em;
-      color: #87CEFA;
-      text-decoration: none;
-      user-select: none;
-      border: 1px #87CEFA solid;
-      border-radius: 3px;
-      transition: 0.4s ease;
-      padding: 0.4em 1.6em;
-      background-color: white;
-      font-family:'メイリオ', 'Meiryo', sans-serif;
+    .instantPlayLink {
+      color:#87CEFA ;
+      text-decoration: underline;
     }
-
-    //メニューボタンのホバー時
-    .menuBtn:hover{
+    
+    // hover時の処理
+    .instantPlayJapPopup:hover, .instantPlayEngPopup:hover {
+      transform: scale(1.05);
+      transition-duration: 0.3s;
+      cursor: pointer;
+    }
+    .instantPlayJapPopup:hover, .instantPlayEngPopup:hover {
       color: #fff;
       background: #87CEFA;
     }
-
-
-    .menuLinkImages {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 0 auto;
-      width:40%;
+    .instantPlayJapPopup:hover + .instantPlayJapContents {
+      transform: scale(1.05);
+      transition-duration: 0.3s;
     }
-
-    .typingSettingBtn {
-      text-align: center;
+    .instantPlayJapPopup:hover + .instantPlayJapContents {
+      color: #fff;
     }
-
-    .selection-group input[type="checkbox"] {
-      display: none;
+    .instantPlayEngPopup:hover + .instantPlayEngContents {
+      transform: scale(1.05);
+      transition-duration: 0.3s;
     }
-
-
-
+    .instantPlayEngPopup:hover + .instantPlayEngContents {
+      color: #fff;
+    }
 
 
 // 以上、Homeメニュー画面で使用------------------------------------------------------------------------------------------------------
-
+// ------------------------------------------------------------------------------------------------------------------------------
 
 
 

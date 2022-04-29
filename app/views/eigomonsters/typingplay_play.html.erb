@@ -3,6 +3,7 @@
 <%= include_gon %>
 <%# タイピング種別によって、使用するJavascriptファイルを変える %>
 <%= javascript_pack_tag @typingCourseJavascript, 'data-turbolinks-track': 'reload' %>
+<%= provide(:title, @typingCourseSet)%>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SCT4G2G6T4"></script>
 <script>

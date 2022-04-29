@@ -83,7 +83,7 @@ class EigomonstersController < ApplicationController
       elsif params['playMode'] == "タイムアタック" then
         @playModeSet = "タイムアタック"
       else
-        @playModeSet = "普通"
+        @playModeSet = "練習"
       end
       # 詳細設定
         # 出題順の判定
@@ -138,7 +138,7 @@ class EigomonstersController < ApplicationController
     else
         @typingCourseSet = "日本語訳タイピング"
         @engWordsDifficultySet = "Level1"
-        @playModeSet = "普通"
+        @playModeSet = "練習"
     end
   end
 
@@ -194,7 +194,7 @@ class EigomonstersController < ApplicationController
       elsif params['playMode'] == "タイムアタック" then
         @playModeSet = "タイムアタック"
       else
-        @playModeSet = "普通"
+        @playModeSet = "練習"
       end
       # 詳細設定
         # 出題順の判定
@@ -314,8 +314,8 @@ class EigomonstersController < ApplicationController
             gon.playMode = "タイムアタック"
             @playModeSet = "タイムアタック"
           else
-            gon.playMode = "普通"
-            @playModeSet = "普通"
+            gon.playMode = "練習"
+            @playModeSet = "練習"
           end
       ## 詳細設定
           # 出題順の判定
