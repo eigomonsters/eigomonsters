@@ -14,7 +14,7 @@
 <div class="engWordListSrc">
   <h1 class="title">英単語リスト</h1>
   <%= form_with(url: search_eigomonsters_path, local: true, method: :get, class: "search-form") do |form| %>
-      <select name="lvelSelect" class="levelSelect">
+      <select name="lvelSelect" class="levelSelect" onchange="submit(this.form)">
         <option value="Level1" <% if @wordListLevelSet == "Level1" then %> selected <%end%>>Level1_1~300</option>
         <option value="Level2" <% if @wordListLevelSet == "Level2" then %> selected <%end%>>Level2_301~600</option>  
         <option value="Level3" <% if @wordListLevelSet == "Level3" then %> selected <%end%>>Level3_601~900</option>  
