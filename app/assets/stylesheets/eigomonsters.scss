@@ -1608,6 +1608,7 @@ meter::-webkit-meter-optimum-value {
       font-family:'メイリオ', 'Meiryo', sans-serif;
       padding-bottom:300px;
       font-weight: bold;
+      -webkit-appearance: none;
     }
     // ボタン内部の文言、MovieのCSS
     .instantPlayJapContents, .instantPlayEngContents {
