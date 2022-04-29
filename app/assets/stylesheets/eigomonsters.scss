@@ -595,6 +595,7 @@
   margin:0 auto;
   text-align: center;
   cursor: pointer;
+  -webkit-appearance: none;
 }
 
 //ゲーム開始前画面で使用
@@ -739,6 +740,7 @@
       font-family:'メイリオ', 'Meiryo', sans-serif;
       text-align: center;
       cursor: pointer;
+      -webkit-appearance: none;
     }
 
      //詳細設定画面を開くボタン
@@ -787,6 +789,7 @@
       border-radius: 6px;
       background-color: white;
       cursor: pointer;
+      -webkit-appearance: none;
     }
 
     // 以下、typing_play画面で使用---------------------------------------------------------------------------------
@@ -820,6 +823,7 @@
           font-family:'メイリオ', 'Meiryo', sans-serif;
           text-align: center;
           cursor: pointer;
+          -webkit-appearance: none;
         }
 
 
@@ -842,6 +846,7 @@
           font-family:'メイリオ', 'Meiryo', sans-serif;
           text-align: center;
           cursor: pointer;
+          -webkit-appearance: none;
         }
 
 
@@ -955,6 +960,7 @@
           background-color: rgb(244, 250, 255);
           font-family:'メイリオ', 'Meiryo', sans-serif;
           cursor: pointer;
+          -webkit-appearance: none;
         }
 
         .courseSettingBackButtonMidGame {
@@ -968,6 +974,7 @@
           background-color: rgb(244, 250, 255);
           font-family:'メイリオ', 'Meiryo', sans-serif;
           cursor: pointer;
+          -webkit-appearance: none;
         }
 
         .ondoku3Credit {
@@ -1181,6 +1188,7 @@
   background-color: white;
   cursor: pointer;
   color:rgb(70, 70, 70);
+  -webkit-appearance: none;
 }
 
 .backBtn {
@@ -1194,6 +1202,7 @@
   background-color: white;
   cursor: pointer;
   color:rgb(70, 70, 70);
+  -webkit-appearance: none;
 }
 
 .checkQuestions {
@@ -1524,6 +1533,7 @@ meter::-webkit-meter-optimum-value {
 .search-btn {
   width: 70px;
   cursor: pointer;
+  
 }
 
 .triangle {
