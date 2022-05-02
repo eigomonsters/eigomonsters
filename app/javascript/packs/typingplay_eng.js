@@ -684,32 +684,24 @@ function gameStart(){
 					// 問題を振り返るボタンの表示
 					checkQuestions.className = "checkQuestions";
 					checkQuestions.textContent ="問題を振り返る";
-					// Tweetボタンの表示
-					if ( playMode == "練習" || playMode == "普通" ) {
-						twttr.widgets.createShareButton("", document.getElementById("shareTweet"), {
-						size: "large",
-						text: `TOEIC英単語タイピング成績 ⇨ ${typingCourseSet} / ${engWordsDifficultySet} ${numberFrom}~${numberTo} / ${playMode} / 出題順 : ${questionOrderMode} / ${pronounceMode} / ${closePopupTotalQuestionNum.textContent} / ${closePopupFinalCorrectNum.textContent} / ${closePopupFinalMaxConsecutiveCorrectNum.textContent}`,
-						hashtags: "TOEIC英単語タイピング",
-						url: "https://eigomonsters.com/",
-						related: "EigoMonsters"
-						});
-					} else { // タイムアタックの場合、所要時間も記載する。
-						if ( gameCompleteTimeAttackFlag == "2") {
-						twttr.widgets.createShareButton("", document.getElementById("shareTweet"), {
-						size: "large",
-						text: `TOEIC英単語タイピング成績 ⇨ ${typingCourseSet} / ${engWordsDifficultySet} ${numberFrom}~${numberTo} / ${playMode} / 所要時間 : ${playingTimeForTimeAttack} / 出題順 : ${questionOrderMode} / ${pronounceMode} / ${closePopupTotalQuestionNum.textContent} / ${closePopupFinalCorrectNum.textContent} / ${closePopupFinalMaxConsecutiveCorrectNum.textContent}`,
-						hashtags: "TOEIC英単語タイピング",
-						url: "https://eigomonsters.com/",
-						related: "EigoMonsters"
-						});
-						} else {
-							twttr.widgets.createShareButton("", document.getElementById("shareTweet"), {
-							size: "large",
-							text: `TOEIC英単語タイピング成績 ⇨ ${typingCourseSet} / ${engWordsDifficultySet} ${numberFrom}~${numberTo} / ${playMode} / 所要時間 : Timeover / 出題順 : ${questionOrderMode} / ${pronounceMode} / ${closePopupTotalQuestionNum.textContent} / ${closePopupFinalCorrectNum.textContent} / ${closePopupFinalMaxConsecutiveCorrectNum.textContent}`,
-							hashtags: "TOEIC英単語タイピング",
-							url: "https://eigomonsters.com/",
-							related: "EigoMonsters"
-							});
+
+
+					//ツイートボタンが押された時の処理
+					let shareTweetDiv = document.getElementById("shareTweetDiv");
+					shareTweetDiv.className = "shareTweetDiv";
+					let shareTweet = document.getElementById("shareTweet");
+					shareTweet.onclick = function() {
+						//ツイート内容をセット
+						var url = "https://eigomonsters.com/";
+						//#twitter_buttonのhrefにパラメーターを渡す
+						if ( playMode == "練習" || playMode == "普通" ) {
+						window.open().location.href = (`https://twitter.com/share?url=${url}&text=TOEIC%20${typingCourseSet}%0a${engWordsDifficultySet}(${numberFrom}~${numberTo})%20${playMode}%0a${questionOrderMode}出題%20${pronounceMode}%0a${closePopupTotalQuestionNum.textContent}%20/%20${closePopupFinalCorrectNum.textContent}%20/%20${closePopupFinalMaxConsecutiveCorrectNum.textContent}%0a&hashtags=EigoMonsters&related=EigoMonsters&count=none&lang=ja`);
+						} else { // タイムアタックの場合、所要時間も記載する。
+							if ( gameCompleteTimeAttackFlag == "2") {
+								window.open().location.href = (`https://twitter.com/share?url=${url}&text=TOEIC%20${typingCourseSet}%0a${engWordsDifficultySet}(${numberFrom}~${numberTo})%20${playMode}%0a${questionOrderMode}出題%20${pronounceMode}%0a所要時間 : ${playingTimeForTimeAttack}%0a${closePopupTotalQuestionNum.textContent}%20/%20${closePopupFinalCorrectNum.textContent}%20/%20${closePopupFinalMaxConsecutiveCorrectNum.textContent}%0a&hashtags=EigoMonsters&related=EigoMonsters&count=none&lang=ja`);
+							} else {
+								window.open().location.href = (`https://twitter.com/share?url=${url}&text=TOEIC%20${typingCourseSet}%0a${engWordsDifficultySet}(${numberFrom}~${numberTo})%20${playMode}%0a${questionOrderMode}出題%20${pronounceMode}%0a所要時間 : Timeover%0a${closePopupTotalQuestionNum.textContent}%20/%20${closePopupFinalCorrectNum.textContent}%20/%20${closePopupFinalMaxConsecutiveCorrectNum.textContent}%0a&hashtags=EigoMonsters&related=EigoMonsters&count=none&lang=ja`);
+							}
 						}
 					}
 					},2000);
