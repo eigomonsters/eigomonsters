@@ -70,7 +70,7 @@ function gameStart(){
 	// 表示するメーター初期値を定義する。
 	let bonusCountMeter = 0;
 	// 表示するメーター最大値を定義する。
-	const bonusCountMeterMax = 50;
+	const bonusCountMeterMax = 100;
 	// 表示するプレイ延長時間を定義する。
 	const displayBonusAddPlayTime = document.getElementById("displayBonusAddPlayTime");
 	displayBonusAddPlayTime.className =  "displayBonusAddPlayTime";
@@ -417,7 +417,12 @@ function gameStart(){
 							// 前の問題に注釈がある場合消す。
 							displayWordAnnotation.className = "transparent";
 							// ランダムで選ばれた英単語の日本語訳でワードリストをフィルター
-							let duplicateWords = wordList.filter(duplicateWord => duplicateWord.jap_trans_1 == displayWordInList.jap_trans_1);
+							let duplicateWords1 = wordList.filter(duplicateWord => duplicateWord.jap_trans_1 == displayWordInList.jap_trans_1);
+							let duplicateWords2 = wordList.filter(duplicateWord => duplicateWord.jap_trans_2 == displayWordInList.jap_trans_1);
+							// 出題された日本語訳で日本語訳１と２を検索し、ヒットした英単語を一つに格納する。
+							let duplicateWords1and2 = duplicateWords1.concat(duplicateWords2);
+							// 格納した英単語に重複がある場合は重複削除する。
+							let duplicateWords = Array.from(new Set(duplicateWords1and2));
 							// 日本語訳が重複している他の英単語がある場合
 							if (duplicateWords.length > 1) {
 								// 重複している英単語の配列（この時点では答えを含む）を定義する。

@@ -272,19 +272,19 @@ class EigomonstersController < ApplicationController
         ## numberFromとnumberToが数値である場合
           if params['numberFrom'] != "" && params['numberFrom'] != nil && params['numberFrom'] != 0 && params['numberTo'] != "" && params['numberTo'] != nil && params['numberTo'] != 0 then
             if params['numberFrom'].to_i <= params['numberTo'].to_i then
-                @wordListLevel = Wordlist.select(:id, :eng_word, :jap_trans_1, :jap_trans_1_yomi).where("id >= ?", params['numberFrom']).where("id <= ?", params['numberTo']).order("id")
+                @wordListLevel = Wordlist.select(:id, :eng_word, :jap_trans_1, :jap_trans_1_yomi, :jap_trans_2, :jap_trans_2_yomi).where("id >= ?", params['numberFrom']).where("id <= ?", params['numberTo']).order("id")
                 gon.wordListAll = @wordListLevel
                 @numberFrom = params['numberFrom']
                 @numberTo = params['numberTo']
             else
-                @wordListLevel = Wordlist.select(:id, :eng_word, :jap_trans_1, :jap_trans_1_yomi).where("id >= ?", params['numberTo']).where("id <= ?", params['numberFrom']).order("id")
+                @wordListLevel = Wordlist.select(:id, :eng_word, :jap_trans_1, :jap_trans_1_yomi, :jap_trans_2, :jap_trans_2_yomi).where("id >= ?", params['numberTo']).where("id <= ?", params['numberFrom']).order("id")
                 gon.wordListAll = @wordListLevel
                 @numberFrom = params['numberFrom']
                 @numberTo = params['numberTo']
             end
         ## numberFromもしくはnumberToが数値でない場合(基本input type=numberで数値でない場合はエラーメッセージが表示される)
           else
-            @wordListLevel = Wordlist.select(:id, :eng_word, :jap_trans_1, :jap_trans_1_yomi).where("id >= 1").where("id <= 300").order("id")
+            @wordListLevel = Wordlist.select(:id, :eng_word, :jap_trans_1, :jap_trans_1_yomi, :jap_trans_2, :jap_trans_2_yomi).where("id >= 1").where("id <= 300").order("id")
             gon.wordListAll = @wordListLevel
             @numberFrom = 1
             @numberTo = 300

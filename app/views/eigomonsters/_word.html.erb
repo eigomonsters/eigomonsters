@@ -10,50 +10,230 @@
           <%# 英単語の意味１（品詞が同じ場合は一緒に表示）%>
             <div id="part_of_speech_1" class="<%= "part_of_speech_1" if word.part_of_speech_1 != "-" %>">
               <% if word.part_of_speech_1 != "-" %>
-              <%= word.part_of_speech_1 %>
+                <%= word.part_of_speech_1 %>
               <% else %>
               <% end %>
             </div>
-            <div id="jap_trans_1" class="jap_trans_1" >
-              <span style="border-bottom: solid 1px;"><%= word.jap_trans_1 %></span>
-            </div>
+            <div id="jap_trans_1" class="jap_trans_1" ><span style="border-bottom: solid 1px;"><%= word.jap_trans_1 %></span></div>
           <%# 英単語の意味２〜４（品詞が同じ場合は一緒に表示）%>
+          <%# 英単語の意味２が存在する場合（英単語の意味２が存在しない場合でも、意味３が存在する場合あり（意味２をタイピングゲームの正解から外すため）） %>
             <% if word.part_of_speech_2 != "" && word.part_of_speech_2 != nil %>
-                <% if word.part_of_speech_1 == word.part_of_speech_2 %>
-                    <div id="jap_trans_2" class="jap_trans_2" >
-                        、<%= word.jap_trans_2 %>
-                    </div>
-                <% else %>
-                    <div class="spacer">
-                    </div>
-                    <div id="part_of_speech_2" class="part_of_speech_2">
-                      <%= word.part_of_speech_2 %>
-                    </div>
-                    <div id="jap_trans_2" class="jap_trans_2" >
-                      <%= word.jap_trans_2 %>
-                    </div>
-                <% end %>
+              <%# 英単語の意味３が存在する場合 %>
                 <% if word.part_of_speech_3 != "" && word.part_of_speech_3 != nil %>
-                    <div class="spacer">
-                    </div>
-                    <div id="part_of_speech_3" class="part_of_speech_3">
-                      <%= word.part_of_speech_3 %>
-                    </div>
-                    <div id="jap_trans_3" class="jap_trans_3" >
-                      <%= word.jap_trans_3 %>
-                    </div>
+                  <%# 英単語の意味４が存在する場合 %>
                     <% if word.part_of_speech_4 != "" && word.part_of_speech_4 != nil %>
-                        <div class="spacer">
-                        </div>
-                        <div id="part_of_speech_4" class="part_of_speech_4">
-                          <%= word.part_of_speech_4 %>
-                        </div>
-                        <div id="jap_trans_4" class="jap_trans_4" >
-                          <%= word.jap_trans_4 %>
-                        </div>
-                    <% end %>
-                <% end %>
-            <% end %>
+                      <%# 英単語の品詞１〜４が同じ場合 %>
+                        <% if word.part_of_speech_1 == word.part_of_speech_2 && word.part_of_speech_2 == word.part_of_speech_3 && word.part_of_speech_3 == word.part_of_speech_4 %>
+                          <div id="jap_trans_2" class="jap_trans_2" >、<span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                          <div id="jap_trans_3" class="jap_trans_3" >、<%= word.jap_trans_3 %></div>
+                          <div id="jap_trans_4" class="jap_trans_4" >、<%= word.jap_trans_4 %></div>
+                        <%# 英単語の品詞１〜３が同じ場合（elsifにすることで品詞４とは異なること確定） %>
+                        <%elsif word.part_of_speech_1 == word.part_of_speech_2 && word.part_of_speech_2 == word.part_of_speech_3 %>
+                          <div id="jap_trans_2" class="jap_trans_2" >、<span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                          <div id="jap_trans_3" class="jap_trans_3" >、<%= word.jap_trans_3 %></div>
+                          <%# 改行 %>
+                          <div class="spacer"></div>
+                          <div id="part_of_speech_4" class="part_of_speech_4"><%= word.part_of_speech_4 %></div>
+                          <div id="jap_trans_4" class="jap_trans_4" ><%= word.jap_trans_4 %></div>
+                        <%# 英単語の品詞１、２、４が同じ場合（elsifにすることで品詞３とは異なること確定） %>
+                        <%elsif word.part_of_speech_1 == word.part_of_speech_2 && word.part_of_speech_2 == word.part_of_speech_4 %>
+                          <div id="jap_trans_2" class="jap_trans_2" >、<span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                          <div id="jap_trans_4" class="jap_trans_4" >、<%= word.jap_trans_4 %></div>
+                          <%# 改行 %>
+                          <div class="spacer"></div>
+                          <div id="part_of_speech_3" class="part_of_speech_3"><%= word.part_of_speech_3 %></div>
+                          <div id="jap_trans_3" class="jap_trans_3" ><%= word.jap_trans_3 %></div>
+                        <%# 英単語の品詞１、２が同じ場合（elsifにすることで品詞３、４とは異なること確定） %>
+                        <%elsif word.part_of_speech_1 == word.part_of_speech_2 %>
+                          <div id="jap_trans_2" class="jap_trans_2" >、<span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                          <%# 改行 %>
+                          <div class="spacer"></div>
+                          <div id="part_of_speech_3" class="part_of_speech_3"><%= word.part_of_speech_3 %></div>
+                          <div id="jap_trans_3" class="jap_trans_3" ><%= word.jap_trans_3 %></div>
+                            <%# 英単語の品詞３、４が同じ場合 %>
+                            <%if word.part_of_speech_3 == word.part_of_speech_4 %>
+                              <div id="jap_trans_4" class="jap_trans_4" >、<%= word.jap_trans_4 %></div>
+                            <%else%>
+                              <%# 改行 %>
+                              <div class="spacer"></div>
+                              <div id="part_of_speech_4" class="part_of_speech_4"><%= word.part_of_speech_4 %></div>
+                              <div id="jap_trans_4" class="jap_trans_4" ><%= word.jap_trans_4 %></div>
+                            <%end%>
+                        <%# 英単語の品詞１、３、４が同じ場合（elsifにすることで品詞２とは異なること確定）%>
+                        <%elsif word.part_of_speech_1 == word.part_of_speech_3 && word.part_of_speech_3 == word.part_of_speech_4 %>
+                          <div id="jap_trans_3" class="jap_trans_3" >、<%= word.jap_trans_3 %></div>
+                          <div id="jap_trans_4" class="jap_trans_4" >、<%= word.jap_trans_4 %></div>
+                          <%# 改行 %>
+                          <div class="spacer"></div>
+                          <div id="part_of_speech_2" class="part_of_speech_2"><%= word.part_of_speech_2 %></div>
+                          <div id="jap_trans_2" class="jap_trans_2" ><span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                        <%# 英単語の品詞１、３が同じ場合（elsifにすることで品詞２、４とは異なること確定）%>
+                        <%elsif word.part_of_speech_1 == word.part_of_speech_3 %>
+                          <div id="jap_trans_3" class="jap_trans_3" >、<%= word.jap_trans_3 %></div>
+                          <%# 改行 %>
+                          <div class="spacer"></div>
+                          <div id="part_of_speech_2" class="part_of_speech_2"><%= word.part_of_speech_2 %></div>
+                          <div id="jap_trans_2" class="jap_trans_2" ><span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                            <%# 英単語の品詞２、４が同じ場合 %>
+                            <%if word.part_of_speech_2 == word.part_of_speech_4 %>
+                              <div id="jap_trans_4" class="jap_trans_4" >、<%= word.jap_trans_4 %></div>
+                            <%else%>
+                              <%# 改行 %>
+                              <div class="spacer"></div>
+                              <div id="part_of_speech_4" class="part_of_speech_4"><%= word.part_of_speech_4 %></div>
+                              <div id="jap_trans_4" class="jap_trans_4" ><%= word.jap_trans_4 %></div>
+                            <%end%>
+                        <%# 英単語の品詞１が品詞、２、３、４のどれとも異なる場合 %>
+                        <%else%>
+                          <%# 改行 %>
+                            <div class="spacer"></div>
+                            <div id="part_of_speech_2" class="part_of_speech_2"><%= word.part_of_speech_2 %></div>
+                            <div id="jap_trans_2" class="jap_trans_2" ><span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                          <%# 英単語の品詞２、３、４が同じ場合%>
+                            <%if word.part_of_speech_2 == word.part_of_speech_3 && word.part_of_speech_3 == word.part_of_speech_4 %>
+                              <div id="jap_trans_3" class="jap_trans_3" >、<%= word.jap_trans_3 %></div>
+                              <div id="jap_trans_4" class="jap_trans_4" >、<%= word.jap_trans_4 %></div>
+                            <%# 英単語の品詞２、３が同じ場合%>
+                            <%elsif word.part_of_speech_2 == word.part_of_speech_3 %>
+                              <div id="jap_trans_3" class="jap_trans_3" >、<%= word.jap_trans_3 %></div>
+                              <%# 改行 %>
+                              <div class="spacer"></div>
+                              <div id="part_of_speech_4" class="part_of_speech_4"><%= word.part_of_speech_4 %></div>
+                              <div id="jap_trans_4" class="jap_trans_4" ><%= word.jap_trans_4 %></div>
+                            <%# 英単語の品詞２、４が同じ場合%>
+                            <%elsif word.part_of_speech_2 == word.part_of_speech_4 %>
+                              <div id="jap_trans_4" class="jap_trans_4" >、<%= word.jap_trans_4 %></div>
+                              <%# 改行 %>
+                              <div class="spacer"></div>
+                              <div id="part_of_speech_3" class="part_of_speech_3"><%= word.part_of_speech_3 %></div>
+                              <div id="jap_trans_3" class="jap_trans_3" ><%= word.jap_trans_3 %></div>
+                            <%# 英単語の品詞２が品詞３、４のどれとも異なる場合%>
+                            <%else%>
+                              <%# 改行 %>
+                              <div class="spacer"></div>
+                              <div id="part_of_speech_3" class="part_of_speech_3"><%= word.part_of_speech_3 %></div>
+                              <div id="jap_trans_3" class="jap_trans_3" ><%= word.jap_trans_3 %></div>
+                              <%# 英単語の品詞３、４が同じ場合%>
+                                <%if word.part_of_speech_3 == word.part_of_speech_4 %>
+                                  <div id="jap_trans_4" class="jap_trans_4" >、<%= word.jap_trans_4 %></div>
+                              <%# 英単語の品詞３、４が異なる場合%>
+                                <%else%>
+                                  <%# 改行 %>
+                                  <div class="spacer"></div>
+                                  <div id="part_of_speech_4" class="part_of_speech_4"><%= word.part_of_speech_4 %></div>
+                                  <div id="jap_trans_4" class="jap_trans_4" ><%= word.jap_trans_4 %></div>
+                                <%end%>
+                            <%end%>
+                        <%end%>
+                  <%# 英単語の意味４が存在しない場合（意味１、２、３は存在する） %>
+                    <%else%>
+                      <%# 英単語の品詞１〜３が同じ場合 %>
+                        <%if word.part_of_speech_1 == word.part_of_speech_2 && word.part_of_speech_2 == word.part_of_speech_3 %>
+                          <div id="jap_trans_2" class="jap_trans_2" >、<span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                          <div id="jap_trans_3" class="jap_trans_3" >、<%= word.jap_trans_3 %></div>
+                        <%# 英単語の品詞１、２が同じ場合 %>
+                        <%elsif word.part_of_speech_1 == word.part_of_speech_2 %>
+                          <div id="jap_trans_2" class="jap_trans_2" >、<span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                          <%# 改行 %>
+                          <div class="spacer"></div>
+                          <div id="part_of_speech_3" class="part_of_speech_3"><%= word.part_of_speech_3 %></div>
+                          <div id="jap_trans_3" class="jap_trans_3" ><%= word.jap_trans_3 %></div>
+                        <%# 英単語の品詞１、３が同じ場合 %>
+                        <%elsif word.part_of_speech_1 == word.part_of_speech_3 %>
+                          <div id="jap_trans_3" class="jap_trans_3" >、<%= word.jap_trans_3 %></div>
+                          <%# 改行 %>
+                          <div class="spacer"></div>
+                          <div id="part_of_speech_2" class="part_of_speech_2"><%= word.part_of_speech_2 %></div>
+                          <div id="jap_trans_2" class="jap_trans_2" ><span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                        <%# 英単語の品詞１が品詞２、３のどれとも異なる場合%>
+                        <%else%>
+                          <%# 改行 %>
+                            <div class="spacer"></div>
+                            <div id="part_of_speech_2" class="part_of_speech_2"><%= word.part_of_speech_2 %></div>
+                            <div id="jap_trans_2" class="jap_trans_2" ><span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                            <%# 英単語の品詞２、３が同じ場合%>
+                              <%if word.part_of_speech_2 == word.part_of_speech_3 %>
+                                <div id="jap_trans_3" class="jap_trans_3" >、<%= word.jap_trans_3 %></div>
+                            <%# 英単語の品詞２、３が異なる場合%>
+                              <%else%>
+                                <%# 改行 %>
+                                <div class="spacer"></div>
+                                <div id="part_of_speech_3" class="part_of_speech_3"><%= word.part_of_speech_3 %></div>
+                                <div id="jap_trans_3" class="jap_trans_3" ><%= word.jap_trans_3 %></div>
+                              <%end%>
+                        <%end%>
+                    <%end%>
+              <%# 英単語の意味３が存在しない場合（意味１、２のみ存在する（意味３が存在しない場合は、意味４は存在しない）） %>
+                <%else%>
+                  <%# 英単語の品詞1、2が同じ場合%>
+                    <%if word.part_of_speech_1 == word.part_of_speech_2 %>
+                      <div id="jap_trans_2" class="jap_trans_2" >、<span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                  <%# 英単語の品詞１、２が異なる場合%>
+                    <%else%>
+                      <%# 改行 %>
+                      <div class="spacer"></div>
+                      <div id="part_of_speech_2" class="part_of_speech_2"><%= word.part_of_speech_2 %></div>
+                      <div id="jap_trans_2" class="jap_trans_2" ><span style="border-bottom: solid 1px;"><%= word.jap_trans_2 %></span></div>
+                    <%end%>
+                <%end%>
+           <%# 英単語の意味２が存在しない場合（意味３、４は存在する場合がある） %>
+            <%else%>
+              <%# 英単語の意味３が存在する場合 %>
+                <% if word.part_of_speech_3 != "" && word.part_of_speech_3 != nil %>
+                  <%# 英単語の意味４が存在する場合 %>
+                    <% if word.part_of_speech_4 != "" && word.part_of_speech_4 != nil %>
+                      <%# 英単語の品詞１、３、４が同じ場合 %>
+                        <%if word.part_of_speech_1 == word.part_of_speech_3 && word.part_of_speech_3 == word.part_of_speech_4 %>
+                          <div id="jap_trans_3" class="jap_trans_3" >、<%= word.jap_trans_3 %></div>
+                          <div id="jap_trans_4" class="jap_trans_4" >、<%= word.jap_trans_4 %></div>
+                        <%# 英単語の品詞１、３が同じ場合（elsifにすることで品詞４とは異なること確定）%>
+                        <%elsif word.part_of_speech_1 == word.part_of_speech_3 %>
+                          <div id="jap_trans_3" class="jap_trans_3" >、<%= word.jap_trans_3 %></div>
+                          <%# 改行 %>
+                          <div class="spacer"></div>
+                          <div id="part_of_speech_4" class="part_of_speech_4"><%= word.part_of_speech_4 %></div>
+                          <div id="jap_trans_4" class="jap_trans_4" ><%= word.jap_trans_4 %></div>
+                        <%# 英単語の品詞１、４が同じ場合（elsifにすることで品詞３とは異なること確定）%>
+                        <%elsif word.part_of_speech_1 == word.part_of_speech_4 %>
+                          <div id="jap_trans_4" class="jap_trans_4" >、<%= word.jap_trans_4 %></div>
+                          <%# 改行 %>
+                          <div class="spacer"></div>
+                          <div id="part_of_speech_3" class="part_of_speech_3"><%= word.part_of_speech_3 %></div>
+                          <div id="jap_trans_3" class="jap_trans_3" ><%= word.jap_trans_3 %></div>
+                        <%# 英単語の品詞１が品詞３、４のどれとも異なる場合 %>
+                        <%else%>
+                          <%# 改行 %>
+                            <div class="spacer"></div>
+                            <div id="part_of_speech_3" class="part_of_speech_3"><%= word.part_of_speech_3 %></div>
+                            <div id="jap_trans_3" class="jap_trans_3" ><%= word.jap_trans_3 %></div>
+                            <%# 英単語の品詞３、４が同じ場合%>
+                              <%if word.part_of_speech_3 == word.part_of_speech_4 %>
+                                <div id="jap_trans_4" class="jap_trans_4" >、<%= word.jap_trans_4 %></div>
+                            <%# 英単語の品詞３、４が異なる場合%>
+                              <%else%>
+                                <%# 改行 %>
+                                <div class="spacer"></div>
+                                <div id="part_of_speech_4" class="part_of_speech_4"><%= word.part_of_speech_4 %></div>
+                                <div id="jap_trans_4" class="jap_trans_4" ><%= word.jap_trans_4 %></div>
+                              <%end%>
+                        <%end%>
+                  <%# 英単語の意味１、３のみが存在する場合 %>
+                    <%else%>
+                       <%# 英単語の品詞１、３が同じ場合%>
+                        <%if word.part_of_speech_1 == word.part_of_speech_3 %>
+                          <div id="jap_trans_3" class="jap_trans_3" >、<%= word.jap_trans_3 %></div>
+                        <%# 英単語の品詞３、４が異なる場合%>
+                        <%else%>
+                          <%# 改行 %>
+                          <div class="spacer"></div>
+                          <div id="part_of_speech_3" class="part_of_speech_3"><%= word.part_of_speech_3 %></div>
+                          <div id="jap_trans_3" class="jap_trans_3" ><%= word.jap_trans_3 %></div>
+                        <%end%>
+                    <%end%>
+              <%# 英単語の意味１のみが存在する場合 %>
+                <%else%>
+                <%end%>
+            <%end%>
           </div>
           <%# 英単語に関する記述（現在未使用） %>
           <div id="meaning-left-bottom" class="meaning-left-bottom">
