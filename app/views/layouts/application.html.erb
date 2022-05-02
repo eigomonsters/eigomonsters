@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head prefix=”og:http://ogp.me/ns#”>
     <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -8,6 +8,14 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700,900&display=swap" rel="stylesheet">
+    <meta property="og:url" content="https://eigomonsters.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="EigoMonsters" />
+    <meta property="og:description" content="TOEIC英単語1200語をタイピングゲームで学習できるサイト" />
+    <meta property="og:site_name" content="EigoMonsters" />
+    <meta property="og:image" content="../../assets/typingScr.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@EigoMonsters" />
     <meta name="google-site-verification" content="eHoOvBezu_Xsmcu5OphzTHkT1QrXbekgZ9PN4nYJkXg" />
   </head>
 
@@ -34,5 +42,6 @@
         <%= link_to "ご利用規約・プライバシーポリシー", policy_eigomonsters_path, method: :get, class: :policy %>
         <p class="copyright">Copyright ©EigoMonsters All rights reserved.</p>
     </footer>
+    <%# <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="TOEIC英単語タイピング成績" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> %>
   </body>
 </html>

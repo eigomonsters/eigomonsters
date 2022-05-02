@@ -27,9 +27,20 @@ function keyDownGameStart(keyDownEnter){
 	};
 };
 
+// 選択したタイピング種別によって変わるtypingCourseSetの定義
+const typingCourseSet = "英単語タイピング";
 
 // 選択した英単語難易度によって変わるwordListの定義
 const wordList = gon.wordListAll;
+
+// 選択した英単語難易度によって変わるengWordsDifficultySetの定義
+const engWordsDifficultySet = gon.engWordsDifficultySet;
+
+// 選択した英単語出題範囲numberFromの定義
+const numberFrom = gon.numberFrom;
+
+// 選択した英単語出題範囲numberFromの定義
+const numberTo = gon.numberTo;
 
 // 選択したプレイモードによって変わるplayModeの定義
 const playMode = gon.playMode;
@@ -71,6 +82,8 @@ function gameStart(){
 	let bonusCountMeter = 0;
 	// 表示するメーター最大値を定義する。
 	const bonusCountMeterMax = 100;
+	// タイムアタックで要した時間を定義する。
+	let playingTimeForTimeAttack = "";
 	// 表示するプレイ延長時間を定義する。
 	const displayBonusAddPlayTime = document.getElementById("displayBonusAddPlayTime");
 	displayBonusAddPlayTime.className =  "displayBonusAddPlayTime";
@@ -587,6 +600,7 @@ function gameStart(){
 
 					// 問題を振り返るボタンを定義する。
 					const checkQuestions = document.getElementById("checkQuestions");
+
 					// 出題問題リスト表示を定義する。
 					const allQuestionsListEntireScr = document.getElementById("allQuestionsListEntireScr");
 					const allQuestionsList = document.getElementById("allQuestionsList");
@@ -649,7 +663,8 @@ function gameStart(){
 							const remainSecTimeAttack = Math.ceil(remainAllSecTimeAttack % 60);
 							closePopupClear.textContent = "お疲れ様でした！ゲームクリアです！";
 							closePopupClear.className = "closePopupClear";
-							closePopup.textContent = `あなたがかかった時間は ${(`0${remainMinTimeAttack}` ).slice( -2 )}分${(`0${remainSecTimeAttack}` ).slice( -2 )}秒 です!`;
+							playingTimeForTimeAttack = `${(`0${remainMinTimeAttack}` ).slice( -2 )}分${(`0${remainSecTimeAttack}` ).slice( -2 )}秒`;
+							closePopup.textContent = `あなたがかかった時間は ${playingTimeForTimeAttack} です!`;
 							closePopup.className = "endResultPopupClear";
 						} else { // 時間切れの場合は、クリアできなかったと表示する。
 							closePopup.textContent = `残念ながらクリアできませんでした。`;
@@ -669,6 +684,34 @@ function gameStart(){
 					// 問題を振り返るボタンの表示
 					checkQuestions.className = "checkQuestions";
 					checkQuestions.textContent ="問題を振り返る";
+					// Tweetボタンの表示
+					if ( playMode == "練習" || playMode == "普通" ) {
+						twttr.widgets.createShareButton("", document.getElementById("shareTweet"), {
+						size: "large",
+						text: `TOEIC英単語タイピング成績 ⇨ ${typingCourseSet} / ${engWordsDifficultySet} ${numberFrom}~${numberTo} / ${playMode} / 出題順 : ${questionOrderMode} / ${pronounceMode} / ${closePopupTotalQuestionNum.textContent} / ${closePopupFinalCorrectNum.textContent} / ${closePopupFinalMaxConsecutiveCorrectNum.textContent}`,
+						hashtags: "TOEIC英単語タイピング",
+						url: "https://eigomonsters.com/",
+						related: "EigoMonsters"
+						});
+					} else { // タイムアタックの場合、所要時間も記載する。
+						if ( gameCompleteTimeAttackFlag == "2") {
+						twttr.widgets.createShareButton("", document.getElementById("shareTweet"), {
+						size: "large",
+						text: `TOEIC英単語タイピング成績 ⇨ ${typingCourseSet} / ${engWordsDifficultySet} ${numberFrom}~${numberTo} / ${playMode} / 所要時間 : ${playingTimeForTimeAttack} / 出題順 : ${questionOrderMode} / ${pronounceMode} / ${closePopupTotalQuestionNum.textContent} / ${closePopupFinalCorrectNum.textContent} / ${closePopupFinalMaxConsecutiveCorrectNum.textContent}`,
+						hashtags: "TOEIC英単語タイピング",
+						url: "https://eigomonsters.com/",
+						related: "EigoMonsters"
+						});
+						} else {
+							twttr.widgets.createShareButton("", document.getElementById("shareTweet"), {
+							size: "large",
+							text: `TOEIC英単語タイピング成績 ⇨ ${typingCourseSet} / ${engWordsDifficultySet} ${numberFrom}~${numberTo} / ${playMode} / 所要時間 : Timeover / 出題順 : ${questionOrderMode} / ${pronounceMode} / ${closePopupTotalQuestionNum.textContent} / ${closePopupFinalCorrectNum.textContent} / ${closePopupFinalMaxConsecutiveCorrectNum.textContent}`,
+							hashtags: "TOEIC英単語タイピング",
+							url: "https://eigomonsters.com/",
+							related: "EigoMonsters"
+							});
+						}
+					}
 					},2000);
 				};
 				// 以上、ゲーム終了時の処理を定義する。------------------------------------------------------

@@ -1,5 +1,7 @@
 <%# 数値カウントアップのアニメーション %>
 <%# <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> %>
+<%# スナップショット %>
+<%# <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script> %>
 <%= include_gon %>
 <%# タイピング種別によって、使用するJavascriptファイルを変える %>
 <%= javascript_pack_tag @typingCourseJavascript, 'data-turbolinks-track': 'reload' %>
@@ -164,6 +166,7 @@
                 <input type="submit" formaction="typingplay_index" value="コース選択画面に戻る" class = "backBtn">
             </div>
           </div>
+          <div id="shareTweet" style="text-align: center; margin-top:20px;"></div><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <% end %>
       </div>
   </div>

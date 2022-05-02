@@ -276,11 +276,15 @@ class EigomonstersController < ApplicationController
                 gon.wordListAll = @wordListLevel
                 @numberFrom = params['numberFrom']
                 @numberTo = params['numberTo']
+                gon.numberFrom = @numberFrom
+                gon.numberTo = @numberTo
             else
                 @wordListLevel = Wordlist.select(:id, :eng_word, :jap_trans_1, :jap_trans_1_yomi, :jap_trans_2, :jap_trans_2_yomi).where("id >= ?", params['numberTo']).where("id <= ?", params['numberFrom']).order("id")
                 gon.wordListAll = @wordListLevel
                 @numberFrom = params['numberFrom']
                 @numberTo = params['numberTo']
+                gon.numberFrom = @numberTo
+                gon.numberTo = @numberFrom
             end
         ## numberFromもしくはnumberToが数値でない場合(基本input type=numberで数値でない場合はエラーメッセージが表示される)
           else
@@ -288,20 +292,28 @@ class EigomonstersController < ApplicationController
             gon.wordListAll = @wordListLevel
             @numberFrom = 1
             @numberTo = 300
+            gon.numberFrom = @numberFrom
+            gon.numberTo = @numberTo
           end
       ## 英単語の難易度レベル
           if params['engWordsDifficulty'] == "Level1" then
             @engWordsDifficultySet = "Level1"
+            gon.engWordsDifficultySet = @engWordsDifficultySet
           elsif params['engWordsDifficulty'] == "Level2" then
             @engWordsDifficultySet = "Level2"
+            gon.engWordsDifficultySet = @engWordsDifficultySet
           elsif params['engWordsDifficulty'] == "Level3" then
             @engWordsDifficultySet = "Level3"
+            gon.engWordsDifficultySet = @engWordsDifficultySet
           elsif params['engWordsDifficulty'] == "Level4" then
             @engWordsDifficultySet = "Level4"
+            gon.engWordsDifficultySet = @engWordsDifficultySet
           elsif params['engWordsDifficulty'] == "カスタム" then
             @engWordsDifficultySet = "カスタム"
+            gon.engWordsDifficultySet = @engWordsDifficultySet
           else
             @engWordsDifficultySet = "Level1"
+            gon.engWordsDifficultySet = @engWordsDifficultySet
           end
       ## プレイモードによるjavascriptに渡す変数設定
           if params['playMode'] == "練習" then
