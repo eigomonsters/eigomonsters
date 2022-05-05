@@ -54,6 +54,7 @@
   border:1px solid rgb(70, 70, 70);
   border-radius: 6px;
   cursor: pointer;
+  -webkit-appearance: none;
 }
 .formError {
   color: rgb(212, 68, 68);
@@ -107,6 +108,7 @@
   cursor: pointer;
   text-decoration: none;
   transition: 0.4s ease;
+  -webkit-appearance: none;
 }
 .confirmSubmit:hover {
   color: #fff;
@@ -128,6 +130,7 @@
   border:1px solid rgb(70, 70, 70);
   border-radius: 6px;
   cursor: pointer;
+  -webkit-appearance: none;
 }
 
 .appreciation {
@@ -168,15 +171,16 @@
 /* タブレット対応---------------------------------------------- */
 @media (max-width: 1024px) {
   .contactFormScr {
-    width:60%;
+    width:80%;
+    margin-top:20px;
   }
   .formPageTitle {
     padding:30px;
-    font-size:30px;
+    font-size:24px;
   }
   .formTop p {
     padding-bottom:20px;
-    font-size:22px;
+    font-size:20px;
   }
   .form-group {
     margin-bottom:30px;
@@ -197,11 +201,10 @@
     margin-bottom:30px;
     padding: 0.4em 1.6em;
     font-size: 0.8em;
-    -webkit-appearance: none;
   }  
   .confirmPageTitle {
     padding:30px;
-    font-size:26px;
+    font-size:20px;
   }
   
   .contactFormScr table, .contactFormScr td, .contactFormScr th {
@@ -222,7 +225,6 @@
     color: #87CEFA;
     background-color: #ffffff;
     font-size: 0.8em;
-    -webkit-appearance: none;
   }
   .confirmBack {
     height:45px;
@@ -230,14 +232,13 @@
     margin:0 auto;
     margin-top:30px;
     margin-bottom:30px;
-    padding: 0.4em 1.6em;
+    padding: 0.4em 1em;
     font-size: 0.8em;
-    -webkit-appearance: none;
   }
   
   .appreciation {
-    padding-top:30px;
-    font-size:30px;
+    padding-top:20px;
+    font-size:20px;
   }
   .homeBack {
     height:45px;
@@ -249,7 +250,7 @@
     font-size: 0.8em;
   }
   .submitError {
-    padding-top:30px;
+    padding-top:20px;
   }
 }
 
@@ -257,6 +258,54 @@
 /* スマホ表示----------------------------------------------- */
 @media (max-width: 599px) {
   .contactFormScr {
-    width:60%;
+    width:80%;
+    min-height: 600px;
+  }
+  .formPageTitle {
+    padding:20px;
+    font-size:24px;
+  }
+  .formTop p {
+    padding-bottom:20px;
+    font-size:18px;
+  }
+  .confirmPageTitle {
+    padding:20px;
+    font-size:18px;
+  }
+  .contactFormScr table{
+    border-collapse: none;
+    border:none;
+    font-size:14px;
+    padding:0;
+    width:100%;
+    text-align: center;
+  }
+  .contactFormScr td, .contactFormScr th {
+    border-collapse: none;
+    border:none;
+    display: block;
+    padding:5px 0;
+    width:100%;
+    text-align: left;
+  }
+  .contactFormScr tr td:nth-of-type(1) {
+    width: 100%;
+    background-color: rgb(244, 244, 244);
+  }
+  .contactFormScr tr td:nth-of-type(2) {
+    padding-left:0;
+    width: 100%;
+  }
+  .confirmContent {
+    margin-bottom:10px;
+  }
+  .appreciation {
+    padding-top:20px;
+    font-size:18px;
+  }
+  .submitError {
+    padding-top:20px;
+    font-size:18px;
   }
 }

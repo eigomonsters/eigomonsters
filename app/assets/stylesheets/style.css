@@ -36,13 +36,18 @@ a {
 
 /* ヘッダー */
 
-.header {
-  width:100%;
-  background-color: #f1f8fe;
-  padding: 20px 0;
-  position: fixed;
-  top: 0;
-  z-index: 9999;
+  .header {
+    width:100%;
+    background-color: #f1f8fe;
+    padding: 20px 0;
+  }
+
+@media (min-width: 1024px) {
+  .header {
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+  }
 }
 
 /*ヘダーのロゴとナビボタン_headerの子要素*/
@@ -91,6 +96,9 @@ a {
       background: #87CEFA;
     }
 
+    .nav__btnForTwitter {
+      display: none;
+    }
     .snsIconTwitter {
       height:30px;
     };
@@ -337,9 +345,25 @@ a {
       .prototype_image{
         width: 60%;
       }
+      .nav { /*ヘダーのロゴとナビボタン_innerの子要素*/
+        display: block;
+      }
+      .nav__left {
+        width:100%;
+        text-align: center;
+      }
+      .nav__center {
+        margin:0 auto;
+        width:100%;
+        text-align: center;
+      }
       .nav__btn{  /*ヘダー右側にあるナビのボタン_navの子要素*/
         padding: 0.4em 1.0em;
         font-size: 0.8em;
+        width:30%;
+        text-align: center;
+        margin-right:10px;
+        margin-top:10px;
       }
     }
 
@@ -367,4 +391,108 @@ a {
       .table{
         width: 100%;
       }
+      .nav { /*ヘダーのロゴとナビボタン_innerの子要素*/
+        display: block;
+      }
+      .nav__left {
+        width:100%;
+        text-align: center;
+      }
+
+      /*　ハンバーガーメニューボタン　*/
+      .hamburger {
+        display : block;
+        position: fixed;
+        z-index : 7;
+        right : 15px;
+        top   : 24px;
+        width : 40px;
+        height: 40px;
+        cursor: pointer;
+        text-align: center;
+      }
+      .hamburger span {
+        display : block;
+        position: absolute;
+        width   : 30px;
+        height  : 3px ;
+        left    : 4px;
+        background : #BBBBBB;
+        -webkit-transition: 0.3s ease-in-out;
+        -moz-transition   : 0.3s ease-in-out;
+        transition        : 0.3s ease-in-out;
+      }
+      .hamburger span:nth-child(1) {
+        top: 8px;
+      }
+      .hamburger span:nth-child(2) {
+        top: 18px;
+      }
+      .hamburger span:nth-child(3) {
+        top: 28px;
+      }
+      
+      .nav__center {
+        margin-top:10px;
+        width:100%;
+        display: none;
+      }
+      .nav__centerForMobile {
+        position: fixed;
+        margin-top:0px;
+        height:100%;
+        width:75%;
+        top:0;
+        right:0;
+        padding-top: 15px;
+        padding-left: 15px;
+        background-color: #f1f8fe;
+        z-index: 5;
+      }
+      .nav__btn, .nav__btnForTwitter{  /*ヘダー右側にあるナビのボタン_navの子要素*/
+        display: inline-block;
+        font-size: 0.8em;
+        color: #87CEFA;
+        text-decoration: none;
+        user-select: none;
+        border: 1px #87CEFA solid;
+        border-radius: 3px;
+        transition: 0.4s ease;
+        padding: 0.4em 1.0em;
+        text-align: center;
+        width:80%;
+        margin-right:10px;
+        margin-top:10px;
+      }
+      .snsIconTwitter {
+        display: none
+      }
+
+      .grayOut {
+        position: fixed;
+        height:100%;
+        width:100%;
+        top:0;
+        left:0;
+        z-index: 4;
+        background-color: rgba(70, 70, 70, 0.9);
+      }
+
+      /* スマホメニューを開いてる時のボタン */
+      .hamburger.active span:nth-child(1) {
+        top : 16px;
+        left: 6px;
+        -webkit-transform: rotate(-45deg);
+        -moz-transform   : rotate(-45deg);
+        transform        : rotate(-45deg);
+      }
+
+      .hamburger.active span:nth-child(2),
+      .hamburger.active span:nth-child(3) {
+        top: 16px;
+        -webkit-transform: rotate(45deg);
+        -moz-transform   : rotate(45deg);
+        transform        : rotate(45deg);
+      }
+
     }

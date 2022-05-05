@@ -17,3 +17,57 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 //= require audiojs
+
+
+
+  window.addEventListener('load', function(){
+    
+
+    let menuOpenFlag = "0";
+
+    let nav__center = document.getElementById("nav__center");
+    let grayOut = document.getElementById("grayOut");
+    let hamburger = document.getElementById("hamburger");
+
+    hamburger.onclick = function() {
+      if (menuOpenFlag === "0") {
+        nav__center.className = "nav__centerForMobile"
+        hamburger.classList.add('active');
+        grayOut.className = "grayOut";
+        menuOpenFlag = "1";
+      } else {
+        nav__center.className = "nav__center"
+        hamburger.classList.remove('active');
+        grayOut.className = "transparent";
+        menuOpenFlag = "0";
+      }
+    };
+    grayOut.onclick = function() {
+        nav__center.className = "nav__center"
+        hamburger.classList.remove('active');
+        grayOut.className = "transparent";
+        menuOpenFlag = "0";
+    };
+
+
+    
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const anchorLinks = document.querySelectorAll('a[href^="#"]')
+    const anchorLinksArr = Array.prototype.slice.call(anchorLinks);
+  
+    anchorLinksArr.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = link.hash;
+        const targetElement = document.querySelector(targetId);
+        const targetOffsetTop = window.pageYOffset + targetElement.getBoundingClientRect().top;
+        
+        window.scrollTo({
+          top: targetOffsetTop,
+          behavior: "smooth"
+        });
+      });
+    });
+  });

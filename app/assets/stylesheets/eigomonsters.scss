@@ -22,6 +22,18 @@
       margin-top: 40px;
     }
 
+  /* タブレット、スマホ対応---------------------------------------------- */
+  @media (max-width: 1024px) {
+    .mastersrc {
+      margin-top:20px;
+    }
+    .typingsrc {
+      width:90%;
+      position: relative;
+    }
+  }
+  /*---------------------------------------------------------- */
+
     //コース選択画面の文字
         .courseSettingWords {
           text-align: center;
@@ -94,6 +106,7 @@
             .fukidashiPlayModePractice, .fukidashiPlayModeUsual, .fukidashiPlayModeTimeAttack {
               position: relative;
             }
+            
             .fukidashiPlayCourseEngParts, .fukidashiPlayCourseJapParts {
               text-align: center;
               display: none;
@@ -132,10 +145,12 @@
               background: #ffffff;
               color: #b6b6b6;
             }
-
+            
         // 個別設定
             // コース種別選択のラジオボタンホバー時の吹き出し
                 // 日本語訳タイピングの吹き出し
+                // PCもしくはタブレットの場合のみ
+                @media (min-width: 599px){
                     .fukidashiPlayCourseJapParts {
                       left:0%;
                       //以下吹き出し枠の設定
@@ -489,8 +504,10 @@
                           z-index: 1;
                           pointer-events: none;
                         }
+              }
 
     //コース選択画面のラジオボタンホバー時の吹き出し_以上
+
 
 
 .circle {
@@ -792,6 +809,107 @@
       -webkit-appearance: none;
     }
 
+  /* タブレット、スマホ対応---------------------------------------------- */
+  @media (max-width: 1024px) {
+    .mastersrc {
+      margin-top:20px;
+    }
+    .inline-radio {
+      width:70%;
+    }
+  }
+
+  /* スマホ対応---------------------------------------------- */
+  @media (max-width: 599px) {
+    .typingsrc {
+      height:800px;
+      width:90%;
+      position: relative;
+      margin-bottom:40px;
+    }
+    .inline-radio {
+      display: block;
+      width:80%;
+      label {
+        border-right: 0;
+      }
+    }
+    .courseSettingWords {
+      width:90%;
+      margin:0 auto;
+      font-size: 16px;
+    }
+    .courseSettingSummary {
+      display: block;
+    }
+    //各コースの表示枠
+    .typingCourseSummary, .engWordsDifficultySummary, .playModeSummary {
+      width:180px;
+      margin:0 auto;
+    }
+    //各コースのカテゴリー文字
+    .courseSettingCategoryWords {
+      font-size: 14px;
+      margin-top:20px;
+    }
+    //各コースの選択した内容の文字
+    .typingCourseSummaryWords {
+      font-size: 18px;
+      margin-top:0px;
+      margin-bottom:10px;
+    }
+    .engWordsDifficultySummaryWords {
+      font-size: 18px;
+      
+    }
+    .playModeSummaryWords {
+      font-size: 18px;
+      margin-top:0px;
+    }
+    //ゲーム開始ボタン
+    .gameStartBtn {
+      margin-top:40px;
+    }
+    //詳細設定画面を開くボタン
+    .detailSettingPopupDisplay {
+    margin-top:40px;
+  }
+
+    //コース選択画面に戻るボタン
+    .courseSettingBackBtn {
+      margin-top:40px;
+    }
+    .detailSettingRadioEntireScr {
+      height:70%;
+      width:70%;
+    }
+    .detailSettingRadioScr {
+      margin-top:20px;
+      width:100%;
+    }
+    .detailSettingModeSummary {
+      margin-top:40px;
+      width:100%;
+      display: block;
+    }
+    .detailcourseSettingCategoryWords {
+      margin:0 auto;
+      padding-right:0;
+    }
+    .detailSettingRadioBtn {
+      display: flex;
+      left: 0;
+      right:0;
+      margin:auto;
+      text-align: center;
+      justify-content: center;
+    }
+    .detailSettingOk {
+      bottom:40px;
+    }
+  }
+  /*---------------------------------------------------------- */
+
     // 以下、typing_play画面で使用---------------------------------------------------------------------------------
 
         //コース選択画面、コース確認画面に戻るボタン
@@ -987,9 +1105,6 @@
           text-decoration: underline;
           text-decoration-thickness:1px;
         }
-
-    // 以上、typing_play画面で使用---------------------------------------------------------------------------------
-
 
 
 .eng_typing:hover{
@@ -1564,7 +1679,6 @@ meter::-webkit-meter-optimum-value {
 .search-btn {
   width: 70px;
   cursor: pointer;
-  
 }
 
 .triangle {
@@ -1576,10 +1690,6 @@ meter::-webkit-meter-optimum-value {
   text-decoration-thickness:1px;
 }
 
-.noMovieImage {
-  width:400px;
-  height:225px;
-}
 
 .pronunciationSignal {
   font-size: 10px;
@@ -1591,7 +1701,117 @@ meter::-webkit-meter-optimum-value {
   height:30px;
   width:200px;
 }
+  /* タブレット、スマホ対応---------------------------------------------- */
+  @media (max-width: 1024px) {
+    .closePopupClear {
+      font-size: 20px;
+    }
+    .endResultPopupClear {
+      font-size: 20px;
+    }
+  }
 
+  /* スマホ対応---------------------------------------------- */
+  @media (max-width: 599px) {
+    .useKeyboardPopup {
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      width:95%;
+      margin:0 auto;
+      margin-top:24px;
+    }
+    .pressEnterPopup {
+      font-size: 1.3em; 
+      width:95%;
+      margin-top:24px;
+    }
+    .annotationAudio {
+      margin-top:24px;
+      width:95%;
+      margin: 0 auto;;
+    }
+    .annotationAudioPlay {
+      font-size: 20px;;
+    }
+    .annotationAudioPublic {
+      font-size: 16px;
+    }
+    .annotationAudioSetting {
+      font-size: 12px;
+    }
+    //コース選択画面、コース確認画面に戻るボタン
+    .backBtnTypingPlay {
+      display: block;
+      margin:0 auto;
+      text-align: center;
+      bottom: 20%;
+    }
+    .courseCheckBackBtnTypingPlay {
+      margin-bottom:40px;
+    }
+    //コース選択画面に戻るボタン
+    .courseSettingBackBtnTypingPlay {
+      margin-left:0;
+    }
+
+    .remainPlayingTime {
+      position: none;
+      left:0;
+      right:0;
+      margin:auto;
+      margin-top:20px;
+      text-align: center;
+    }
+    .meter {
+      margin-top: 50px;
+    }
+    .NumCorrectMidGamePlay {
+      margin-top:100px;
+    }
+    .displayNumCorrectWord, .displayConsecutiveCorrectWord, .displayMaxConsecutiveCorrectWord {
+      font-size:14px;
+    }
+    .circle {
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      margin: auto;
+      margin-bottom:450px;
+    }
+    .midGamePlay {
+      display: block;
+      justify-content: none;
+      width:90%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom:60px;
+      margin: auto;
+      text-align: center;
+    }
+    .pronounceAgainButton, .hintButton, .hintButtonPractice, .answerButton, .answerButtonPractice {
+      width:140px;
+      margin: auto;
+      margin-bottom:20px;
+    }
+    .restartButtonMidGame, .courseSettingBackButtonMidGame {
+      margin-bottom:20px;
+      width:140px;
+    }
+    .closeAllQuestionsList {
+      height:10%;
+      padding-top:8%;
+    }
+    .closePopupClear {
+      font-size: 17px;
+    }
+    .endResultPopupClear {
+      font-size: 17px;
+    }
+  }
+    // 以上、typing_play画面で使用---------------------------------------------------------------------------------
 
 //英単語リスト画面で使用
 .engWordListSrc {
@@ -1599,11 +1819,53 @@ meter::-webkit-meter-optimum-value {
   min-height: 650px;
 }
 
+    /* タブレット対応 */
+    @media (max-width: 1024px) {
+      .wordlist {
+        width:80%;
+      }
+      .ondoku3CreditInWordlist {
+        width:80%;
+      }
+      //英単語リスト画面で使用
+      .engWordListSrc {
+        margin-top: 20px;
+    }
+    }
+
+    // スマホの場合
+    @media (max-width: 599px) {
+      .search-form {
+        display: block;
+        text-align: center;
+      }
+      .levelSelect {
+        display: inline-block;
+        width:40%;
+        text-align: center;
+        margin-right: 5px;
+      }
+      .search-input {
+        display: inline-block;
+        width:50%;
+        margin:3% 0;
+        margin-right: 0px;
+      }
+      .search-btn {
+        display: inline-block;
+        width:20%;
+      }
+    }
+
+
+
+
 //EigoMonstersとはの画面で使用
 .aboutSrc {
   margin-top: 100px;
   min-height: 650px;
 }
+
 
 
 
@@ -1645,12 +1907,13 @@ meter::-webkit-meter-optimum-value {
       background-color: #f1f8fe;
       background:rgba(241,248,254,0.5);
       font-size: 24px;
-      color: rgb(70, 70, 70);;
+      color: rgb(70, 70, 70);
       font-family:'メイリオ', 'Meiryo', sans-serif;
       padding-bottom:300px;
       font-weight: bold;
       -webkit-appearance: none;
     }
+
     // ボタン内部の文言、MovieのCSS
     .instantPlayJapContents, .instantPlayEngContents {
       position:absolute;
@@ -1704,6 +1967,74 @@ meter::-webkit-meter-optimum-value {
     }
     .instantPlayEngPopup:hover + .instantPlayEngContents {
       color: #fff;
+    }
+
+    /* タブレット対応 */
+    @media (max-width: 1024px) {
+      .topPage {
+        margin-top: 20px;
+      }
+      .instantPlayJapAndEng {
+        width:100%;
+      }
+      //EigoMonstersとはの画面で使用
+      .aboutSrc {
+        margin-top: 20px;
+      }
+    }
+    // スマホの場合
+    @media (max-width: 599px) {
+      .topPage {
+        text-align: center;
+      }
+      .topPageTitle {
+        color:rgb(70, 70, 70);
+        font-size:24px;
+      }
+      .topPageTitleEng {
+        margin:0 auto;
+        width:65%;
+      }
+    // タイピングゲームへの遷移ボタン
+    .instantPlayJapPopup, .instantPlayEngPopup {
+      margin-top:20px;
+      margin-bottom:30px;
+    }
+      .instantPlayJapAndEng {
+        display: block;
+      }
+
+      // ボタン内部の文言、MovieのCSS
+      .instantPlayJapContents, .instantPlayEngContents {
+        width:100%;
+        bottom:100px;
+        position: relative;
+      }
+      .instantPlayJapWords, .instantPlayEngWords {
+        width:100%;
+        position: absolute;
+        top:-460px;
+      }
+      .japTypingMovie, .engTypingMovie {
+        position: absolute;
+        margin-top:0;
+        top:-410px;
+        left:0;
+        right:0;
+        margin:auto;
+      }
+      .instantPlayJapDetail, .instantPlayEngDetail {
+        width:100%;
+        position: absolute;
+        top: -230px;
+      }
+      .instantPlayJapAndEngSetting {
+        margin-top: 10px;
+        margin-bottom:20px;
+      }
+      .restartBtn {
+        margin-right: 20px;
+      }
     }
 
 
@@ -1792,7 +2123,7 @@ meter::-webkit-meter-optimum-value {
 @media (min-width: 1024px){
   .aboutWhyTypingGameTitle, .aboutHowTypingGameTitle, .aboutConcernsTypingGameTitle, .aboutConclusionTypingGameTitle {
     margin-top:50px;
-    text-align: left;
+    text-align: center;
     font-size:1.2em;
     padding:20px 0;
     width:900px;
@@ -1833,20 +2164,23 @@ meter::-webkit-meter-optimum-value {
   .aboutWhyTypingGameTitle, .aboutHowTypingGameTitle, .aboutConcernsTypingGameTitle, .aboutConclusionTypingGameTitle {
     margin-top:50px;
     text-align: center;
-    font-size:28px;
+    font-size:18px;
     padding:20px 0;
     text-decoration: underline;
     text-decoration-thickness:2px;
-    padding-top: 100px;
-    margin-top:-100px;
+    padding-top:20px;
+    margin-top:-20px;
+  }
+  .aboutSectionEntire {
+    width:100%;
   }
   .aboutSectionTitle {
     margin:auto;
     text-align: center;
     font-size: 24px;
     margin-bottom:20px;
-    padding-top: 120px;
-    margin-top:-120px;
+    padding-top: 20px;
+    margin-top:-20px;
   }
   .aboutSectionImage {
     width:70%;
@@ -1864,13 +2198,43 @@ meter::-webkit-meter-optimum-value {
 }
 // スマホの場合
  @media (max-width: 599px) {
+  .aboutEigoMonstersSummary {
+    font-size:14px;
+    width:90%;
+    margin:0 auto;
+    margin-top:10px;
+  }
+  .fontEmphasize1 {
+    font-size:1.1em;
+  }
+  .fontEmphasize1withLink {
+    font-size:1.1em;
+  }
+  .aboutAgenda {
+    width:80%;
+    }
+  .aboutAgendaList {
+    padding-left:20px;
+    padding-right:20px;
+  }
+  .aboutAgendaListSmall {
+    padding-left:10px;
+  }
+  .aboutWhyTypingGameTitle h2, .aboutHowTypingGameTitle h2, .aboutConcernsTypingGameTitle h2, .aboutConclusionTypingGameTitle h2 {
+    font-size:20px;
+    padding-top: 100px;
+    margin-top:-100px;
+  }
+  .aboutSectionTitle {
+    font-size:18px;
+  }
   .aboutSectionDescription {
     width:80%;
     margin:auto;
     line-height: 2.5;
     text-align: center;
     padding-top:20px;
-    font-size:16px;
+    font-size:12px;
     white-space: nowrap;
     }
   .aboutWhyTypingGameTitle, .aboutHowTypingGameTitle, .aboutConcernsTypingGameTitle, .aboutConclusionTypingGameTitle {
