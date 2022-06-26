@@ -25,4 +25,12 @@ Rails.application.routes.draw do
     post 'contacts/back', to: 'contacts#back', as: 'back'
     get 'contacts/done', to: 'contacts#done', as: 'done'
     get 'contacts/error', to: 'contacts#error', as: 'error'
+
+  resources :illustory, only: [:index, :sec1EngtoJap, :sec1JaptoEng]
+    get 'illustory', to: 'illustory#index'
+    get 'illustory/sec1EngtoJap'
+    post 'illustory/sec1EngtoJap', to: 'illustory#sec1EngtoJap', as: 'sec1EngtoJap'
+    get 'illustory/sec1JaptoEng'
+    post 'illustory/sec1JaptoEng', to: 'illustory#sec1JaptoEng', as: 'sec1JaptoEng'
+
 end

@@ -1142,9 +1142,9 @@
       }
 
       .btn-wrapper{
-        display: flex;
+        text-align: center;
         justify-content: center;
-        margin: 30px auto;
+        margin: 10px auto;
         width:70%;
       }
 
@@ -1560,6 +1560,15 @@ meter::-webkit-meter-optimum-value {
   }
 }
 
+.aboutTypingGame {
+  text-align: center;
+  font-size:12px;
+  padding-top:20px;
+}
+.aboutTypingGameLink {
+  color:#87CEFA ;
+  text-decoration: underline;
+}
 
 
 
@@ -1877,6 +1886,9 @@ meter::-webkit-meter-optimum-value {
     .topPage {
       margin-top: 100px;
       min-height: 640px;
+      @media (max-width: 900px) {
+        min-height: 700px;
+      }
     }
     .topPageTitle {
       color: #000000;
@@ -1884,26 +1896,28 @@ meter::-webkit-meter-optimum-value {
       font-size:40px;
       text-align:center;
     }
+    .titleFontSmall {
+      font-size:36px;
+    }
     .topPageTitleEng {
       text-align: center;
       margin-bottom:20px;
     }
 
 
-    .instantPlayJapAndEng {
-      display: flex;
+    .instantPlayIllustory {
       width:900px;
+      text-align: center;
       margin: 0 auto;
-      justify-content: space-evenly;
       position: relative;
     }
 
     // タイピングゲームへの遷移ボタン
-    .instantPlayJapPopup, .instantPlayEngPopup {
-      height: 440px;
-      min-height:400px;
+    .instantPlayIllustoryPopup, .instantPlayEngPopup {
+      height: 480px;
+      min-height:440px;
       max-height: 500px;
-      width:330px;
+      width:640px;
       margin:0 auto;
       border: 2px #87CEFA solid;
       border-radius: 12px;
@@ -1912,56 +1926,70 @@ meter::-webkit-meter-optimum-value {
       font-size: 24px;
       color: rgb(70, 70, 70);
       font-family:'メイリオ', 'Meiryo', sans-serif;
-      padding-bottom:300px;
+      padding-bottom:360px;
       font-weight: bold;
       -webkit-appearance: none;
     }
 
+    .illustoryTopPage {
+      margin-top:20px;
+      height:200px;
+    }
+    .illustoryTopPageMobile {
+      display: none;
+    }
+
     // ボタン内部の文言、MovieのCSS
-    .instantPlayJapContents, .instantPlayEngContents {
+    .instantPlayIllustoryContents, .instantPlayEngContents {
       position:absolute;
-      width:330px;
+      width:900px;
       text-align: center;
       top:100px;
       pointer-events: none;
       z-index: 1;
     }
-    .instantPlayJapWords, .instantPlayEngWords {
-      font-size: 12px;
+    .instantPlayIllustoryWords, .instantPlayEngWords {
+      font-size: 14px;
     }
     .japTypingMovie, .engTypingMovie {
       margin-top:36px;
       height:160px;
     }
-    .instantPlayJapDetail, .instantPlayEngDetail {
-      margin-top: 30px;
+    .instantPlayIllustoryDetail, .instantPlayEngDetail {
+      margin-top: 20px;
       font-size: 12px;
+      position: relative;
     }
-    .instantPlayJapAndEngSetting {
-      margin-top: 30px;
+    .instantPlayIllustorySetting {
+      position:absolute;
+      width:330px;
+      margin:0 auto;
+      margin-top: 90px;
       font-size: 12px;
       text-align: center;
     }
     .instantPlayLink {
       color:#87CEFA ;
       text-decoration: underline;
+      pointer-events:all;
+      cursor: pointer;
     }
     
     // hover時の処理
-    .instantPlayJapPopup:hover, .instantPlayEngPopup:hover {
+    .instantPlayIllustoryPopup:hover, .instantPlayEngPopup:hover {
       transform: scale(1.05);
       transition-duration: 0.3s;
       cursor: pointer;
     }
-    .instantPlayJapPopup:hover, .instantPlayEngPopup:hover {
+    .instantPlayIllustoryPopup:hover, .instantPlayEngPopup:hover {
       color: #fff;
       background: #87CEFA;
     }
-    .instantPlayJapPopup:hover + .instantPlayJapContents {
+    .instantPlayIllustoryPopup:hover + .instantPlayIllustoryContents {
       transform: scale(1.05);
       transition-duration: 0.3s;
     }
-    .instantPlayJapPopup:hover + .instantPlayJapContents {
+    .instantPlayIllustoryPopup:hover + .instantPlayIllustoryContents {
       color: #fff;
     }
     .instantPlayEngPopup:hover + .instantPlayEngContents {
@@ -1977,12 +2005,15 @@ meter::-webkit-meter-optimum-value {
       .topPage {
         margin-top: 20px;
       }
-      .instantPlayJapAndEng {
+      .instantPlayIllustory {
         width:100%;
       }
       //EigoMonstersとはの画面で使用
       .aboutSrc {
         margin-top: 20px;
+      }
+      .instantPlayIllustoryContents, .instantPlayEngContents {
+        width:100%;
       }
     }
     // スマホの場合
@@ -1993,30 +2024,52 @@ meter::-webkit-meter-optimum-value {
       .topPageTitle {
         color:rgb(70, 70, 70);
         font-size:24px;
+        width:90%;
+        margin:0 auto;
+      }
+      .titleFontSmall {
+        font-size:20px;
       }
       .topPageTitleEng {
         margin:0 auto;
         width:65%;
       }
     // タイピングゲームへの遷移ボタン
-    .instantPlayJapPopup, .instantPlayEngPopup {
+    .instantPlayIllustoryPopup, .instantPlayEngPopup {
+      max-height: 900px;
+      height:750px;
+      width:330px;
+      padding-bottom:640px;
       margin-top:20px;
-      margin-bottom:30px;
+      margin-bottom:60px;
     }
-      .instantPlayJapAndEng {
+      .instantPlayIllustory {
         display: block;
       }
 
       // ボタン内部の文言、MovieのCSS
-      .instantPlayJapContents, .instantPlayEngContents {
-        width:100%;
+      .instantPlayIllustoryContents, .instantPlayEngContents {
+        margin:0 auto;
+        width:300px;
         bottom:100px;
         position: relative;
       }
-      .instantPlayJapWords, .instantPlayEngWords {
+      .illustoryTopPage {
+        display: none;
+      }
+      .illustoryTopPageMobile {
+        display: block;
+        position: absolute;
+        width:80%;
+        top:-750px;
+        left:0;
+        right:0;
+        margin:auto;
+      }
+      .instantPlayIllustoryWords, .instantPlayEngWords {
         width:100%;
         position: absolute;
-        top:-460px;
+        top:-810px;
       }
       .japTypingMovie, .engTypingMovie {
         position: absolute;
@@ -2026,14 +2079,16 @@ meter::-webkit-meter-optimum-value {
         right:0;
         margin:auto;
       }
-      .instantPlayJapDetail, .instantPlayEngDetail {
+      .instantPlayIllustoryDetail, .instantPlayEngDetail {
         width:100%;
         position: absolute;
-        top: -230px;
+        top: -310px;
+        font-size:10px;
       }
-      .instantPlayJapAndEngSetting {
-        margin-top: 10px;
-        margin-bottom:20px;
+      .instantPlayIllustorySetting {
+        width:100%;
+        margin: 0 auto;
+        top:80px;
       }
       .restartBtn {
         margin-right: 20px;
@@ -2062,7 +2117,7 @@ meter::-webkit-meter-optimum-value {
   text-decoration: underline;
 }
 .fontEmphasize1withLink {
-  font-size:1.4em;
+  font-size:1.0em;
   text-decoration: underline;
   text-decoration-thickness:2px;
   color:#87CEFA;
@@ -2173,6 +2228,10 @@ meter::-webkit-meter-optimum-value {
     text-decoration-thickness:2px;
     padding-top:20px;
     margin-top:-20px;
+  }
+  .spanBorder {
+    text-decoration: underline;
+    text-decoration-thickness:2px;
   }
   .aboutSectionEntire {
     width:100%;

@@ -1,0 +1,2 @@
+module IllustoryHelper
+end

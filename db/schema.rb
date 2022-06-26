@@ -10,13 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_22_234036) do
+ActiveRecord::Schema.define(version: 2022_06_15_094018) do
 
   create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.string "subject", null: false
     t.text "message", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "stories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "sentence_comp_1", null: false
+    t.string "eng_word_used_1", null: false
+    t.string "eng_word_origin_1", null: false
+    t.string "sentence_comp_2", null: false
+    t.string "eng_word_used_2", null: false
+    t.string "eng_word_origin_2", null: false
+    t.string "sentence_comp_3", null: false
+    t.string "eng_word_used_3", null: false
+    t.string "eng_word_origin_3", null: false
+    t.string "sentence_comp_4", null: false
+    t.string "eng_word_used_4", null: false
+    t.string "eng_word_origin_4", null: false
+    t.string "sentence_comp_5", null: false
+    t.text "jap_sentence", null: false
+    t.text "eng_sentence", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

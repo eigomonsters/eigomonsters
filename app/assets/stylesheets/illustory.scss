@@ -1,0 +1,2678 @@
+// Place all the styles related to the illustory controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.illustorySrc {
+  margin-top: 200px;
+  min-height: 650px;
+}
+
+.loadScreen {
+  width:100%;
+  height:100%;
+  position: fixed;
+  top:0;
+  left:0;
+  background-color: white;
+  opacity: 0.9;
+  text-align: center;
+  line-height: 100vh;
+  font-size:24px;
+  z-index: 1010;
+}
+
+.transparent {
+  display: none;
+}
+
+.ondoku3CreditInIllustory {
+  display : block;
+  position: fixed;
+  z-index : 1003;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.8em;
+  text-shadow:0.1px 0 1px white;
+}
+
+.ondoku3CreditLinkInIllustory {
+  text-decoration: underline;
+  text-decoration-thickness:1px;
+}
+
+  // 以下、ストーリー表示に関わる処理を記載----------------------------------------
+  // ------------------------------------------------------------------------
+
+  .aboveTextHighlight {
+    color: #000000;
+    text-decoration: underline;
+    text-decoration-thickness:1px;
+  }
+  .aboveTextNormal {
+    color: gray;
+  }
+  
+  .storyJapText { // 使用箇所あり
+
+  }
+
+  .storyEngText {
+    margin-top:10px;
+    display: flex;
+    justify-content: center;
+  }
+  .storyEngTextEtoJ {
+    display: flex;
+    justify-content: center;
+  }
+
+  .correctImages {
+    pointer-events: none;
+    position: fixed;
+    top:70%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    z-index: 1003;
+  }
+
+  .circleImg, .crossImg {
+    height: 150px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    z-index: 1003;
+  }
+  
+  .engListLink {
+    text-decoration: underline;
+    text-decoration-thickness:1px;
+  }
+
+  /*　ハンバーガーメニューボタン　*/
+  .hamburgerIllust {
+    display : block;
+    position: fixed;
+    z-index : 1007;
+    right : 15px;
+    top   : 24px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .hamburgerIllust span {
+    display : block;
+    position: absolute;
+    left    : 4px;
+    background : #BBBBBB;
+    border: 1px solid rgb(255, 255, 255);
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition   : 0.3s ease-in-out;
+    transition        : 0.3s ease-in-out;
+  }
+  .nav__centerForMobileIllust {
+    position: fixed;
+    margin-top:0px;
+    top:0;
+    right:0;
+    padding-top: 15px;
+    padding-left: 15px;
+    background-color: #f1f8fe;
+    z-index: 1005;
+  }
+  .nav__btnIllust, .nav__btnForTwitterIllust{  /*ヘダー右側にあるナビのボタン_navの子要素*/
+    display: inline-block;
+    font-size: 0.8em;
+    color: #87CEFA;
+    text-decoration: none;
+    user-select: none;
+    border: 1px #87CEFA solid;
+    border-radius: 3px;
+    transition: 0.4s ease;
+    padding: 0.4em 1.0em;
+    text-align: center;
+    margin-right:10px;
+    margin-top:10px;
+  }
+  .snsIconTwitterIllust {
+    display: none
+  }
+  .grayOutIllust {
+    position: fixed;
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    z-index: 1004;
+    background-color: rgba(70, 70, 70, 0.9);
+  }
+  /* スマホメニューを開いてる時のボタン */
+  .hamburgerIllust.active span:nth-child(1) {
+    top : 16px;
+    left: 6px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform   : rotate(-45deg);
+    transform        : rotate(-45deg);
+  }
+  .hamburgerIllust.active span:nth-child(2),
+  .hamburgerIllust.active span:nth-child(3) {
+    top: 16px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform   : rotate(45deg);
+    transform        : rotate(45deg);
+  }
+  // PCのとき
+  // 画面が横長の時
+  @media (orientation: landscape){
+    @media (min-width: 1200px){
+      .fullScreen1 {
+        top: -30%;
+        width:100%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen2 {
+        top: -25%;
+        width:100%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen3 {
+        top: -30%;
+        width:100%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen4 {
+        top: -30%;
+        width:100%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen5 {
+        top: -25%;
+        width:100%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreenComingSoon {
+        top: -40%;
+        width:100%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .illustBackBtn {
+        height:30%;
+        width:5%;
+        position: fixed;
+        top: 35%;
+        left:5%;
+        z-index: 1001;
+        cursor: pointer;
+      }
+      .illustNextBtn {
+        height:30%;
+        width:5%;
+        position: fixed;
+        top: 35%;
+        right: 5%;
+        z-index: 1001;
+        cursor: pointer;
+      }
+      .storyAbove {
+        min-height: 60px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:10%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        z-index: 1002;
+        font-size: 14px;
+        padding:20px 40px;
+      }
+      .storyAboveWidth {
+        min-width: 55%;
+      }
+      .storyScr {
+        min-width: 45%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:35%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+      }
+      .storyEntire {
+        margin: 0 auto;
+        padding:20px 40px;
+        line-height:1.5;
+      }
+      .storyScrReview {
+        min-width: 60%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+      }
+      .storyJapTextReview {
+        margin-top:20px;
+      }
+      .storyEngTextReview {
+        margin-top:5px;
+        margin-bottom:15px;
+        text-align: center;
+      }
+      .questionWord {
+        min-width: 15%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        line-height:1.5;
+        font-size:24px;
+        padding:20px 40px;
+        z-index: 1002;
+      }
+      .optionAnswer {
+        min-width: 12%;
+        position: fixed;
+        top:70%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+      }
+      .optionAnswerNormal {
+        height: 40px;
+        background-color: white;
+        opacity: 0.8;
+        font-size:20px;
+        padding:10px 40px;
+        margin-top:10px;
+        margin-bottom:10px;
+        cursor: pointer;
+      }
+      .optionAnswerCorrect {
+        background-color: rgb(203, 253, 203);
+        opacity: 0.8;
+      }
+      .optionAnswerIncorrect {
+        background-color: rgb(185, 196, 229);
+        opacity: 0.8;
+      }
+      .allQuestionsListEntireScrIllust {
+        min-width: 30%;
+        background-color: white;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1004;
+        border:5px solid gray;
+      }
+      .startBtnIllustory {
+        height: 40px;
+        width: 100px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:15%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+      }
+      .modeChangeBtnIllustory {
+        height: 40px;
+        width: 60px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:12%;
+        left:8%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+        font-size:12px;
+        border: none;
+      }
+      .illustorySection {
+        width:95%;
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 2%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        z-index: 1001;
+        overflow-x: scroll;
+      }
+      .reviewBtnIllustory {
+        height: 40px;
+        width: 100px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:23%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        font-size:14px;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+      }
+      .afterBtnIllustory {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        bottom:15%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        font-size:14px;
+        line-height: 40px;
+        z-index: 1002;
+      }
+      .backBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        border-top-left-radius : 25px;
+        -webkit-border-top-left-radius: 25px;
+        -moz-border-radius-topleft: 25px;
+        border-bottom-left-radius : 25px;
+        -webkit-border-bottom-left-radius: 25px;
+        -moz-border-radius-bottomleft: 25px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+        margin-right:30px;
+      }
+      .backBtnIllustoryOpacity {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        opacity: 0;
+        pointer-events: none;
+        margin-right:30px;
+      }
+      .againBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+      }
+      .nextBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        border-top-right-radius : 25px;
+        -webkit-border-top-right-radius: 25px;
+        -moz-border-radius-topright: 25px;
+        border-bottom-right-radius : 25px;
+        -webkit-border-bottom-right-radius: 25px;
+        -moz-border-radius-bottomright: 25px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+        margin-left:30px;
+      }
+      .nextBtnIllustoryOpacity {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        opacity: 0;
+        pointer-events: none;
+        margin-left:30px;
+      }
+      .allQuestionsListTableSrcIllust {
+        height:90%;
+        border-bottom: 5px solid gray;
+        overflow-y: scroll; 
+      }
+        // 各列の合計が100%になるようにすること←100%にしてもうまくいかない。
+      // 1列目
+      .allQuestionsListTableIllust tr td:nth-of-type(1) {
+        width:8%;
+      }
+      // 2列目
+      .allQuestionsListTableIllust tr td:nth-of-type(2) {
+        width:12%;
+      }
+      // 3列目
+      .allQuestionsListTableIllust tr td:nth-of-type(3) {
+        width:4%;
+      }
+      // 4列目
+      .allQuestionsListTableIllust tr td:nth-of-type(4) {
+        width:22%;
+      }
+      // 5列目
+      .allQuestionsListTableIllust tr td:nth-of-type(5) {
+        width:33%;
+      }
+      // 6列目
+      .allQuestionsListTableIllust tr td:nth-of-type(6) {
+        width:10%;
+      }
+      // 以下、出題した問題の表を作成するCSS---------
+      // --------------------------------------
+      .allQuestionsListTableIllust, .allQuestionsListTableIllust th, .allQuestionsListTableIllust td {
+        border-collapse: separate;
+        border-spacing: 0;
+        border: 0.5px solid gray;
+        line-height: 1.2;
+        margin: 1px 1px 0px 1px;
+      }
+      .allQuestionsListTableIllust th {
+        padding: 10px;
+        font-weight: bold;
+        background: #f1f8fe;
+        font-size:14px;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      .allQuestionsListTableIllust th {
+        padding: 10px;
+        font-weight: bold;
+        background: #f1f8fe;
+        font-size:14px;
+      }
+      .allQuestionsListTableIllust td {
+        padding: 5px;
+        font-size:14px;
+        text-align: center;
+      }
+      .allQuestionsListTableIllust td:nth-of-type(3):hover {
+        background: #87CEFA;
+        color: #ffffff;
+        cursor: pointer;
+      }
+      .allQuestionsListTableIllust tr:nth-child(even) {
+        background: #f1f8fe;
+      }
+      .closeAllQuestionsList {
+        height:10%;
+        width:100%;
+        background-color:#ffffff;
+        font-size: 0.8em;
+        color: gray;
+        text-decoration: none;
+        border: 1px gray solid;
+        transition: 0.4s ease;
+        padding: 0.8em 0.8em;
+        font-family:'メイリオ', 'Meiryo', sans-serif;
+        text-align: center;
+        cursor: pointer;
+      }
+      .closeAllQuestionsList:hover {
+        color: #fff;
+        background: lightgray;
+      }
+      .upArrowBtn {
+        @media (min-width: 900px) {
+          display: none;
+        }
+      }
+      .illustImage {
+        width:60px;
+        margin-left:5px;
+        margin-right:5px;
+        opacity: 0.7;
+        cursor: pointer;
+      }
+      .illustImageSelected {
+        width:60px;
+        margin-left:5px;
+        margin-right:5px;
+        cursor: pointer;
+        border:3px solid #f59898;
+        left:50%;
+      }
+      /*　ハンバーガーメニューボタン　*/
+      .hamburgerIllust {
+        width : 60px;
+        height: 60px;
+      }
+      .hamburgerIllust span {
+        height  : 5px ;
+        width   : 50px;
+      }
+      .hamburgerIllust span:nth-child(1) {
+        top: 8px;
+      }
+      .hamburgerIllust span:nth-child(2) {
+        top: 28px;
+      }
+      .hamburgerIllust span:nth-child(3) {
+        top: 48px;
+      }
+      .nav__centerForMobileIllust {
+        height:20%;
+        width:100%;
+      }
+      .nav__btnIllust, .nav__btnForTwitterIllust{  /*ヘダー右側にあるナビのボタン_navの子要素*/
+        width:29%;
+      }
+      .pronounceOn, .pronounceOff{
+        display : block;
+        position: fixed;
+        width : 60px;
+        height: 60px;
+        z-index : 1003;
+        left : 15px;
+        top   : 24px;
+        cursor: pointer;
+      }
+      .ondoku3CreditInIllustory {
+        right : 2.5%;
+        bottom : 85px;
+      }
+    // 以上、出題した問題の表を作成するCSS---------
+    // --------------------------------------
+    }
+  }
+  /* タブレット対応 ------------------------------------------------*/
+  // 画面が横長の時 ------------------------------------------------
+  @media (orientation: landscape){
+    @media (max-width: 1200px) {
+      .fullScreen1 {
+        top: -20%;
+        width:100%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen2 {
+        top: -20%;
+        width:100%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen3 {
+        top: -20%;
+        width:100%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen4 {
+        top: -20%;
+        width:100%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen5 {
+        top: -15%;
+        width:100%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreenComingSoon {
+        top: -20%;
+        width:100%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .illustBackBtn {
+        height:30%;
+        width:5%;
+        position: fixed;
+        top: 35%;
+        left:5%;
+        z-index: 1001;
+        cursor: pointer;
+      }
+      .illustNextBtn {
+        height:30%;
+        width:5%;
+        position: fixed;
+        top: 35%;
+        right: 5%;
+        z-index: 1001;
+        cursor: pointer;
+      }
+      .storyAbove {
+        min-height: 60px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:10%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        z-index: 1002;
+        font-size: 14px;
+        padding:20px 40px;
+      }
+      .storyAboveWidth {
+        min-width: 65%;
+        top:12%;
+      }
+      .storyScr {
+        min-width: 45%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top: 35%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+      }
+      .storyEntire {
+        margin: 0 auto;
+        padding:20px 40px;
+        line-height:1.5;
+      }
+      .storyScrReview {
+        min-width: 70%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+      }
+      .storyJapTextReview {
+        margin-top:20px;
+      }
+      .storyEngTextReview {
+        margin-top:5px;
+        margin-bottom:15px;
+        text-align: center;
+      }
+      .questionWord {
+        min-width: 15%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        line-height:1.5;
+        font-size:24px;
+        padding:20px 40px;
+        z-index: 1002;
+      }
+      .optionAnswer {
+        min-width: 12%;
+        position: fixed;
+        top:70%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+      }
+      .optionAnswerNormal {
+        height: 40px;
+        background-color: white;
+        opacity: 0.8;
+        font-size:20px;
+        padding:10px 40px;
+        margin-top:10px;
+        margin-bottom:10px;
+        cursor: pointer;
+      }
+      .optionAnswerCorrect {
+        background-color: rgb(203, 253, 203);
+        opacity: 0.8;
+      }
+      .optionAnswerIncorrect {
+        background-color: rgb(185, 196, 229);
+        opacity: 0.8;
+      }
+      .allQuestionsListEntireScrIllust {
+        min-width: 60%;
+        background-color: white;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1004;
+        border:5px solid gray;
+      }
+      .startBtnIllustory {
+        height: 40px;
+        width: 100px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:15%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+      }
+      .modeChangeBtnIllustory {
+        height: 40px;
+        width: 60px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:12%;
+        left:8%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+        font-size:10px;
+        border: none;
+      }
+      .illustorySection {
+        width:95%;
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 2%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        z-index: 1001;
+        overflow-x: scroll;
+      }
+      .reviewBtnIllustory {
+        height: 40px;
+        width: 100px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:23%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        font-size:14px;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+      }
+      .afterBtnIllustory {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        bottom:15%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        font-size:14px;
+        line-height: 40px;
+        z-index: 1002;
+      }
+      .backBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        border-top-left-radius : 25px;
+        -webkit-border-top-left-radius: 25px;
+        -moz-border-radius-topleft: 25px;
+        border-bottom-left-radius : 25px;
+        -webkit-border-bottom-left-radius: 25px;
+        -moz-border-radius-bottomleft: 25px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+        margin-right:30px;
+      }
+      .backBtnIllustoryOpacity {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        opacity: 0;
+        pointer-events: none;
+        margin-right:30px;
+      }
+      .againBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+      }
+      .nextBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        border-top-right-radius : 25px;
+        -webkit-border-top-right-radius: 25px;
+        -moz-border-radius-topright: 25px;
+        border-bottom-right-radius : 25px;
+        -webkit-border-bottom-right-radius: 25px;
+        -moz-border-radius-bottomright: 25px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+        margin-left:30px;
+      }
+      .nextBtnIllustoryOpacity {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        opacity: 0;
+        pointer-events: none;
+        margin-left:30px;
+      }
+      .allQuestionsListTableSrcIllust {
+        height:90%;
+        border-bottom: 5px solid gray;
+        overflow-y: scroll; 
+      }
+        // 各列の合計が100%になるようにすること←100%にしてもうまくいかない。
+      // 1列目
+      .allQuestionsListTableIllust tr td:nth-of-type(1) {
+        width:8%;
+      }
+      // 2列目
+      .allQuestionsListTableIllust tr td:nth-of-type(2) {
+        width:12%;
+      }
+      // 3列目
+      .allQuestionsListTableIllust tr td:nth-of-type(3) {
+        width:4%;
+      }
+      // 4列目
+      .allQuestionsListTableIllust tr td:nth-of-type(4) {
+        width:22%;
+      }
+      // 5列目
+      .allQuestionsListTableIllust tr td:nth-of-type(5) {
+        width:33%;
+      }
+      // 6列目
+      .allQuestionsListTableIllust tr td:nth-of-type(6) {
+        width:10%;
+      }
+        // 以下、出題した問題の表を作成するCSS---------
+      // --------------------------------------
+      .allQuestionsListTableIllust, .allQuestionsListTableIllust th, .allQuestionsListTableIllust td {
+        border-collapse: separate;
+        border-spacing: 0;
+        border: 0.5px solid gray;
+        line-height: 1.2;
+        margin: 1px 1px 0px 1px;
+      }
+      
+      .allQuestionsListTableIllust th {
+        padding: 10px;
+        font-weight: bold;
+        background: #f1f8fe;
+        font-size:14px;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      
+      .allQuestionsListTableIllust th {
+        padding: 10px;
+        font-weight: bold;
+        background: #f1f8fe;
+        font-size:14px;
+      }
+      
+      .allQuestionsListTableIllust td {
+        padding: 5px;
+        font-size:14px;
+        text-align: center;
+      }
+      
+      .allQuestionsListTableIllust td:nth-of-type(3):hover {
+        background: #87CEFA;
+        color: #ffffff;
+        cursor: pointer;
+      }
+      
+      .allQuestionsListTableIllust tr:nth-child(even) {
+        background: #f1f8fe;
+      }
+      
+      .closeAllQuestionsList {
+        height:10%;
+        width:100%;
+        background-color:#ffffff;
+        font-size: 0.8em;
+        color: gray;
+        text-decoration: none;
+        border: 1px gray solid;
+        transition: 0.4s ease;
+        padding: 0.8em 0.8em;
+        font-family:'メイリオ', 'Meiryo', sans-serif;
+        text-align: center;
+        cursor: pointer;
+      }
+      .closeAllQuestionsList:hover {
+        color: #fff;
+        background: lightgray;
+      }
+      .upArrowBtn {
+        @media (min-width: 950px) {
+          display: none;
+        }
+      }
+      .illustImage {
+        width:60px;
+        margin-left:5px;
+        margin-right:5px;
+        opacity: 0.7;
+        cursor: pointer;
+      }
+      .illustImageSelected {
+        width:60px;
+        margin-left:5px;
+        margin-right:5px;
+        cursor: pointer;
+        border:3px solid #f59898;
+        left:50%;
+      }
+      /*　ハンバーガーメニューボタン　*/
+      .hamburgerIllust {
+        width : 60px;
+        height: 60px;
+      }
+      .hamburgerIllust span {
+        height  : 5px;
+        width   : 50px;
+      }
+      .hamburgerIllust span:nth-child(1) {
+        top: 8px;
+      }
+      .hamburgerIllust span:nth-child(2) {
+        top: 28px;
+      }
+      .hamburgerIllust span:nth-child(3) {
+        top: 48px;
+      }
+      .nav__centerForMobileIllust {
+        height:20%;
+        width:100%;
+      }
+      .nav__btnIllust, .nav__btnForTwitterIllust{  /*ヘダー右側にあるナビのボタン_navの子要素*/
+        width:29%;
+      }
+      .pronounceOn, .pronounceOff{
+        display : block;
+        position: fixed;
+        width : 60px;
+        height: 60px;
+        z-index : 1003;
+        left : 15px;
+        top   : 24px;
+        cursor: pointer;
+      }
+      .ondoku3CreditInIllustory {
+        right : 2.5%;
+        bottom : 85px;
+      }
+   // 以上、出題した問題の表を作成するCSS---------
+   // --------------------------------------
+    }
+  }
+  /* タブレット対応 ------------------------------------------------*/
+  // 画面が縦長の時 ------------------------------------------------
+  @media (orientation: portrait){
+    @media (min-height: 1000px) {
+      .fullScreen1 {
+        height:120%;
+        width: 120%;
+        object-fit: cover;
+        object-position: 35% 50%;
+        top: -10%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen2 {
+        height:100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+        top: 0%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen3 {
+        height:120%;
+        width: 120%;
+        object-fit: cover;
+        object-position: 30% 50%;
+        top: -10%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen4 {
+        height:120%;
+        width: 120%;
+        object-fit: cover;
+        object-position: 30% 50%;
+        top: -10%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen5 {
+        height:120%;
+        width: 120%;
+        object-fit: cover;
+        object-position: 30% 50%;
+        top: -10%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreenComingSoon {
+        height:100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+        top: 0%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .illustBackBtn {
+        height:20%;
+        width:5%;
+        position: fixed;
+        top: 40%;
+        left:5%;
+        z-index: 1001;
+        cursor: pointer;
+      }
+      .illustNextBtn {
+        height:20%;
+        width:5%;
+        position: fixed;
+        top: 40%;
+        right: 5%;
+        z-index: 1001;
+        cursor: pointer;
+      }
+      .storyAbove {
+        min-height: 60px;
+        min-width: 70%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:15%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        z-index: 1002;
+        font-size: 14px;
+        padding:20px 40px;
+      }
+      .storyScr {
+        min-width: 75%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:35%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+      }
+      .storyEntire {
+        margin: 0 auto;
+        padding:20px 40px;
+        line-height:1.5;
+      }
+      .storyScrReview {
+        min-width: 75%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+      }
+      .storyJapTextReview {
+        margin-top:20px;
+      }
+      .storyEngTextReview {
+        margin-top:5px;
+        margin-bottom:15px;
+        text-align: center;
+      }
+      .questionWord {
+        min-width: 20%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        line-height:1.5;
+        font-size:24px;
+        padding:20px 40px;
+        z-index: 1002;
+      }
+      .optionAnswer {
+        min-width: 12%;
+        position: fixed;
+        top:65%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+      }
+      .optionAnswerNormal {
+        height: 40px;
+        background-color: white;
+        opacity: 0.8;
+        font-size:20px;
+        padding:10px 40px;
+        margin-top:10px;
+        margin-bottom:10px;
+        cursor: pointer;
+      }
+      .optionAnswerCorrect {
+        background-color: rgb(203, 253, 203);
+        opacity: 0.8;
+      }
+      .optionAnswerIncorrect {
+        background-color: rgb(185, 196, 229);
+        opacity: 0.8;
+      }
+      .allQuestionsListEntireScrIllust {
+        min-width: 75%;
+        background-color: white;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1004;
+        border:5px solid gray;
+      }
+      .startBtnIllustory {
+        height: 40px;
+        width: 100px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:15%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+      }
+      .modeChangeBtnIllustory {
+        height: 40px;
+        width: 60px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:10%;
+        left:10%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+        font-size:10px;
+        border: none;
+      }
+      .illustorySection {
+        width:95%;
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 2%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        z-index: 1001;
+        overflow-x: scroll;
+      }
+      .reviewBtnIllustory {
+        height: 40px;
+        width: 100px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:23%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        font-size:14px;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+      }
+      .afterBtnIllustory {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        bottom:15%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        font-size:14px;
+        line-height: 40px;
+        z-index: 1002;
+      }
+      .backBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        border-top-left-radius : 25px;
+        -webkit-border-top-left-radius: 25px;
+        -moz-border-radius-topleft: 25px;
+        border-bottom-left-radius : 25px;
+        -webkit-border-bottom-left-radius: 25px;
+        -moz-border-radius-bottomleft: 25px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+        margin-right:30px;
+      }
+      .backBtnIllustoryOpacity {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        opacity: 0;
+        pointer-events: none;
+        margin-right:30px;
+      }
+      .againBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+      }
+      .nextBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        border-top-right-radius : 25px;
+        -webkit-border-top-right-radius: 25px;
+        -moz-border-radius-topright: 25px;
+        border-bottom-right-radius : 25px;
+        -webkit-border-bottom-right-radius: 25px;
+        -moz-border-radius-bottomright: 25px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+        margin-left:30px;
+      }
+      .nextBtnIllustoryOpacity {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        opacity: 0;
+        pointer-events: none;
+        margin-left:30px;
+      }
+      .allQuestionsListTableSrcIllust {
+        height:90%;
+        border-bottom: 5px solid gray;
+        overflow-y: scroll; 
+      }
+      // 各列の合計が100%になるようにすること←100%にしてもうまくいかない。
+      // 1列目
+      .allQuestionsListTableIllust tr td:nth-of-type(1) {
+        width:8%;
+      }
+      // 2列目
+      .allQuestionsListTableIllust tr td:nth-of-type(2) {
+        width:16%;
+      }
+      // 3列目
+      .allQuestionsListTableIllust tr td:nth-of-type(3) {
+        width:8%;
+      }
+      // 4列目
+      .allQuestionsListTableIllust tr td:nth-of-type(4) {
+        width:24%;
+      }
+      // 5列目
+      .allQuestionsListTableIllust tr td:nth-of-type(5) {
+        width:32%;
+      }
+      // 6列目
+      .allQuestionsListTableIllust tr td:nth-of-type(6) {
+        width:12%;
+      }
+        // 以下、出題した問題の表を作成するCSS---------
+      // --------------------------------------
+      .allQuestionsListTableIllust, .allQuestionsListTableIllust th, .allQuestionsListTableIllust td {
+        border-collapse: separate;
+        border-spacing: 0;
+        border: 0.5px solid gray;
+        line-height: 1.2;
+        margin: 1px 1px 0px 1px;
+      }
+      
+      .allQuestionsListTableIllust th {
+        padding: 10px;
+        font-weight: bold;
+        background: #f1f8fe;
+        font-size:14px;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      
+      .allQuestionsListTableIllust th {
+        padding: 10px;
+        font-weight: bold;
+        background: #f1f8fe;
+        font-size:14px;
+      }
+      
+      .allQuestionsListTableIllust td {
+        padding: 5px;
+        font-size:14px;
+        text-align: center;
+      }
+      
+      .allQuestionsListTableIllust td:nth-of-type(3):hover {
+        background: #87CEFA;
+        color: #ffffff;
+        cursor: pointer;
+      }
+      
+      .allQuestionsListTableIllust tr:nth-child(even) {
+        background: #f1f8fe;
+      }
+      
+      .closeAllQuestionsList {
+        height:10%;
+        width:100%;
+        background-color:#ffffff;
+        font-size: 0.8em;
+        color: gray;
+        text-decoration: none;
+        border: 1px gray solid;
+        transition: 0.4s ease;
+        padding: 0.8em 0.8em;
+        font-family:'メイリオ', 'Meiryo', sans-serif;
+        text-align: center;
+        cursor: pointer;
+      }
+      .closeAllQuestionsList:hover {
+        color: #fff;
+        background: lightgray;
+      }
+      .upArrowBtn {
+        @media (min-height: 900px) {
+          display: none;
+        }
+      }
+      .illustImage {
+        width:60px;
+        margin-left:5px;
+        margin-right:5px;
+        opacity: 0.7;
+        cursor: pointer;
+      }
+      .illustImageSelected {
+        width:60px;
+        margin-left:5px;
+        margin-right:5px;
+        cursor: pointer;
+        border:3px solid #f59898;
+        left:50%;
+      }
+      /*　ハンバーガーメニューボタン　*/
+      .hamburgerIllust {
+        width : 60px;
+        height: 60px;
+      }
+      .hamburgerIllust span {
+        height  : 5px;
+        width   : 50px;
+      }
+      .hamburgerIllust span:nth-child(1) {
+        top: 8px;
+      }
+      .hamburgerIllust span:nth-child(2) {
+        top: 28px;
+      }
+      .hamburgerIllust span:nth-child(3) {
+        top: 48px;
+      }
+      .nav__centerForMobileIllust {
+        height:100%;
+        width:45%;
+      }
+      .nav__btnIllust, .nav__btnForTwitterIllust{  /*ヘダー右側にあるナビのボタン_navの子要素*/
+        width:75%;
+      }
+      .pronounceOn, .pronounceOff{
+        display : block;
+        position: fixed;
+        width : 60px;
+        height: 60px;
+        z-index : 1003;
+        left : 15px;
+        top   : 24px;
+        cursor: pointer;
+      }
+      .ondoku3CreditInIllustory {
+        right : 2.5%;
+        bottom : 90px;
+      }
+   // 以上、出題した問題の表を作成するCSS---------
+   // --------------------------------------
+    }
+  }
+  /* iPhone対応 ------------------------------------------------*/
+  // 画面が横長の時 ------------------------------------------------
+  @media (orientation: landscape){
+    @media (max-width: 950px) {
+      .fullScreen1 {
+        height:120%;
+        width: 120%;
+        object-fit: cover;
+        object-position: 35% 45%;
+        top: 0%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen2 {
+        height:120%;
+        width: 120%;
+        object-fit: cover;
+        object-position: 35% 35%;
+        top: 0%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen3 {
+        height:120%;
+        width: 120%;
+        object-fit: cover;
+        object-position: 35% 45%;
+        top: 0%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen4 {
+        height:120%;
+        width: 120%;
+        object-fit: cover;
+        object-position: 35% 40%;
+        top: 0%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreen5 {
+        height:120%;
+        width: 120%;
+        object-fit: cover;
+        object-position: 35% 35%;
+        top: 0%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .fullScreenComingSoon {
+        height:120%;
+        width: 120%;
+        object-fit: cover;
+        object-position: 35% 55%;
+        top: 0%;
+        position: fixed;
+        z-index: 1000;
+      }
+      .illustBackBtn {
+        height:30%;
+        width:5%;
+        position: fixed;
+        top: 35%;
+        left:2%;
+        z-index: 1001;
+        cursor: pointer;
+      }
+      .illustNextBtn {
+        height:30%;
+        width:5%;
+        position: fixed;
+        top: 35%;
+        right: 2%;
+        z-index: 1001;
+        cursor: pointer;
+      }
+      .storyAbove {
+        display: none;
+        // min-height: 60px;
+        // min-width: 30%;
+        // background-color: white;
+        // opacity: 0.8;
+        // position: fixed;
+        // top:50%;
+        // left:50%;
+        // transform: translate(0%, 0%);
+        // -webkit-transform: translate(0%, 0%);
+        // -ms-transform: translate(0%, 0%);
+        // text-align: center;
+        // z-index: 1002;
+        // font-size: 14px;
+        // padding:20px 40px;
+      }
+      .storyScr {
+        min-width: 85%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:25%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+      }
+      .storyEntire {
+        margin: 0 auto;
+        padding:15px 20px;
+        line-height:1.2;
+      }
+      .storyScrReview {
+        min-width: 85%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+        @media (max-height: 380px) {
+          font-size:14px;
+        }
+      }
+      .storyJapTextReview {
+        margin-top:10px;
+      }
+      .storyEngTextReview {
+        margin-top:2px;
+        margin-bottom:5px;
+        text-align: center;
+      }
+      .questionWord {
+        min-width: 15%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        line-height:1.5;
+        font-size:24px;
+        padding:10px 40px;
+        z-index: 1002;
+        white-space: nowrap;
+      }
+      .optionAnswer {
+        position: fixed;
+        width:540px;
+        margin-top:20px;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .optionAnswerNormal {
+        height: 40px;
+        width:260px;
+        background-color: white;
+        opacity: 0.8;
+        font-size:20px;
+        text-align: center;
+        margin-top:5px;
+        margin-bottom:5px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .optionAnswerFontPattern1 {
+        font-size:16px;
+      }
+      .optionAnswerFontPattern2 {
+        font-size:18px;
+      }
+      .optionAnswerFontPattern3 {
+        font-size:13px;
+      }
+      .optionAnswerFontPattern4 {
+        font-size:16px;
+      }
+      .optionAnswerCorrect {
+        background-color: rgb(203, 253, 203);
+        opacity: 0.8;
+      }
+      .optionAnswerIncorrect {
+        background-color: rgb(185, 196, 229);
+        opacity: 0.8;
+      }
+      .startBtnIllustory {
+        height: 40px;
+        width: 100px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:15%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+      }
+      .modeChangeBtnIllustory {
+        height: 30px;
+        width: 45px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:5%;
+        left:5%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        line-height: 30px;
+        z-index: 1002;
+        cursor: pointer;
+        font-size:6px;
+        border: none;
+      }
+      .illustorySection {
+        width:95%;
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        bottom: -15%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        z-index: 1001;
+        overflow-x: scroll;
+        pointer-events:none;
+      }
+      .illustorySectionDisplay {
+        animation: upFlowing 0.8s forwards;
+        pointer-events:all;
+      }
+      @keyframes upFlowing {
+        100% {
+          transform: translate(-50%, -115%);
+          -webkit-transform: translate(-50%, -115%);
+          -ms-transform: translate(-50%, -115%);
+        }
+      }
+      .reviewBtnIllustory {
+        height: 40px;
+        width: 80px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        @media (max-width: 700px) {
+          top:5%;
+        }
+        @media (min-width: 700px) {
+          top:10%;
+        }
+        left:15%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        font-size:14px;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+      }
+      .afterBtnIllustory {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        @media (max-width: 700px) {
+          bottom:7%;
+        }
+        @media (min-width: 700px) {
+          bottom:10%;
+        }
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        font-size:14px;
+        line-height: 40px;
+        z-index: 1002;
+      }
+      .backBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        border-top-left-radius : 25px;
+        -webkit-border-top-left-radius: 25px;
+        -moz-border-radius-topleft: 25px;
+        border-bottom-left-radius : 25px;
+        -webkit-border-bottom-left-radius: 25px;
+        -moz-border-radius-bottomleft: 25px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+        margin-right:30px;
+      }
+      .backBtnIllustoryOpacity {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        opacity: 0;
+        pointer-events: none;
+        margin-right:30px;
+      }
+      .againBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+      }
+      .nextBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        border-top-right-radius : 25px;
+        -webkit-border-top-right-radius: 25px;
+        -moz-border-radius-topright: 25px;
+        border-bottom-right-radius : 25px;
+        -webkit-border-bottom-right-radius: 25px;
+        -moz-border-radius-bottomright: 25px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+        margin-left:30px;
+      }
+      .nextBtnIllustoryOpacity {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        opacity: 0;
+        pointer-events: none;
+        margin-left:30px;
+      }
+      .allQuestionsListEntireScrIllust {
+        height:300px;
+        @media (max-width: 700px) {
+          min-width: 80%;
+        }
+        @media (min-width: 700px) {
+          min-width: 60%;
+        }
+        background-color: white;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1004;
+        border:5px solid gray;
+      }
+      .allQuestionsListTableSrcIllust {
+        height:90%;
+        border-bottom: 5px solid gray;
+        overflow-y: scroll; 
+      }
+      // 各列の合計が100%になるようにすること←100%にしてもうまくいかない。
+      // 1列目
+      .allQuestionsListTableIllust tr td:nth-of-type(1) {
+        width:8%;
+      }
+      // 2列目
+      .allQuestionsListTableIllust tr td:nth-of-type(2) {
+        width:16%;
+      }
+      // 3列目
+      .allQuestionsListTableIllust tr td:nth-of-type(3) {
+        width:8%;
+      }
+      // 4列目
+      .allQuestionsListTableIllust tr td:nth-of-type(4) {
+        width:24%;
+      }
+      // 5列目
+      .allQuestionsListTableIllust tr td:nth-of-type(5) {
+        width:32%;
+      }
+      // 6列目
+      .allQuestionsListTableIllust tr td:nth-of-type(6) {
+        width:12%;
+      }
+      // 以下、出題した問題の表を作成するCSS---------
+      // --------------------------------------
+      .allQuestionsListTableIllust, .allQuestionsListTableIllust th, .allQuestionsListTableIllust td {
+        border-collapse: separate;
+        border-spacing: 0;
+        border: 0.5px solid gray;
+        line-height: 1.2;
+        margin: 1px 1px 0px 1px;
+      }
+      
+      .allQuestionsListTableIllust th {
+        padding: 10px;
+        font-weight: bold;
+        background: #f1f8fe;
+        font-size:12px;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      
+      .allQuestionsListTableIllust th {
+        padding: 10px;
+        font-weight: bold;
+        background: #f1f8fe;
+        font-size:12px;
+      }
+      
+      .allQuestionsListTableIllust td {
+        padding: 5px;
+        font-size:12px;
+        text-align: center;
+      }
+      
+      .allQuestionsListTableIllust td:nth-of-type(3):hover {
+        background: #87CEFA;
+        color: #ffffff;
+        cursor: pointer;
+      }
+      
+      .allQuestionsListTableIllust tr:nth-child(even) {
+        background: #f1f8fe;
+      }
+      
+      .closeAllQuestionsList {
+        height:10%;
+        width:100%;
+        background-color:#ffffff;
+        font-size: 0.8em;
+        color: gray;
+        text-decoration: none;
+        border: 1px gray solid;
+        transition: 0.4s ease;
+        padding: 0.4em 0.8em;
+        font-family:'メイリオ', 'Meiryo', sans-serif;
+        text-align: center;
+        cursor: pointer;
+      }
+      .closeAllQuestionsList:hover {
+        color: #fff;
+        background: lightgray;
+      }
+      .afterBtnIllustoryTransparent {
+        display: none;
+      }
+      .upArrowBtn {
+        height:5%;
+        width:20%;
+        position: fixed;
+        bottom: 0%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        z-index: 1001;
+        cursor: pointer;
+      }
+      .upArrowBtnDisplay {
+        animation: upArrowFlowing 0.8s forwards;
+      }
+      @media (max-height: 380px) {
+        @keyframes upArrowFlowing {
+          100% {
+            transform: translate(-50%, -65px);
+            -webkit-transform: translate(-50%, -65px);
+            -ms-transform: translate(-50%, -65px);
+          }
+        }
+      }
+      @media (min-height: 380px) {
+        @keyframes upArrowFlowing {
+          100% {
+            transform: translate(-50%, -75px);
+            -webkit-transform: translate(-50%, -75px);
+            -ms-transform: translate(-50%, -75px);
+          }
+        }
+      }
+      .illustImage {
+        @media (max-height: 380px) {
+          width:55px;
+        }
+        @media (min-height: 380px) {
+          width:60px;
+        }
+        margin-left:5px;
+        margin-right:5px;
+        opacity: 0.7;
+        cursor: pointer;
+      }
+      .illustImageSelected {
+        @media (max-height: 380px) {
+          width:55px;
+        }
+        @media (min-height: 380px) {
+          width:60px;
+        }
+        margin-left:5px;
+        margin-right:5px;
+        cursor: pointer;
+        border:3px solid #f59898;
+        left:50%;
+      }
+      /*　ハンバーガーメニューボタン　*/
+      .hamburgerIllust {
+        width : 40px;
+        height: 40px;
+      }
+      .hamburgerIllust span {
+        height  : 3px;
+        width   : 30px;
+      }
+      .hamburgerIllust span:nth-child(1) {
+        top: 8px;
+      }
+      .hamburgerIllust span:nth-child(2) {
+        top: 18px;
+      }
+      .hamburgerIllust span:nth-child(3) {
+        top: 28px;
+      }
+      .nav__centerForMobileIllust {
+        height:40%;
+        width:100%;
+      }
+      .nav__btnIllust, .nav__btnForTwitterIllust{  /*ヘダー右側にあるナビのボタン_navの子要素*/
+        width:29%;
+      }
+      .pronounceOn, .pronounceOff{
+        display : block;
+        position: fixed;
+        width : 40px;
+        height: 40px;
+        z-index : 1003;
+        @media (max-width: 700px) {
+          top:5%;
+        }
+        @media (min-width: 700px) {
+          top:10%;
+        }
+        left:2%;
+        cursor: pointer;
+      }
+      .ondoku3CreditInIllustory {
+        right : 1%;
+        bottom : 10px;
+      }
+      // 以上、出題した問題の表を作成するCSS---------
+      // --------------------------------------
+    }
+  }
+  /* iPhone対応 ------------------------------------------------*/
+  // 画面が縦長の時 ------------------------------------------------
+  @media (orientation: portrait){
+    @media (max-height: 1000px) {
+      .fullScreen1 {
+        height:100%;
+        width: 100%;
+        position: fixed;
+        object-fit: cover;
+        object-position: 35% 0%;
+        top: 0%;
+        left: 0%;
+        z-index: 1000;
+      }
+      .fullScreen2 {
+        height:100%;
+        width: 100%;
+        position: fixed;
+        object-fit: cover;
+        object-position: 60% 0%;
+        top: 0%;
+        left: 0%;
+        z-index: 1000;
+      }
+      .fullScreen3 {
+        height:120%;
+        width: 120%;
+        position: fixed;
+        object-fit: cover;
+        object-position: 30% 0%;
+        top: -10%;
+        left: 0%;
+        z-index: 1000;
+      }
+      .fullScreen4 {
+        height:120%;
+        width: 120%;
+        position: fixed;
+        object-fit: cover;
+        object-position: 35% 0%;
+        top: -10%;
+        left: 0%;
+        z-index: 1000;
+      }
+      .fullScreen5 {
+        height:120%;
+        width: 120%;
+        position: fixed;
+        object-fit: cover;
+        object-position: 32% 0%;
+        top: -10%;
+        left: 0%;
+        z-index: 1000;
+      }
+      .fullScreenComingSoon {
+        height:100%;
+        width: 100%;
+        position: fixed;
+        object-fit: cover;
+        object-position: 50% 0%;
+        top: 0%;
+        left: 0%;
+        z-index: 1000;
+      }
+      .illustBackBtn {
+        height:20%;
+        width:5%;
+        position: fixed;
+        top: 40%;
+        left:5%;
+        z-index: 1001;
+        cursor: pointer;
+      }
+      .illustNextBtn {
+        height:20%;
+        width:5%;
+        position: fixed;
+        top: 40%;
+        right: 5%;
+        z-index: 1001;
+        cursor: pointer;
+      }
+      .storyAbove {
+        display: none;
+        // min-height: 60px;
+        // min-width: 80%;
+        // background-color: white;
+        // opacity: 0.8;
+        // position: fixed;
+        // top:15%;
+        // left:50%;
+        // transform: translate(-50%, 0%);
+        // -webkit-transform: translate(-50%, 0%);
+        // -ms-transform: translate(-50%, 0%);
+        // text-align: center;
+        // z-index: 1002;
+        // font-size: 14px;
+        // padding:20px 40px;
+      }
+      .storyScr {
+        min-width: 75%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:25%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+      }
+      .storyEntire {
+        margin: 0 auto;
+        padding:20px 20px;
+        line-height:1.5;
+      }
+      .storyScrReview {
+        min-width: 75%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        @media (max-width: 380px) {
+          top:42%;
+        }
+        @media (min-width: 380px) {
+          top:45%;
+        }
+        left:50%;
+        transform: translate(-50%, -45%);
+        -webkit-transform: translate(-50%, -45%);
+        -ms-transform: translate(-50%, -45%);
+        text-align: center;
+        z-index: 1002;
+        @media (max-width: 380px) {
+          font-size:14px;
+        }
+      }
+      .storyJapTextReview {
+        margin-top:20px;
+      }
+      .storyEngTextReview {
+        margin-top:5px;
+        margin-bottom:15px;
+        text-align: center;
+      }
+      .questionWord {
+        min-width: 40%;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        line-height:1.5;
+        font-size:24px;
+        padding:12px 20px;
+        z-index: 1002;
+      }
+      .questionWordFontPattern1 {
+        font-size:18px;
+      }
+      .questionWordFontPattern2 {
+        font-size:21px;
+      }
+      .optionAnswer {
+        min-width: 12%;
+        position: fixed;
+        @media (max-height: 700px) {
+          top:72%;
+        }
+        @media (min-height: 700px) {
+          top:68%;
+        }
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1002;
+      }
+      .optionAnswerNormal {
+        height: 40px;
+        background-color: white;
+        opacity: 0.8;
+        font-size:20px;
+        padding:10px 40px;
+        margin-top:10px;
+        margin-bottom:10px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .optionAnswerFontPattern1 {
+        font-size:16px;
+      }
+      .optionAnswerFontPattern2 {
+        font-size:18px;
+      }
+      .optionAnswerFontPattern3 {
+        font-size:16px;
+      }
+      .optionAnswerFontPattern4 {
+        font-size:18px;
+      }
+      .optionAnswerCorrect {
+        background-color: rgb(203, 253, 203);
+        opacity: 0.8;
+      }
+      .optionAnswerIncorrect {
+        background-color: rgb(185, 196, 229);
+        opacity: 0.8;
+      }
+      .allQuestionsListEntireScrIllust {
+        min-width: 95%;
+        background-color: white;
+        position: fixed;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 1004;
+        border:5px solid gray;
+      }
+      .startBtnIllustory {
+        height: 40px;
+        width: 100px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:15%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+      }
+      .modeChangeBtnIllustory {
+        height: 30px;
+        width: 45px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        bottom:15%;
+        left:10%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        line-height: 30px;
+        z-index: 1002;
+        cursor: pointer;
+        font-size:6px;
+        border: none;
+      }
+      .illustorySection {
+        width:95%;
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 2%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        z-index: 1001;
+        overflow-x: scroll;
+      }
+      .reviewBtnIllustory {
+        height: 40px;
+        width: 80px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        position: fixed;
+        @media (max-height: 700px) {
+          top:5%;
+        }
+        @media (min-height: 700px) {
+          @media (max-width: 370px) {
+            top:5%;
+          }
+          @media (min-width: 370px) {
+            top:10%;
+          }
+        }
+        left:25%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        font-size:14px;
+        line-height: 40px;
+        z-index: 1002;
+        cursor: pointer;
+      }
+      .afterBtnIllustory {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        bottom:13%;
+        left:50%;
+        transform: translate(-50%, 0%);
+        -webkit-transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%);
+        text-align: center;
+        font-size:12px;
+        line-height: 40px;
+        z-index: 1002;
+      }
+      .afterBtnIllustoryTransparent {
+        display: none;
+      }
+      .backBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        border-top-left-radius : 25px;
+        -webkit-border-top-left-radius: 25px;
+        -moz-border-radius-topleft: 25px;
+        border-bottom-left-radius : 25px;
+        -webkit-border-bottom-left-radius: 25px;
+        -moz-border-radius-bottomleft: 25px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+        margin-right:15px;
+      }
+      .backBtnIllustoryOpacity {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        opacity: 0;
+        pointer-events: none;
+        margin-right:15px;
+      }
+      .againBtnIllustory {
+        height: 40px;
+        width: 100px;
+        border-radius: 3px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+      }
+      .nextBtnIllustory {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        border-top-right-radius : 25px;
+        -webkit-border-top-right-radius: 25px;
+        -moz-border-radius-topright: 25px;
+        border-bottom-right-radius : 25px;
+        -webkit-border-bottom-right-radius: 25px;
+        -moz-border-radius-bottomright: 25px;
+        background-color: white;
+        opacity: 0.8;
+        cursor: pointer;
+        margin-left:15px;
+      }
+      .nextBtnIllustoryOpacity {
+        height: 40px;
+        width: 120px;
+        border-radius: 3px;
+        opacity: 0;
+        pointer-events: none;
+        margin-left:15px;
+      }
+      .allQuestionsListTableSrcIllust {
+        height:90%;
+        border-bottom: 5px solid gray;
+        overflow-y: scroll; 
+      }
+      // 各列の合計が100%になるようにすること←100%にしてもうまくいかない。
+      // 1列目
+      .allQuestionsListTableIllust tr td:nth-of-type(1) {
+        width:8%;
+      }
+      // 2列目
+      .allQuestionsListTableIllust tr td:nth-of-type(2) {
+        width:16%;
+      }
+      // 3列目
+      .allQuestionsListTableIllust tr td:nth-of-type(3) {
+        width:8%;
+      }
+      // 4列目
+      .allQuestionsListTableIllust tr td:nth-of-type(4) {
+        width:24%;
+      }
+      // 5列目
+      .allQuestionsListTableIllust tr td:nth-of-type(5) {
+        width:32%;
+      }
+      // 6列目
+      .allQuestionsListTableIllust tr td:nth-of-type(6) {
+        width:12%;
+      }
+        // 以下、出題した問題の表を作成するCSS---------
+      // --------------------------------------
+      .allQuestionsListTableIllust, .allQuestionsListTableIllust th, .allQuestionsListTableIllust td {
+        border-collapse: separate;
+        border-spacing: 0;
+        border: 0.5px solid gray;
+        line-height: 1.2;
+        margin: 1px 1px 0px 1px;
+      }
+      
+      .allQuestionsListTableIllust th {
+        padding: 10px;
+        font-weight: bold;
+        background: #f1f8fe;
+        font-size:14px;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+      
+      .allQuestionsListTableIllust th {
+        padding: 10px;
+        font-weight: bold;
+        background: #f1f8fe;
+        font-size:14px;
+      }
+      
+      .allQuestionsListTableIllust td {
+        padding: 5px;
+        font-size:14px;
+        text-align: center;
+      }
+      
+      .allQuestionsListTableIllust td:nth-of-type(3):hover {
+        background: #87CEFA;
+        color: #ffffff;
+        cursor: pointer;
+      }
+      
+      .allQuestionsListTableIllust tr:nth-child(even) {
+        background: #f1f8fe;
+      }
+      
+      .closeAllQuestionsList {
+        height:10%;
+        width:100%;
+        background-color:#ffffff;
+        font-size: 0.8em;
+        color: gray;
+        text-decoration: none;
+        border: 1px gray solid;
+        transition: 0.4s ease;
+        padding: 0.8em 0.8em;
+        font-family:'メイリオ', 'Meiryo', sans-serif;
+        text-align: center;
+        cursor: pointer;
+      }
+      .closeAllQuestionsList:hover {
+        color: #fff;
+        background: lightgray;
+      }
+      .upArrowBtn {
+        @media (min-height: 900px) {
+          display: none;
+        }
+      }
+      .illustImage {
+        width:60px;
+        margin-left:5px;
+        margin-right:5px;
+        opacity: 0.7;
+        cursor: pointer;
+      }
+      .illustImageSelected {
+        width:60px;
+        margin-left:5px;
+        margin-right:5px;
+        cursor: pointer;
+        border:3px solid #f59898;
+        left:50%;
+      }
+      /*　ハンバーガーメニューボタン　*/
+      .hamburgerIllust {
+        width : 40px;
+        height: 40px;
+      }
+      .hamburgerIllust span {
+        height  : 3px;
+        width   : 30px;
+      }
+      .hamburgerIllust span:nth-child(1) {
+        top: 8px;
+      }
+      .hamburgerIllust span:nth-child(2) {
+        top: 18px;
+      }
+      .hamburgerIllust span:nth-child(3) {
+        top: 28px;
+      }
+      .nav__centerForMobileIllust {
+        height:100%;
+        width:75%;
+      }
+      .nav__btnIllust, .nav__btnForTwitterIllust{  /*ヘダー右側にあるナビのボタン_navの子要素*/
+        width:80%;
+      }
+      .pronounceOn, .pronounceOff{
+        display : block;
+        position: fixed;
+        width : 40px;
+        height: 40px;
+        z-index : 1003;
+        @media (max-height: 700px) {
+          top:5%;
+        }
+        @media (min-height: 700px) {
+          @media (max-width: 370px) {
+            top:5%;
+          }
+          @media (min-width: 370px) {
+            top:10%;
+          }
+        }
+        left:2%;
+        cursor: pointer;
+      }
+      .ondoku3CreditInIllustory {
+        right : 2.5%;
+        bottom : 80px;
+      }
+   // 以上、出題した問題の表を作成するCSS---------
+   // --------------------------------------
+    }
+  }

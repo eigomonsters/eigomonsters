@@ -46,7 +46,7 @@ a {
   .header {
     position: fixed;
     top: 0;
-    z-index: 9999;
+    z-index: 999;
   }
 }
 
@@ -69,7 +69,7 @@ a {
     }
     .nav__left {
       font-size: 35px;
-      width: 200px;
+      width: 100px;
       font-family:'メイリオ', 'Meiryo', sans-serif;
     }
     .nav__center {
@@ -100,6 +100,7 @@ a {
       display: none;
     }
     .snsIconTwitter {
+      margin-top:10px;
       height:30px;
     };
 
@@ -368,6 +369,8 @@ a {
     }
 
  /* スマホ表示 */
+ /* 縦長表示 */
+ @media (orientation: portrait){
     @media (max-width: 599px) {
       .logo {
         width: 120px;
@@ -397,6 +400,10 @@ a {
       .nav__left {
         width:100%;
         text-align: center;
+      }
+
+      span {
+        display: inline-block;
       }
 
       /*　ハンバーガーメニューボタン　*/
@@ -496,3 +503,4 @@ a {
       }
 
     }
+  }
