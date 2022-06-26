@@ -2016,82 +2016,148 @@ meter::-webkit-meter-optimum-value {
         width:100%;
       }
     }
-    // スマホの場合
-    @media (max-width: 599px) {
-      .topPage {
-        text-align: center;
+    // スマホの場合(縦長の時)
+    @media (orientation: portrait) {
+      @media (max-width: 599px) {
+        .topPage {
+          text-align: center;
+        }
+        .topPageTitle {
+          color:rgb(70, 70, 70);
+          font-size:24px;
+          width:90%;
+          margin:0 auto;
+        }
+        .titleFontSmall {
+          font-size:20px;
+        }
+        .topPageTitleEng {
+          margin:0 auto;
+          width:65%;
+        }
+      // タイピングゲームへの遷移ボタン
+      .instantPlayIllustoryPopup, .instantPlayEngPopup {
+        max-height: 900px;
+        height:750px;
+        width:330px;
+        padding-bottom:640px;
+        margin-top:20px;
+        margin-bottom:60px;
       }
-      .topPageTitle {
-        color:rgb(70, 70, 70);
-        font-size:24px;
-        width:90%;
-        margin:0 auto;
-      }
-      .titleFontSmall {
-        font-size:20px;
-      }
-      .topPageTitleEng {
-        margin:0 auto;
-        width:65%;
-      }
-    // タイピングゲームへの遷移ボタン
-    .instantPlayIllustoryPopup, .instantPlayEngPopup {
-      max-height: 900px;
-      height:750px;
-      width:330px;
-      padding-bottom:640px;
-      margin-top:20px;
-      margin-bottom:60px;
-    }
-      .instantPlayIllustory {
-        display: block;
-      }
+        .instantPlayIllustory {
+          display: block;
+        }
 
-      // ボタン内部の文言、MovieのCSS
-      .instantPlayIllustoryContents, .instantPlayEngContents {
-        margin:0 auto;
-        width:300px;
-        bottom:100px;
-        position: relative;
+        // ボタン内部の文言、MovieのCSS
+        .instantPlayIllustoryContents, .instantPlayEngContents {
+          margin:0 auto;
+          width:300px;
+          bottom:100px;
+          position: relative;
+        }
+        .illustoryTopPage {
+          display: none;
+        }
+        .illustoryTopPageMobile {
+          display: block;
+          position: absolute;
+          width:80%;
+          top:-750px;
+          left:0;
+          right:0;
+          margin:auto;
+        }
+        .instantPlayIllustoryWords, .instantPlayEngWords {
+          width:100%;
+          position: absolute;
+          top:-810px;
+        }
+        .japTypingMovie, .engTypingMovie {
+          position: absolute;
+          margin-top:0;
+          top:-410px;
+          left:0;
+          right:0;
+          margin:auto;
+        }
+        .instantPlayIllustoryDetail, .instantPlayEngDetail {
+          width:100%;
+          position: absolute;
+          top: -310px;
+          font-size:10px;
+        }
+        .instantPlayIllustorySetting {
+          width:100%;
+          margin: 0 auto;
+          top:80px;
+        }
+        .restartBtn {
+          margin-right: 20px;
+        }
       }
-      .illustoryTopPage {
-        display: none;
+    }
+    // スマホの場合(横長の時)
+    @media (orientation: landscape) {
+      @media (max-height: 420px) {
+      // タイピングゲームへの遷移ボタン
+      .instantPlayIllustoryPopup, .instantPlayEngPopup {
+        min-height:300px;
+        height:460px;
+        width:580px;
+        padding-bottom:360px;
+        margin-top:20px;
+        margin-bottom:60px;
       }
-      .illustoryTopPageMobile {
-        display: block;
-        position: absolute;
-        width:80%;
-        top:-750px;
-        left:0;
-        right:0;
-        margin:auto;
-      }
-      .instantPlayIllustoryWords, .instantPlayEngWords {
-        width:100%;
-        position: absolute;
-        top:-810px;
-      }
-      .japTypingMovie, .engTypingMovie {
-        position: absolute;
-        margin-top:0;
-        top:-410px;
-        left:0;
-        right:0;
-        margin:auto;
-      }
-      .instantPlayIllustoryDetail, .instantPlayEngDetail {
-        width:100%;
-        position: absolute;
-        top: -310px;
-        font-size:10px;
-      }
-      .instantPlayIllustorySetting {
-        width:100%;
-        margin: 0 auto;
-        top:80px;
-      }
-      .restartBtn {
-        margin-right: 20px;
+        .instantPlayIllustory {
+          display: block;
+        }
+
+        // ボタン内部の文言、MovieのCSS
+        .instantPlayIllustoryContents, .instantPlayEngContents {
+          margin:0 auto;
+          width:440px;
+          bottom:100px;
+          position: relative;
+        }
+        .illustoryTopPage {
+          display: block;
+          position: absolute;
+          width:80%;
+          top:-480px;
+          left:0;
+          right:0;
+          margin:auto;
+        }
+        .illustoryTopPageMobile {
+          display: none;
+        }
+        .instantPlayIllustoryWords, .instantPlayEngWords {
+          width:100%;
+          position: absolute;
+          top:-540px;
+        }
+        .japTypingMovie, .engTypingMovie {
+          position: absolute;
+          margin-top:0;
+          top:-410px;
+          left:0;
+          right:0;
+          margin:auto;
+        }
+        .instantPlayIllustoryDetail, .instantPlayEngDetail {
+          width:100%;
+          position: absolute;
+          top: -280px;
+          font-size:10px;
+        }
+        .instantPlayIllustorySetting {
+          width:100%;
+          margin: 0 auto;
+          top:80px;
+        }
+        .restartBtn {
+          margin-right: 20px;
+        }
       }
     }
 

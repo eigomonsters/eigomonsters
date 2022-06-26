@@ -990,9 +990,9 @@ window.addEventListener('load', function(){
   // フォント幅が枠を越える場合、フォントサイズを調整する。
   function questionWordFontSizeAdjust() {
     questionWord.className = "questionWord";
-    if (questionWord.textContent.length > 7) {
+    if (questionWord.textContent.length > 200) {
       questionWord.classList.add('questionWordFontPattern1');
-    } else if(questionWord.textContent.length > 5) {
+    } else if(questionWord.textContent.length > 12) {
       questionWord.classList.add('questionWordFontPattern2');
     }
   }
