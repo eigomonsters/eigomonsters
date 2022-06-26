@@ -498,21 +498,33 @@ window.addEventListener('load', function(){
       upArrowBtn.src = "../../assets/illusts/downArrow.png";
       illustorySection.classList.add('illustorySectionDisplay');
       upArrowBtn.classList.add('upArrowBtnDisplay');
-      ondoku3CreditInIllustory.className = "transparent";
       if (startBtnOnFlag == 0) {
         startBtnIllustory.className = "transparent";
         modeChangeBtnIllustory.className = "transparent";
+        ondoku3CreditInIllustory.className = "transparent";
       } else if (reviewOnFlag == 0){
         optionAnswer.className = "transparent";
       } else {
         afterBtnIllustory.className = "transparent";
       }
     } else {
+        upArrowResizeScreen();
+    }
+  }
+
+  // iPhoneの場合のみ、上矢印ボタン押下済みの状態で縦横を変更した際の処理を定義
+  window.addEventListener('resize', resizeWindow);
+  function resizeWindow(){
+    upArrowResizeScreen();
+  }
+
+  function upArrowResizeScreen() {
+    audioStop();
+    if (upArrowOnFlag == 1) {
       upArrowOnFlag = 0;
       upArrowBtn.src = "../../assets/illusts/upArrow.png";
       illustorySection.classList.remove('illustorySectionDisplay');
       upArrowBtn.classList.remove('upArrowBtnDisplay');
-      ondoku3CreditInIllustory.className = "ondoku3CreditInIllustory";
       if (startBtnOnFlag == 0) {
         if(i < 5) {
           startBtnDisplay();
@@ -520,6 +532,7 @@ window.addEventListener('load', function(){
           startBtnIllustory.className = "transparent";
         }
         modeChangeBtnIllustory.className = "modeChangeBtnIllustory";
+        ondoku3CreditInIllustory.className = "ondoku3CreditInIllustory";
       } else if (reviewOnFlag == 0){
         optionAnswer.className = "optionAnswer";
       } else {
@@ -527,6 +540,7 @@ window.addEventListener('load', function(){
       }
     }
   }
+
 
   // 選択肢押下時の処理
   optionAnswer1.onclick = function() {
@@ -632,6 +646,7 @@ window.addEventListener('load', function(){
     if (upArrowOnFlag == 0) {
       startBtnIllustory.className = "startBtnIllustory";
       modeChangeBtnIllustory.className = "modeChangeBtnIllustory";
+      ondoku3CreditInIllustory.className = "ondoku3CreditInIllustory";
     } 
   }
 
@@ -651,6 +666,7 @@ window.addEventListener('load', function(){
     if (startBtnOnFlag == 0) {
       startBtnIllustory.className = "transparent";
       modeChangeBtnIllustory.className = "transparent";
+      ondoku3CreditInIllustory.className = "transparent";
       illustoryTextDisplay();
       illustoryTextAboveDisplay();
       startBtnOnFlag = 1;
@@ -1112,22 +1128,22 @@ window.addEventListener('load', function(){
     illustoryAudio.currentTime = 0;
   }
 
+  // 正解音ありの場合のみ
+  let correctAudio = new Audio('/assets/correctAudio.mp3');
   // 正解音を定義する。
   function typeCorrectAudio(){
     if (pronounceOnOff == "On") {
-      // 正解音ありの場合のみ
-      let correctAudio = new Audio('/assets/correctAudio.mp3');
       // 正解した場合、効果音を発生させる。
       correctAudio.volume = 0.2;
       correctAudio.play();
     }
   };
 
+  // ミス音ありの場合のみ
+  let incorrectAudio = new Audio('/assets/incorrectAudio.mp3');
   // ミス音を定義する。
   function typeMissAudio(){
     if (pronounceOnOff == "On") {
-      // ミス音ありの場合のみ
-      let incorrectAudio = new Audio('/assets/incorrectAudio.mp3');
       // ミスの場合、効果音を発生させる。
       incorrectAudio.volume = 0.2;
       incorrectAudio.play();
