@@ -135,10 +135,15 @@ window.addEventListener('load', function(){
     illustoryHiddenCenter();
     illustoryHiddenAbove();
     afterBtnHidden();
+    j = i * 3;
+    k = 0;
     if(i < 5) {
       startBtnDisplay();
+      illustoryAudioSet();
     } else {
       startBtnIllustory.className = "transparent";
+      modeChangeBtnIllustory.className = "transparent";
+      ondoku3CreditInIllustory.className = "transparent";
     }
     questionWord.className = "transparent";
     optionAnswer.className = "transparent";
@@ -163,8 +168,6 @@ window.addEventListener('load', function(){
     while( allQuestionsListIllust.rows[ 0 ] ) allQuestionsListIllust.deleteRow( 0 );
     startBtnOnFlag = 0;
     reviewOnFlag = 0;
-    j = i * 3;
-    k = 0;
   }
   // 現時点で選択済みの画像のclassを変える処理を定義する
   function selectedClassAddById(id) {
@@ -418,9 +421,24 @@ window.addEventListener('load', function(){
   let allQuestionWordsList =[];
 
   // 出題中の英単語の発音を定義する（初期値）
-  let pronunciation = new Audio('/assets/発音/custom.mp3');
+  let pronunciation1 = "";
+  let pronunciation2 = "";
+  let pronunciation3 = "";
+  let pronunciation4 = "";
+  let pronunciation5 = "";
+  let pronunciation6 = "";
+  let pronunciation7 = "";
+  let pronunciation8 = "";
+  let pronunciation9 = "";
+  let pronunciation10 = "";
+  let pronunciation11 = "";
+  let pronunciation12 = "";
+  // 発音対象の例文を判定する変数を定義
+  let pronunciationJudge = 1;
   // 出題中の例文の発音を定義する。（初期値）
-  let illustoryAudio = new Audio('/assets/illustoryAudio/j'+ 1 + 'review.mp3');
+  let illustoryAudio1 = "";
+  let illustoryAudio2 = "";
+  let illustoryAudio3 = "";
   // 発音対象の例文を判定する変数を定義
   let illustoryJudgeAudio = 1;
 
@@ -449,6 +467,7 @@ window.addEventListener('load', function(){
   nextBtnIllustory.textContent = "次へ進む";
   
   startBtnDisplay();
+  illustoryAudioSet();
 
   // キーボードタイプ時の処理
   document.addEventListener(`keydown`, keyDownGoNext);
@@ -530,9 +549,9 @@ window.addEventListener('load', function(){
           startBtnDisplay();
         } else {
           startBtnIllustory.className = "transparent";
+          modeChangeBtnIllustory.className = "transparent";
+          ondoku3CreditInIllustory.className = "transparent";
         }
-        modeChangeBtnIllustory.className = "modeChangeBtnIllustory";
-        ondoku3CreditInIllustory.className = "ondoku3CreditInIllustory";
       } else if (reviewOnFlag == 0){
         optionAnswer.className = "optionAnswer";
       } else {
@@ -617,7 +636,7 @@ window.addEventListener('load', function(){
   }
 
   questionWord.onclick = function() {
-    pronounce(questionWord.textContent);
+    pronounce(j % 3 * 4 + k + 1);
   }
   storyEngText.onclick = function() {
     illustoryJudgeAudio = 1;
@@ -779,7 +798,7 @@ window.addEventListener('load', function(){
       answerWordCorrectJapTrans3 = answerWord4JapTrans3;
       answerWordCorrectJapTrans4 = answerWord4JapTrans4;
     }
-    pronounce(questionWord.textContent);
+    pronounce(j % 3 * 4 + k + 1);
     optionCreate();
     questionWordFontSizeAdjust();
     optionAnswerFontSizeAdjust();
@@ -1059,7 +1078,7 @@ window.addEventListener('load', function(){
       td.textContent = arr[1];
       if (arr[1] == "▷") { // ▷を押下した時
         td.onclick = function() {
-          pronounce(objArray[3][1]); // その行の英単語を発音させる。
+          pronounce(objArray[0][1]); // その行の英単語を発音させる。
         };
       };
       tr.appendChild(td);
@@ -1088,16 +1107,82 @@ window.addEventListener('load', function(){
     afterBtnIllustory.classList.remove('afterBtnIllustoryTransparent');
   }
 
+  function illustoryAudioSet() {
+    pronunciation1 = new Audio('/assets/発音/' + storyList[j].eng_word_origin_1 + '.mp3');
+    pronunciation2 = new Audio('/assets/発音/' + storyList[j].eng_word_origin_2 + '.mp3');
+    pronunciation3 = new Audio('/assets/発音/' + storyList[j].eng_word_origin_3 + '.mp3');
+    pronunciation4 = new Audio('/assets/発音/' + storyList[j].eng_word_origin_4 + '.mp3');
+    pronunciation5 = new Audio('/assets/発音/' + storyList[j+1].eng_word_origin_1 + '.mp3');
+    pronunciation6 = new Audio('/assets/発音/' + storyList[j+1].eng_word_origin_2 + '.mp3');
+    pronunciation7 = new Audio('/assets/発音/' + storyList[j+1].eng_word_origin_3 + '.mp3');
+    pronunciation8 = new Audio('/assets/発音/' + storyList[j+1].eng_word_origin_4 + '.mp3');
+    pronunciation9 = new Audio('/assets/発音/' + storyList[j+2].eng_word_origin_1 + '.mp3');
+    pronunciation10 = new Audio('/assets/発音/' + storyList[j+2].eng_word_origin_2 + '.mp3');
+    pronunciation11 = new Audio('/assets/発音/' + storyList[j+2].eng_word_origin_3 + '.mp3');
+    pronunciation12 = new Audio('/assets/発音/' + storyList[j+2].eng_word_origin_4 + '.mp3');
+    // résuméの場合は音声ファイルの検索ができないため、ファイルを変更
+    if (storyList[j].eng_word_origin_1 == "résumé"){
+      pronunciation1 = new Audio('/assets/発音/rezumei.mp3');
+    } else if (storyList[j].eng_word_origin_2 == "résumé") {
+      pronunciation2 = new Audio('/assets/発音/rezumei.mp3');
+    } else if (storyList[j].eng_word_origin_3 == "résumé") {
+      pronunciation3 = new Audio('/assets/発音/rezumei.mp3');
+    } else if (storyList[j].eng_word_origin_4 == "résumé") {
+      pronunciation4 = new Audio('/assets/発音/rezumei.mp3');
+    } else if (storyList[j+1].eng_word_origin_1 == "résumé") {
+      pronunciation5 = new Audio('/assets/発音/rezumei.mp3');
+    } else if (storyList[j+1].eng_word_origin_2 == "résumé") {
+      pronunciation6 = new Audio('/assets/発音/rezumei.mp3');
+    } else if (storyList[j+1].eng_word_origin_3 == "résumé") {
+      pronunciation7 = new Audio('/assets/発音/rezumei.mp3');
+    } else if (storyList[j+1].eng_word_origin_4 == "résumé") {
+      pronunciation8 = new Audio('/assets/発音/rezumei.mp3');
+    } else if (storyList[j+2].eng_word_origin_1 == "résumé") {
+      pronunciation9 = new Audio('/assets/発音/rezumei.mp3');
+    } else if (storyList[j+2].eng_word_origin_2 == "résumé") {
+      pronunciation10 = new Audio('/assets/発音/rezumei.mp3');
+    } else if (storyList[j+2].eng_word_origin_3 == "résumé") {
+      pronunciation11 = new Audio('/assets/発音/rezumei.mp3');
+    } else if (storyList[j+2].eng_word_origin_4 == "résumé") {
+      pronunciation12 = new Audio('/assets/発音/rezumei.mp3');
+    }
+
+    // 出題中の例文の発音を定義する。
+    illustoryAudio1 = new Audio('/assets/illustoryAudio/j'+ (j+1) + 'review.mp3');
+    illustoryAudio2 = new Audio('/assets/illustoryAudio/j'+ (j+2) + 'review.mp3');
+    illustoryAudio3 = new Audio('/assets/illustoryAudio/j'+ (j+3) + 'review.mp3');
+  }
+
   // 英単語を発音させる処理を定義する。
-  function pronounce(eng_word){
+  function pronounce(pronunciationJudge){
     if (pronounceOnOff == "On") {
       audioStop();
-      // résuméの場合は音声ファイルの検索ができないため、ファイルを変更
-      if (eng_word == "résumé"){
-        eng_word = "rezumei";
-      };
-      pronunciation = new Audio('/assets/発音/'+ eng_word + '.mp3');
-      pronunciation.play();
+      if (pronunciationJudge == 1) {
+        pronunciation1.play();
+      } else if (pronunciationJudge == 2) {
+        pronunciation2.play();
+      } else if (pronunciationJudge == 3) {
+        pronunciation3.play();
+      } else if (pronunciationJudge == 4) {
+        pronunciation4.play();
+      } else if (pronunciationJudge == 5) {
+        pronunciation5.play();
+      } else if (pronunciationJudge == 6) {
+        pronunciation6.play();
+      } else if (pronunciationJudge == 7) {
+        pronunciation7.play();
+      } else if (pronunciationJudge == 8) {
+        pronunciation8.play();
+      } else if (pronunciationJudge == 9) {
+        pronunciation9.play();
+      } else if (pronunciationJudge == 10) {
+        pronunciation10.play();
+      } else if (pronunciationJudge == 11) {
+        pronunciation11.play();
+      } else if (pronunciationJudge == 12) {
+        pronunciation12.play();
+      }
+      
     }
   };
 
@@ -1107,30 +1192,60 @@ window.addEventListener('load', function(){
       audioStop();
       if (illustoryJudgeAudio == 1) {
         if (reviewOnFlag == 0) {
-          illustoryAudio = new Audio('/assets/illustoryAudio/j'+ (j+1) + 'review.mp3');
+          if (j%3 == 0) {
+            illustoryAudio1.play();
+          } else if (j%3 == 1) {
+            illustoryAudio2.play();
+          } else {
+            illustoryAudio3.play();
+          }
         } else {
-          illustoryAudio = new Audio('/assets/illustoryAudio/j'+ (j-1) + 'review.mp3');
+          illustoryAudio1.play();
         }
       } else if (illustoryJudgeAudio == 2) {
-        illustoryAudio = new Audio('/assets/illustoryAudio/j'+ j + 'review.mp3');
+        illustoryAudio2.play();
       } else {
-        illustoryAudio = new Audio('/assets/illustoryAudio/j'+ (j+1) + 'review.mp3');
+        illustoryAudio3.play();
       }
-      illustoryAudio.play();
     }
   }
 
   // 発音中の音全てを停止する処理を定義
   function audioStop() {
-    pronunciation.pause();
-    pronunciation.currentTime = 0;
-    illustoryAudio.pause();
-    illustoryAudio.currentTime = 0;
+    pronunciation1.pause();
+    pronunciation1.currentTime = 0;
+    pronunciation2.pause();
+    pronunciation2.currentTime = 0;
+    pronunciation3.pause();
+    pronunciation3.currentTime = 0;
+    pronunciation4.pause();
+    pronunciation4.currentTime = 0;
+    pronunciation5.pause();
+    pronunciation5.currentTime = 0;
+    pronunciation6.pause();
+    pronunciation6.currentTime = 0;
+    pronunciation7.pause();
+    pronunciation7.currentTime = 0;
+    pronunciation8.pause();
+    pronunciation8.currentTime = 0;
+    pronunciation9.pause();
+    pronunciation9.currentTime = 0;
+    pronunciation10.pause();
+    pronunciation10.currentTime = 0;
+    pronunciation11.pause();
+    pronunciation11.currentTime = 0;
+    pronunciation12.pause();
+    pronunciation12.currentTime = 0;
+    illustoryAudio1.pause();
+    illustoryAudio1.currentTime = 0;
+    illustoryAudio2.pause();
+    illustoryAudio2.currentTime = 0;
+    illustoryAudio3.pause();
+    illustoryAudio3.currentTime = 0;
   }
 
-  // 正解音ありの場合のみ
+    // 正解音を定義する。
   let correctAudio = new Audio('/assets/correctAudio.mp3');
-  // 正解音を定義する。
   function typeCorrectAudio(){
     if (pronounceOnOff == "On") {
       // 正解した場合、効果音を発生させる。

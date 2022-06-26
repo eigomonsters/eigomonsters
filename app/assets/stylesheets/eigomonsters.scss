@@ -2102,9 +2102,9 @@ meter::-webkit-meter-optimum-value {
       // タイピングゲームへの遷移ボタン
       .instantPlayIllustoryPopup, .instantPlayEngPopup {
         min-height:300px;
-        height:480px;
+        height:500px;
         width:580px;
-        padding-bottom:380px;
+        padding-bottom:400px;
         margin-top:20px;
         margin-bottom:60px;
       }
@@ -2115,7 +2115,7 @@ meter::-webkit-meter-optimum-value {
         // ボタン内部の文言、MovieのCSS
         .instantPlayIllustoryContents, .instantPlayEngContents {
           margin:0 auto;
-          width:440px;
+          width:460px;
           bottom:100px;
           position: relative;
         }
@@ -2123,7 +2123,7 @@ meter::-webkit-meter-optimum-value {
           display: block;
           position: absolute;
           width:80%;
-          top:-500px;
+          top:-530px;
           left:0;
           right:0;
           margin:auto;
@@ -2134,7 +2134,7 @@ meter::-webkit-meter-optimum-value {
         .instantPlayIllustoryWords, .instantPlayEngWords {
           width:100%;
           position: absolute;
-          top:-560px;
+          top:-580px;
         }
         .japTypingMovie, .engTypingMovie {
           position: absolute;
@@ -2147,7 +2147,7 @@ meter::-webkit-meter-optimum-value {
         .instantPlayIllustoryDetail, .instantPlayEngDetail {
           width:100%;
           position: absolute;
-          top: -300px;
+          top: -320px;
           font-size:8px;
         }
         .instantPlayIllustorySetting {
