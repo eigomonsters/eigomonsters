@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get 'typingplay_setting'
       post 'typingplay_setting'
       get 'policy'
+      get 'mobilePolicy'
     end
   end
 

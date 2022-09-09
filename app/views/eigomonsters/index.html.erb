@@ -20,7 +20,7 @@
     <%= form_with(model: :illustory, url: sec1EngtoJap_path, local: true, scope: :post) do %>
         <input id="instantPlayIllustoryPopup" type="submit" value="イラスト×ストーリー" class= "instantPlayIllustoryPopup">
       <div class="instantPlayIllustoryContents">
-        <p class="instantPlayIllustoryWords"><span>TOEIC英単語を使用したストーリーと</span><span>イラストを通して英単語を学習できます。</span></p>
+        <p class="instantPlayIllustoryWords"><span>イラスト付きのストーリーで</span><span>TOEIC英単語を学習できます。</span></p>
         <img src="../../assets/illustoryScreenShot.png" class="illustoryTopPage">
         <img src="../../assets/illustoryScreenShotMobile.png" class="illustoryTopPageMobile">
         <%# Video %> 
@@ -29,12 +29,17 @@
         </video> %>
         <div class="instantPlayIllustoryDetail">
           <p>※注意※</p>
-          <p><span>ストーリーの英文はライティングで減点されないことを</span><span>基準に作成しています。</span></p>
-          <p>文法に間違いはなく、意味は通じる英文になりますが、</p>
-          <p>ネイティブから見ると少し違和感を感じる英文もございます。</p>
-          <p>上記をご了承いただける方のみ本サイトをご利用ください。</p>
+          <p>本サイトの「イラスト×ストーリー」は</p>
+          <p>各英単語の日本語訳を気軽に覚えられることを目的としています。</p>
+          <p>その都合上各ストーリーの英文、及び使用される英単語の一部は、</p>
+          <p>英語が堪能な方から見ると違和感を感じるものが含まれます。</p>
+          <p>上記をご了承いただける方のみ「イラスト×ストーリー」をご利用ください。</p>
         </div>
       </div>
     <% end %>
   </div>
+  <%#<div class="mobilePolicy">
+  <p>スマホアプリの</p>
+  <p class="mobilePolicyLink"><%= link_to "ご利用規約・プライバシーポリシー", mobilePolicy_eigomonsters_path, method: :get, class: :mobliePolicyLink %><%#</p>%>
+  <%#</div>%>
 </div>

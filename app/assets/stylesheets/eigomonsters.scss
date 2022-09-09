@@ -2000,6 +2000,19 @@ meter::-webkit-meter-optimum-value {
       color: #fff;
     }
 
+    .mobilePolicy {
+      margin:0 auto;
+      margin-top:10px;
+      text-align: center;
+      font-size: 10px;
+    }
+    .mobilePolicyLink {
+      text-decoration: underline;
+    }
+    .mobilePolicyLink:hover{
+      cursor: pointer;
+    }
+
     /* タブレット対応 */
     @media (max-width: 1024px) {
       .topPage {
@@ -2392,10 +2405,17 @@ meter::-webkit-meter-optimum-value {
   width:750px;
 }
 .policyTitle {
-  padding:20px;
+  padding-top:20px;
   color: #3b4043;
   font-family:'メイリオ', 'Meiryo', sans-serif;
   font-size:24px;
+  text-align:center;
+}
+.policyCategoryTitle {
+  padding-bottom:20px;
+  color: #3b4043;
+  font-family:'メイリオ', 'Meiryo', sans-serif;
+  font-size:20px;
   text-align:center;
 }
 .policySubTitle {

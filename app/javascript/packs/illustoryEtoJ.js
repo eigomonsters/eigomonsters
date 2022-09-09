@@ -7,27 +7,27 @@ window.addEventListener('load', function(){
     "../../assets/illusts/illust2.png",
     "../../assets/illusts/illust3.png",
     "../../assets/illusts/illust4.png",
-    "../../assets/illusts/illust5.png",
-    "../../assets/illusts/illust6.png",
-    "../../assets/illusts/illust7.png",
-    "../../assets/illusts/illust8.png",
-    "../../assets/illusts/illust9.png",
-    "../../assets/illusts/illust10.png",
-    "../../assets/illusts/illust11.png",
-    "../../assets/illusts/illust12.png",
-    "../../assets/illusts/illust13.png",
-    "../../assets/illusts/illust14.png",
-    "../../assets/illusts/illust15.png",
-    "../../assets/illusts/illust16.png",
-    "../../assets/illusts/illust17.png",
-    "../../assets/illusts/illust18.png",
-    "../../assets/illusts/illust19.png",
-    "../../assets/illusts/illust20.png",
-    "../../assets/illusts/illust21.png",
-    "../../assets/illusts/illust22.png",
-    "../../assets/illusts/illust23.png",
-    "../../assets/illusts/illust24.png",
-    "../../assets/illusts/illust25.png"
+    "../../assets/illusts/illust5.png"
+    // "../../assets/illusts/illust6.png",
+    // "../../assets/illusts/illust7.png",
+    // "../../assets/illusts/illust8.png",
+    // "../../assets/illusts/illust9.png",
+    // "../../assets/illusts/illust10.png",
+    // "../../assets/illusts/illust11.png",
+    // "../../assets/illusts/illust12.png",
+    // "../../assets/illusts/illust13.png",
+    // "../../assets/illusts/illust14.png",
+    // "../../assets/illusts/illust15.png",
+    // "../../assets/illusts/illust16.png",
+    // "../../assets/illusts/illust17.png",
+    // "../../assets/illusts/illust18.png",
+    // "../../assets/illusts/illust19.png",
+    // "../../assets/illusts/illust20.png",
+    // "../../assets/illusts/illust21.png",
+    // "../../assets/illusts/illust22.png",
+    // "../../assets/illusts/illust23.png",
+    // "../../assets/illusts/illust24.png",
+    // "../../assets/illusts/illust25.png"
   ];
 
   // 使用する定数/変数を定義
@@ -42,26 +42,26 @@ window.addEventListener('load', function(){
   let illustImage3= document.getElementById('illustImage3');
   let illustImage4= document.getElementById('illustImage4');
   let illustImage5= document.getElementById('illustImage5');
-  let illustImage6= document.getElementById('illustImage6');
-  let illustImage7= document.getElementById('illustImage7');
-  let illustImage8= document.getElementById('illustImage8');
-  let illustImage9= document.getElementById('illustImage9');
-  let illustImage10= document.getElementById('illustImage10');
-  let illustImage11= document.getElementById('illustImage11');
-  let illustImage12= document.getElementById('illustImage12');
-  let illustImage13= document.getElementById('illustImage13');
-  let illustImage14= document.getElementById('illustImage14');
-  let illustImage15= document.getElementById('illustImage15');
-  let illustImage16= document.getElementById('illustImage16');
-  let illustImage17= document.getElementById('illustImage17');
-  let illustImage18= document.getElementById('illustImage18');
-  let illustImage19= document.getElementById('illustImage19');
-  let illustImage20= document.getElementById('illustImage20');
-  let illustImage21= document.getElementById('illustImage21');
-  let illustImage22= document.getElementById('illustImage22');
-  let illustImage23= document.getElementById('illustImage23');
-  let illustImage24= document.getElementById('illustImage24');
-  let illustImage25= document.getElementById('illustImage25');
+  // let illustImage6= document.getElementById('illustImage6');
+  // let illustImage7= document.getElementById('illustImage7');
+  // let illustImage8= document.getElementById('illustImage8');
+  // let illustImage9= document.getElementById('illustImage9');
+  // let illustImage10= document.getElementById('illustImage10');
+  // let illustImage11= document.getElementById('illustImage11');
+  // let illustImage12= document.getElementById('illustImage12');
+  // let illustImage13= document.getElementById('illustImage13');
+  // let illustImage14= document.getElementById('illustImage14');
+  // let illustImage15= document.getElementById('illustImage15');
+  // let illustImage16= document.getElementById('illustImage16');
+  // let illustImage17= document.getElementById('illustImage17');
+  // let illustImage18= document.getElementById('illustImage18');
+  // let illustImage19= document.getElementById('illustImage19');
+  // let illustImage20= document.getElementById('illustImage20');
+  // let illustImage21= document.getElementById('illustImage21');
+  // let illustImage22= document.getElementById('illustImage22');
+  // let illustImage23= document.getElementById('illustImage23');
+  // let illustImage24= document.getElementById('illustImage24');
+  // let illustImage25= document.getElementById('illustImage25');
 
   // backBtn/nextBtnの表示/非表示を切り替え
   backBtnTransChange();
@@ -78,26 +78,26 @@ window.addEventListener('load', function(){
   illustImage3.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
   illustImage4.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
   illustImage5.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage6.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage7.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage8.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage9.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage10.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage11.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage12.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage13.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage14.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage15.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage16.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage17.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage18.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage19.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage20.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage21.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage22.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage23.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage24.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
-  illustImage25.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage6.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage7.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage8.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage9.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage10.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage11.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage12.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage13.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage14.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage15.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage16.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage17.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage18.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage19.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage20.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage21.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage22.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage23.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage24.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
+  // illustImage25.onclick = function() {if(this.className = "illustImage") {illustDisplay(this.id)};}
 
   // backBtn押下時の処理を定義
   function illustBack() {
@@ -142,7 +142,7 @@ window.addEventListener('load', function(){
       illustoryAudioSet();
     } else {
       startBtnIllustory.className = "transparent";
-      modeChangeBtnIllustory.className = "transparent";
+      //modeChangeBtnIllustory.className = "transparent";
       ondoku3CreditInIllustory.className = "transparent";
     }
     questionWord.className = "transparent";
@@ -186,66 +186,66 @@ window.addEventListener('load', function(){
   } else if (id == "illustImage5") {
       i = 4;
       illustImage5.className = "illustImageSelected";
-  } else if (id == "illustImage6") {
-      i = 5;
-      illustImage6.className = "illustImageSelected";
-  } else if (id == "illustImage7") {
-      i = 6;
-      illustImage7.className = "illustImageSelected";
-  } else if (id == "illustImage8") {
-      i = 7;
-      illustImage8.className = "illustImageSelected";
-  } else if (id == "illustImage9") {
-      i = 8;
-      illustImage9.className = "illustImageSelected";
-  } else if (id == "illustImage10") {
-      i = 9;
-      illustImage10.className = "illustImageSelected";
-  } else if (id == "illustImage11") {
-      i = 10;
-      illustImage11.className = "illustImageSelected";
-  } else if (id == "illustImage12") {
-      i = 11;
-      illustImage12.className = "illustImageSelected";
-  } else if (id == "illustImage13") {
-      i = 12;
-      illustImage13.className = "illustImageSelected";
-  } else if (id == "illustImage14") {
-      i = 13;
-      illustImage14.className = "illustImageSelected";
-  } else if (id == "illustImage15") {
-      i = 14;
-      illustImage15.className = "illustImageSelected";
-  } else if (id == "illustImage16") {
-      i = 15;
-      illustImage16.className = "illustImageSelected";
-  } else if (id == "illustImage17") {
-      i = 16;
-      illustImage17.className = "illustImageSelected";
-  } else if (id == "illustImage18") {
-      i = 17;
-      illustImage18.className = "illustImageSelected";
-  } else if (id == "illustImage19") {
-      i = 18;
-      illustImage19.className = "illustImageSelected";
-  } else if (id == "illustImage20") {
-      i = 19;
-      illustImage20.className = "illustImageSelected";
-  } else if (id == "illustImage21") {
-      i = 20;
-      illustImage21.className = "illustImageSelected";
-  } else if (id == "illustImage22") {
-      i = 21;
-      illustImage22.className = "illustImageSelected";
-  } else if (id == "illustImage23") {
-      i = 22;
-      illustImage23.className = "illustImageSelected";
-  } else if (id == "illustImage24") {
-      i = 23;
-      illustImage24.className = "illustImageSelected";
-  } else if (id == "illustImage25") {
-      i = 24;
-      illustImage25.className = "illustImageSelected";
+  // } else if (id == "illustImage6") {
+  //     i = 5;
+  //     illustImage6.className = "illustImageSelected";
+  // } else if (id == "illustImage7") {
+  //     i = 6;
+  //     illustImage7.className = "illustImageSelected";
+  // } else if (id == "illustImage8") {
+  //     i = 7;
+  //     illustImage8.className = "illustImageSelected";
+  // } else if (id == "illustImage9") {
+  //     i = 8;
+  //     illustImage9.className = "illustImageSelected";
+  // } else if (id == "illustImage10") {
+  //     i = 9;
+  //     illustImage10.className = "illustImageSelected";
+  // } else if (id == "illustImage11") {
+  //     i = 10;
+  //     illustImage11.className = "illustImageSelected";
+  // } else if (id == "illustImage12") {
+  //     i = 11;
+  //     illustImage12.className = "illustImageSelected";
+  // } else if (id == "illustImage13") {
+  //     i = 12;
+  //     illustImage13.className = "illustImageSelected";
+  // } else if (id == "illustImage14") {
+  //     i = 13;
+  //     illustImage14.className = "illustImageSelected";
+  // } else if (id == "illustImage15") {
+  //     i = 14;
+  //     illustImage15.className = "illustImageSelected";
+  // } else if (id == "illustImage16") {
+  //     i = 15;
+  //     illustImage16.className = "illustImageSelected";
+  // } else if (id == "illustImage17") {
+  //     i = 16;
+  //     illustImage17.className = "illustImageSelected";
+  // } else if (id == "illustImage18") {
+  //     i = 17;
+  //     illustImage18.className = "illustImageSelected";
+  // } else if (id == "illustImage19") {
+  //     i = 18;
+  //     illustImage19.className = "illustImageSelected";
+  // } else if (id == "illustImage20") {
+  //     i = 19;
+  //     illustImage20.className = "illustImageSelected";
+  // } else if (id == "illustImage21") {
+  //     i = 20;
+  //     illustImage21.className = "illustImageSelected";
+  // } else if (id == "illustImage22") {
+  //     i = 21;
+  //     illustImage22.className = "illustImageSelected";
+  // } else if (id == "illustImage23") {
+  //     i = 22;
+  //     illustImage23.className = "illustImageSelected";
+  // } else if (id == "illustImage24") {
+  //     i = 23;
+  //     illustImage24.className = "illustImageSelected";
+  // } else if (id == "illustImage25") {
+  //     i = 24;
+  //     illustImage25.className = "illustImageSelected";
   } else {
       i = 0;
       illustImage1.className = "illustImageSelected";
@@ -258,26 +258,26 @@ window.addEventListener('load', function(){
     else if (i == 2) {illustImage3.className = "illustImageSelected";}
     else if (i == 3) {illustImage4.className = "illustImageSelected";}
     else if (i == 4) {illustImage5.className = "illustImageSelected";}
-    else if (i == 5) {illustImage6.className = "illustImageSelected";}
-    else if (i == 6) {illustImage7.className = "illustImageSelected";}
-    else if (i == 7) {illustImage8.className = "illustImageSelected";}
-    else if (i == 8) {illustImage9.className = "illustImageSelected";}
-    else if (i == 9) {illustImage10.className = "illustImageSelected";}
-    else if (i == 10) {illustImage11.className = "illustImageSelected";}
-    else if (i == 11) {illustImage12.className = "illustImageSelected";}
-    else if (i == 12) {illustImage13.className = "illustImageSelected";}
-    else if (i == 13) {illustImage14.className = "illustImageSelected";}
-    else if (i == 14) {illustImage15.className = "illustImageSelected";}
-    else if (i == 15) {illustImage16.className = "illustImageSelected";}
-    else if (i == 16) {illustImage17.className = "illustImageSelected";}
-    else if (i == 17) {illustImage18.className = "illustImageSelected";}
-    else if (i == 18) {illustImage19.className = "illustImageSelected";}
-    else if (i == 19) {illustImage20.className = "illustImageSelected";}
-    else if (i == 20) {illustImage21.className = "illustImageSelected";}
-    else if (i == 21) {illustImage22.className = "illustImageSelected";}
-    else if (i == 22) {illustImage23.className = "illustImageSelected";}
-    else if (i == 23) {illustImage24.className = "illustImageSelected";}
-    else if (i == 24) {illustImage25.className = "illustImageSelected";}
+    // else if (i == 5) {illustImage6.className = "illustImageSelected";}
+    // else if (i == 6) {illustImage7.className = "illustImageSelected";}
+    // else if (i == 7) {illustImage8.className = "illustImageSelected";}
+    // else if (i == 8) {illustImage9.className = "illustImageSelected";}
+    // else if (i == 9) {illustImage10.className = "illustImageSelected";}
+    // else if (i == 10) {illustImage11.className = "illustImageSelected";}
+    // else if (i == 11) {illustImage12.className = "illustImageSelected";}
+    // else if (i == 12) {illustImage13.className = "illustImageSelected";}
+    // else if (i == 13) {illustImage14.className = "illustImageSelected";}
+    // else if (i == 14) {illustImage15.className = "illustImageSelected";}
+    // else if (i == 15) {illustImage16.className = "illustImageSelected";}
+    // else if (i == 16) {illustImage17.className = "illustImageSelected";}
+    // else if (i == 17) {illustImage18.className = "illustImageSelected";}
+    // else if (i == 18) {illustImage19.className = "illustImageSelected";}
+    // else if (i == 19) {illustImage20.className = "illustImageSelected";}
+    // else if (i == 20) {illustImage21.className = "illustImageSelected";}
+    // else if (i == 21) {illustImage22.className = "illustImageSelected";}
+    // else if (i == 22) {illustImage23.className = "illustImageSelected";}
+    // else if (i == 23) {illustImage24.className = "illustImageSelected";}
+    // else if (i == 24) {illustImage25.className = "illustImageSelected";}
     else {illustImage1.className = "illustImageSelected";}
   }
   // 現時点で選択済みの画像のclassを元に戻す処理を定義する
@@ -287,26 +287,26 @@ window.addEventListener('load', function(){
     else if (i == 2) {illustImage3.className = "illustImage";}
     else if (i == 3) {illustImage4.className = "illustImage";}
     else if (i == 4) {illustImage5.className = "illustImage";}
-    else if (i == 5) {illustImage6.className = "illustImage";}
-    else if (i == 6) {illustImage7.className = "illustImage";}
-    else if (i == 7) {illustImage8.className = "illustImage";}
-    else if (i == 8) {illustImage9.className = "illustImage";}
-    else if (i == 9) {illustImage10.className = "illustImage";}
-    else if (i == 10) {illustImage11.className = "illustImage";}
-    else if (i == 11) {illustImage12.className = "illustImage";}
-    else if (i == 12) {illustImage13.className = "illustImage";}
-    else if (i == 13) {illustImage14.className = "illustImage";}
-    else if (i == 14) {illustImage15.className = "illustImage";}
-    else if (i == 15) {illustImage16.className = "illustImage";}
-    else if (i == 16) {illustImage17.className = "illustImage";}
-    else if (i == 17) {illustImage18.className = "illustImage";}
-    else if (i == 18) {illustImage19.className = "illustImage";}
-    else if (i == 19) {illustImage20.className = "illustImage";}
-    else if (i == 20) {illustImage21.className = "illustImage";}
-    else if (i == 21) {illustImage22.className = "illustImage";}
-    else if (i == 22) {illustImage23.className = "illustImage";}
-    else if (i == 23) {illustImage24.className = "illustImage";}
-    else if (i == 24) {illustImage25.className = "illustImage";}
+    // else if (i == 5) {illustImage6.className = "illustImage";}
+    // else if (i == 6) {illustImage7.className = "illustImage";}
+    // else if (i == 7) {illustImage8.className = "illustImage";}
+    // else if (i == 8) {illustImage9.className = "illustImage";}
+    // else if (i == 9) {illustImage10.className = "illustImage";}
+    // else if (i == 10) {illustImage11.className = "illustImage";}
+    // else if (i == 11) {illustImage12.className = "illustImage";}
+    // else if (i == 12) {illustImage13.className = "illustImage";}
+    // else if (i == 13) {illustImage14.className = "illustImage";}
+    // else if (i == 14) {illustImage15.className = "illustImage";}
+    // else if (i == 15) {illustImage16.className = "illustImage";}
+    // else if (i == 16) {illustImage17.className = "illustImage";}
+    // else if (i == 17) {illustImage18.className = "illustImage";}
+    // else if (i == 18) {illustImage19.className = "illustImage";}
+    // else if (i == 19) {illustImage20.className = "illustImage";}
+    // else if (i == 20) {illustImage21.className = "illustImage";}
+    // else if (i == 21) {illustImage22.className = "illustImage";}
+    // else if (i == 22) {illustImage23.className = "illustImage";}
+    // else if (i == 23) {illustImage24.className = "illustImage";}
+    // else if (i == 24) {illustImage25.className = "illustImage";}
     else {illustImage1.className = "illustImage";}
   }
   // 選択した画像をフルスクリーン表示するclassを定義する
@@ -316,26 +316,26 @@ window.addEventListener('load', function(){
     else if (i == 2) {picFullScreen.className = "fullScreen3";}
     else if (i == 3) {picFullScreen.className = "fullScreen4";}
     else if (i == 4) {picFullScreen.className = "fullScreen5";}
-    else if (i == 5) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 6) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 7) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 8) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 9) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 10) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 11) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 12) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 13) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 14) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 15) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 16) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 17) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 18) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 19) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 20) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 21) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 22) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 23) {picFullScreen.className = "fullScreenComingSoon";}
-    else if (i == 24) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 5) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 6) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 7) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 8) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 9) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 10) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 11) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 12) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 13) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 14) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 15) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 16) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 17) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 18) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 19) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 20) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 21) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 22) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 23) {picFullScreen.className = "fullScreenComingSoon";}
+    // else if (i == 24) {picFullScreen.className = "fullScreenComingSoon";}
     else {picFullScreen.className = "fullScreen1";}
   }
   // backBtnの表示/非表示を切り替える処理を定義
@@ -365,7 +365,7 @@ window.addEventListener('load', function(){
   const storyList = gon.storyList;
 
   let startBtnIllustory = document.getElementById('startBtnIllustory');
-  let modeChangeBtnIllustory = document.getElementById('modeChangeBtnIllustory');
+  //let modeChangeBtnIllustory = document.getElementById('modeChangeBtnIllustory');
   let ondoku3CreditInIllustory = document.getElementById('ondoku3CreditInIllustory');
   let reviewBtnIllustory = document.getElementById('reviewBtnIllustory');
   let afterBtnIllustory = document.getElementById('afterBtnIllustory');
@@ -519,7 +519,7 @@ window.addEventListener('load', function(){
       upArrowBtn.classList.add('upArrowBtnDisplay');
       if (startBtnOnFlag == 0) {
         startBtnIllustory.className = "transparent";
-        modeChangeBtnIllustory.className = "transparent";
+        //modeChangeBtnIllustory.className = "transparent";
         ondoku3CreditInIllustory.className = "transparent";
       } else if (reviewOnFlag == 0){
         optionAnswer.className = "transparent";
@@ -549,7 +549,7 @@ window.addEventListener('load', function(){
           startBtnDisplay();
         } else {
           startBtnIllustory.className = "transparent";
-          modeChangeBtnIllustory.className = "transparent";
+          //modeChangeBtnIllustory.className = "transparent";
           ondoku3CreditInIllustory.className = "transparent";
         }
       } else if (reviewOnFlag == 0){
@@ -664,7 +664,7 @@ window.addEventListener('load', function(){
   function startBtnDisplay() {
     if (upArrowOnFlag == 0) {
       startBtnIllustory.className = "startBtnIllustory";
-      modeChangeBtnIllustory.className = "modeChangeBtnIllustory";
+      //modeChangeBtnIllustory.className = "modeChangeBtnIllustory";
       ondoku3CreditInIllustory.className = "ondoku3CreditInIllustory";
     } 
   }
@@ -684,7 +684,7 @@ window.addEventListener('load', function(){
   function startBtnIllustoryClick() {
     if (startBtnOnFlag == 0) {
       startBtnIllustory.className = "transparent";
-      modeChangeBtnIllustory.className = "transparent";
+      //modeChangeBtnIllustory.className = "transparent";
       ondoku3CreditInIllustory.className = "transparent";
       illustoryTextDisplay();
       illustoryTextAboveDisplay();
