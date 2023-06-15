@@ -1,0 +1,15 @@
+current directory: /Users/mondenhiroki/projects/eigomonsters/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+/Users/mondenhiroki/.rbenv/versions/3.1.0/bin/ruby -I /Users/mondenhiroki/.rbenv/versions/3.1.0/lib/ruby/3.1.0 -r ./siteconf20230616-70731-i74gqr.rb extconf.rb
+creating Makefile
+
+current directory: /Users/mondenhiroki/projects/eigomonsters/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /Users/mondenhiroki/projects/eigomonsters/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/mondenhiroki/projects/eigomonsters/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20230616-70731-55yyt8/bootsnap
