@@ -10,13 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_15_094018) do
+ActiveRecord::Schema.define(version: 2023_06_14_191349) do
+
+  create_table "appusers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "nickname", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.integer "member_status", default: 1, null: false
+    t.integer "sabsc_status", default: 1, null: false
+    t.datetime "subsc_start_time"
+    t.boolean "delete_flag", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.string "subject", null: false
     t.text "message", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ptcgcardinfos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "cardid", null: false
+    t.string "cardname", null: false
+    t.string "imageUrlOfficial", null: false
+    t.string "supertype", null: false
+    t.integer "evolevel", null: false
+    t.string "evofrom", null: false
+    t.string "rule", null: false
+    t.string "abilityname", null: false
+    t.string "color", null: false
+    t.integer "hp", null: false
+    t.integer "retreatscost", null: false
+    t.integer "cardoption", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

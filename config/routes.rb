@@ -34,4 +34,7 @@ Rails.application.routes.draw do
     get 'illustory/sec1JaptoEng'
     post 'illustory/sec1JaptoEng', to: 'illustory#sec1JaptoEng', as: 'sec1JaptoEng'
 
+  resources :ptcgcardinfo, only: [:index]
+  get 'ptcgcardinfo/index'
+
 end
