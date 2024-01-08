@@ -8,7 +8,12 @@ class PtcgenvironmentinfoController < ApplicationController
     end
   end
 
-  def ptcgcardinfo_params
+  def count
+    environment_count = Ptcgenvironmentinfo.count
+    render status: 200, json: { environment_count: environment_count }
+  end
+
+  def ptcgenvironmentinfo_params
     params.permit(:environmentId)
   end
 end
