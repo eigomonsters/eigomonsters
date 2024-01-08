@@ -1,0 +1,2 @@
+module PtcgenvironmentinfoHelper
+end
