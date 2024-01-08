@@ -37,4 +37,7 @@ Rails.application.routes.draw do
   resources :ptcgcardinfo, only: [:index]
   get 'ptcgcardinfo/index'
 
+  resources :ptcgenvironmentinfo, only: [:index]
+  get 'ptcgenvironmentinfo/index'
+
 end

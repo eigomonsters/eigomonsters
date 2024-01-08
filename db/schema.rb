@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_14_191349) do
+ActiveRecord::Schema.define(version: 2024_01_08_074715) do
 
   create_table "appusers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", default: "", null: false
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 2023_06_14_191349) do
     t.integer "hp", null: false
     t.integer "retreatscost", null: false
     t.integer "cardoption", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ptcgenvironmentinfos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "environmentId", null: false
+    t.string "environmentName", null: false
+    t.datetime "startDate", precision: 6, null: false
+    t.datetime "endDate", precision: 6, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

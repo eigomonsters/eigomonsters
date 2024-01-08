@@ -1,0 +1,2 @@
+class Ptcgenvironmentinfo < ApplicationRecord
+end
