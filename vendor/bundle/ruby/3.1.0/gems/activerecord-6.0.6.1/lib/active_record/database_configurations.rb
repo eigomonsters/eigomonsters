@@ -192,9 +192,9 @@ module ActiveRecord
       end
 
       def environment_value_for(spec_name)
-        spec_env_key = "#{spec_name.upcase}_CLEARDB_DATABASE_URL"
+        spec_env_key = "#{spec_name.upcase}_DATABASE_URL"
         url = ENV[spec_env_key]
-        url ||= ENV["CLEARDB_DATABASE_URL"] if spec_name == "primary"
+        url ||= ENV["DATABASE_URL"] if spec_name == "primary"
         url
       end
 
