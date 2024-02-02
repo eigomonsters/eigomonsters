@@ -237,8 +237,8 @@ module Rails
             end
           end
           Hash.new(shared).merge(loaded_yaml)
-        elsif ENV["DATABASE_URL"]
-          # Value from ENV['DATABASE_URL'] is set to default database connection
+        elsif ENV["CLEARDB_DATABASE_URL"]
+          # Value from ENV['CLEARDB_DATABASE_URL'] is set to default database connection
           # by Active Record.
           {}
         else
