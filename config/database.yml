@@ -44,8 +44,8 @@
 #
 # You can use this database configuration with:
 #
-production:
-  url: <%= ENV['HEROKU_POSTGRESQL_BLUE_URL'] %>
+# production:
+#   url: <%= ENV['HEROKU_POSTGRESQL_BLUE_URL'] %>
 #
 # production:
 #   <<: *default
@@ -62,9 +62,9 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   encoding: unicode # 追加
-  username: <%= ENV.fetch("DATABASE_USERNAME") { 'mondenhiroki' } %>
-  password: <%= ENV.fetch("DATABASE_PASSWORD") { '0603' } %>
-  host: <%= ENV.fetch("DATABASE_HOST") { 'localhost' } %>
+  username: root
+  password: 
+  host: <%= ENV.fetch("DATABASE_HOST") { 'eigomonsters.com' } %>
 
 development:
   <<: *default
