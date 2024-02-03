@@ -442,7 +442,7 @@
 
     *Ryuta Kamizono*
 
-*   Make the DATABASE_URL env variable only affect the primary connection. Add new env variables for multiple databases.
+*   Make the CLEARDB_DATABASE_URL env variable only affect the primary connection. Add new env variables for multiple databases.
 
     *John Crepezzi*, *Eileen Uchitelle*
 

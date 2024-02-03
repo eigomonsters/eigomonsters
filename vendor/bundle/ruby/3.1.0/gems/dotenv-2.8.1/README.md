@@ -139,7 +139,7 @@ This is particularly helpful when using the Heroku command line plugin [`heroku-
 You need to add the output of a command in one of your variables? Simply add it with `$(your_command)`:
 
 ```shell
-DATABASE_URL="postgres://$(whoami)@localhost/my_database"
+CLEARDB_DATABASE_URL="postgres://$(whoami)@localhost/my_database"
 ```
 
 ### Variable Substitution
@@ -147,7 +147,7 @@ DATABASE_URL="postgres://$(whoami)@localhost/my_database"
 You need to add the value of another variable in one of your variables? You can reference the variable with `${VAR}` or often just `$VAR` in unqoted or double-quoted values.
 
 ```shell
-DATABASE_URL="postgres://${USER}@localhost/my_database"
+CLEARDB_DATABASE_URL="postgres://${USER}@localhost/my_database"
 ```
 
 If a value contains a `$` and it is not intended to be a variable, wrap it in single quotes.

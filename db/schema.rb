@@ -12,19 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2024_01_08_111757) do
 
-  create_table "appusers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "nickname", default: "", null: false
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.integer "member_status", default: 1, null: false
-    t.integer "sabsc_status", default: 1, null: false
-    t.datetime "subsc_start_time"
-    t.boolean "delete_flag", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
-  create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "contacts", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.string "subject", null: false
@@ -33,7 +24,7 @@ ActiveRecord::Schema.define(version: 2024_01_08_111757) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ptcgcardinfos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "ptcgcardinfos", force: :cascade do |t|
     t.string "cardid", null: false
     t.string "cardname", null: false
     t.string "imageUrlOfficial", null: false
@@ -50,7 +41,7 @@ ActiveRecord::Schema.define(version: 2024_01_08_111757) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ptcgenvironmentinfos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "ptcgenvironmentinfos", force: :cascade do |t|
     t.string "environmentId", null: false
     t.string "environmentName", null: false
     t.string "startDate", null: false
@@ -59,7 +50,7 @@ ActiveRecord::Schema.define(version: 2024_01_08_111757) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "stories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "stories", force: :cascade do |t|
     t.string "sentence_comp_1", null: false
     t.string "eng_word_used_1", null: false
     t.string "eng_word_origin_1", null: false
@@ -79,7 +70,7 @@ ActiveRecord::Schema.define(version: 2024_01_08_111757) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "nickname", null: false
@@ -98,7 +89,7 @@ ActiveRecord::Schema.define(version: 2024_01_08_111757) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "wordlists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "wordlists", force: :cascade do |t|
     t.string "eng_word", null: false
     t.string "part_of_speech_1", null: false
     t.string "jap_trans_1", null: false

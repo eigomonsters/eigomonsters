@@ -65,3 +65,5 @@ gem 'audiojs-rails'
 gem "dotenv-rails"
 
 gem 'rails-i18n'
+
+gem 'pg'
