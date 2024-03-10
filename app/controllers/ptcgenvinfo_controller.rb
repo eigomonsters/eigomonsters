@@ -10,6 +10,7 @@ class PtcgenvinfoController < ApplicationController
 
   def count
     env_count = Ptcgenvinfo.count
+    binding.pry
     render status: 200, json: { env_count: env_count }
   end
 
