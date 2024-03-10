@@ -1,0 +1,2 @@
+class Ptcgenvinfo < ApplicationRecord
+end

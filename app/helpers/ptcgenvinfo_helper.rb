@@ -1,0 +1,2 @@
+module PtcgenvinfoHelper
+end
