@@ -1,6 +1,15 @@
 class PtcggameresultinfosController < ApplicationController
 
   def create
+    # すでに対戦結果が存在する場合削除
+    gameresultid = params[:gameresultid]
+    # gameresultidに一致するレコードを検索
+    game_result = Ptcggameresultinfo.find_by(gameresultid: gameresultid)
+    if game_result
+      # レコードが見つかった場合は削除
+      game_result.destroy
+    end
+    # 登録
     params_to_insert = params.permit(
       :gameresultid, :userid, :dueldate, :compecategory, :useddeckcategory,
       :oponentdeckcategory, :environment, :attackorder, :duelresult,
