@@ -27,7 +27,7 @@ class PtcggameresultinfosController < ApplicationController
       game_result = Ptcggameresultinfo.where(gameresultid: params['gameresultid'])
       if game_result
         # レコードが見つかった場合は削除
-        game_result.destroy
+        Ptcggameresultinfo.where(gameresultid: params['gameresultid']).destroy
         render plain: '', status: 200
       else
         render plain: '', status: 200
