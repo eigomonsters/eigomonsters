@@ -25,6 +25,7 @@ class PtcggameresultinfosController < ApplicationController
     # gameresultidに一致するレコードを検索
     if params['gameresultid'].present?
       game_result = Ptcggameresultinfo.where(gameresultid: params['gameresultid'])
+      binding.pry
       if game_result
         # レコードが見つかった場合は削除
         game_result.update(
