@@ -22,16 +22,18 @@ class PtcggameresultinfosController < ApplicationController
   end
 
   def delete
-    # すでに対戦結果が存在する場合削除
-    gameresultid = params[:gameresultid]
     # gameresultidに一致するレコードを検索
-    game_result = Ptcggameresultinfo.find_by(gameresultid: gameresultid)
-    if game_result
-      # レコードが見つかった場合は削除
-      game_result.destroy
-      render plain: '', status: 200
+    if params['gameresultid'] != nil && params['gameresultid'] != 0
+      game_result = Ptcggameresultinfo.where(gameresultid: params['gameresultid'])
+      if game_result
+        # レコードが見つかった場合は削除
+        game_result.destroy
+        render plain: '', status: 200
+      else
+        render plain: '', status: 200
+      end
     else
-      render plain: '', status: 200
+      render plain: '', status: 400
     end
   end
 
