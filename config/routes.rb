@@ -41,8 +41,8 @@ Rails.application.routes.draw do
   get 'ptcgenvinfo/index'
   get 'ptcgenvinfo/count'
 
-  resources :ptcggameresultinfos, only: [:delete, :create]
-  get 'ptcggameresultinfos/delete'
+  resources :ptcggameresultinfos, only: [:update, :create]
+  get 'ptcggameresultinfos/update'
   get 'ptcggameresultinfos/create'
 
 end
