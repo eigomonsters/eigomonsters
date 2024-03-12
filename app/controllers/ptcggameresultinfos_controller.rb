@@ -42,9 +42,6 @@ class PtcggameresultinfosController < ApplicationController
       )
       Ptcggameresultinfo.find_by(gameresultid: params['gameresultid']).update(allowed_params)
         render plain: '', status: 200
-      else
-        render plain: '', status: 200
-      end
     else
       render plain: '', status: 400
     end
