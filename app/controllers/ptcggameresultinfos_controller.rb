@@ -27,7 +27,6 @@ class PtcggameresultinfosController < ApplicationController
       Ptcggameresultinfo.find_by(gameresultid: params['gameresultid']).update(
           userid: params['userid'],
           dueldate: params['dueldate'],
-          dueldate: params['dueldate'],
           compecategory: params['compecategory'],
           useddeckcategory: params['useddeckcategory'],
           oponentdeckcategory: params['oponentdeckcategory'],
