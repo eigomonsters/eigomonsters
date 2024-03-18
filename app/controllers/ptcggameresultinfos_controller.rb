@@ -5,7 +5,7 @@ class PtcggameresultinfosController < ApplicationController
       :gameresultid, :userid, :dueldate, :compecategory, :deckcode, :useddeckcategory,
       :oponentdeckcategory, :environment, :attackorder, :duelresult, :searchpassword
     )
-    Ptcggameresultcreateinfo.create(params_to_create)
+    Ptcggameresultinfo.create(params_to_create)
     render plain: '', status: 200
   end
 
