@@ -1,0 +1,2 @@
+class Ptcgdeckcardinfo < ApplicationRecord
+end

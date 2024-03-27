@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_03_10_083413) do
+ActiveRecord::Schema.define(version: 2024_03_26_120337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,14 @@ ActiveRecord::Schema.define(version: 2024_03_10_083413) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "ptcgdeckcardinfos", force: :cascade do |t|
+    t.string "deckcode"
+    t.string "cardname"
+    t.integer "cardnum"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "ptcgenvinfos", force: :cascade do |t|
     t.string "envid"
     t.string "envname"
@@ -52,77 +60,24 @@ ActiveRecord::Schema.define(version: 2024_03_10_083413) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ptcggameresultinfos", force: :cascade do |t|
-    t.string "gameresultid", null: false
-    t.string "userid", null: false
-    t.date "dueldate", null: false
-    t.string "compecategory", null: false
-    t.string "useddeckcategory", null: false
-    t.string "oponentdeckcategory", null: false
-    t.string "environment", null: false
-    t.string "attackorder", null: false
-    t.string "duelresult", null: false
-    t.string "searchpassword", null: false
-    t.string "cardname1", null: false
-    t.string "cardname2", null: false
-    t.string "cardname3", null: false
-    t.string "cardname4", null: false
-    t.string "cardname5", null: false
-    t.string "cardname6", null: false
-    t.string "cardname7", null: false
-    t.string "cardname8", null: false
-    t.string "cardname9", null: false
-    t.string "cardname10", null: false
-    t.string "cardname11", null: false
-    t.string "cardname12", null: false
-    t.string "cardname13", null: false
-    t.string "cardname14", null: false
-    t.string "cardname15", null: false
-    t.string "cardname16", null: false
-    t.string "cardname17", null: false
-    t.string "cardname18", null: false
-    t.string "cardname19", null: false
-    t.string "cardname20", null: false
-    t.string "cardname21", null: false
-    t.string "cardname22", null: false
-    t.string "cardname23", null: false
-    t.string "cardname24", null: false
-    t.string "cardname25", null: false
-    t.string "cardname26", null: false
-    t.string "cardname27", null: false
-    t.string "cardname28", null: false
-    t.string "cardname29", null: false
-    t.string "cardname30", null: false
-    t.string "cardname31", null: false
-    t.string "cardname32", null: false
-    t.string "cardname33", null: false
-    t.string "cardname34", null: false
-    t.string "cardname35", null: false
-    t.string "cardname36", null: false
-    t.string "cardname37", null: false
-    t.string "cardname38", null: false
-    t.string "cardname39", null: false
-    t.string "cardname40", null: false
-    t.string "cardname41", null: false
-    t.string "cardname42", null: false
-    t.string "cardname43", null: false
-    t.string "cardname44", null: false
-    t.string "cardname45", null: false
-    t.string "cardname46", null: false
-    t.string "cardname47", null: false
-    t.string "cardname48", null: false
-    t.string "cardname49", null: false
-    t.string "cardname50", null: false
-    t.string "cardname51", null: false
-    t.string "cardname52", null: false
-    t.string "cardname53", null: false
-    t.string "cardname54", null: false
-    t.string "cardname55", null: false
-    t.string "cardname56", null: false
-    t.string "cardname57", null: false
-    t.string "cardname58", null: false
-    t.string "cardname59", null: false
-    t.string "cardname60", null: false
+  create_table "ptcggameresultinfos", id: false, force: :cascade do |t|
+    t.string "gameresultid", limit: 255, null: false
+    t.string "userid", limit: 255, null: false
+    t.string "dueldate", null: false
+    t.string "compecategory", limit: 255, null: false
+    t.string "deckcode", limit: 255, null: false
+    t.string "useddeckcategory", limit: 255, null: false
+    t.string "oponentdeckcategory", limit: 255, null: false
+    t.string "environment", limit: 255, null: false
+    t.string "attackorder", limit: 255, null: false
+    t.string "duelresult", limit: 255, null: false
+    t.string "searchpassword", limit: 255, null: false
+    t.datetime "timestamp"
+  end
+
+  create_table "ptcgopodeckcategoryinfos", force: :cascade do |t|
+    t.string "opodeckcategoryid"
+    t.string "opodeckcategoryname"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

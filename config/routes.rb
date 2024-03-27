@@ -41,9 +41,17 @@ Rails.application.routes.draw do
   get 'ptcgenvinfo/index'
   get 'ptcgenvinfo/count'
 
-  resources :ptcggameresultinfos, only: [:create, :deckcreate, :deckexistcheck]
+  resources :ptcggameresultinfos, only: [:create, :count, :searchgame]
   get 'ptcggameresultinfos/create'
-  get 'ptcggameresultinfos/deckcreate'
-  get 'ptcggameresultinfos/deckexistcheck'
+  get 'ptcggameresultinfos/count'
+  get 'ptcggameresultinfos/searchgame'
+
+  resources :ptcgdeckcardinfos, only: [:deckcreate, :deckexistcheck]
+  get 'ptcgdeckcardinfos/deckcreate'
+  get 'ptcgdeckcardinfos/deckexistcheck'
+
+  resources :ptcgopodeckcategoryinfos, only: [:count, :getinfo]
+  get 'ptcgopodeckcategoryinfos/count'
+  get 'ptcgopodeckcategoryinfos/getinfo'
 
 end

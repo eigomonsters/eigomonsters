@@ -1,0 +1,2 @@
+module PtcgopodeckcategoryinfosHelper
+end

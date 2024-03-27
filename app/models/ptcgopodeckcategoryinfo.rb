@@ -1,0 +1,2 @@
+class Ptcgopodeckcategoryinfo < ApplicationRecord
+end
