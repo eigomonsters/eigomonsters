@@ -69,7 +69,7 @@ class PtcggameresultinfosController < ApplicationController
     elsif all_include_deckcodes.present?
       ptcggdeckcode = all_include_deckcodes
     end
-    ptcggameresultinfo = Ptcggameresultinfo.where(deckcode: ptcggdeckcode)
+    ptcggameresultinfo = Ptcggameresultinfo.where(deckcode: ptcggdeckcode).where(oponentdeckcategory: [params['firstOpoDeck'], params['secondOpoDeck'], params['thirdOpoDeck']])
     render status: 200, json: { ptcggameresultinfo: ptcggameresultinfo }
   end
 
