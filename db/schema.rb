@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_03_30_101809) do
+ActiveRecord::Schema.define(version: 2024_08_25_033853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,23 @@ ActiveRecord::Schema.define(version: 2024_03_30_101809) do
     t.string "email", null: false
     t.string "subject", null: false
     t.text "message", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ptcgcardallinfos", force: :cascade do |t|
+    t.string "cardid", null: false
+    t.string "cardname", null: false
+    t.string "imageurlofficial", null: false
+    t.string "supertype", null: false
+    t.integer "evolevel", null: false
+    t.string "evofrom", null: false
+    t.string "rule", null: false
+    t.string "ability", null: false
+    t.string "color", null: false
+    t.integer "hp", null: false
+    t.integer "retreats", null: false
+    t.integer "option", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

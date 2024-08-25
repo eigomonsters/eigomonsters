@@ -1,0 +1,2 @@
+module PtcgcardallinfoHelper
+end

@@ -1,0 +1,2 @@
+class Ptcgcardallinfo < ApplicationRecord
+end
