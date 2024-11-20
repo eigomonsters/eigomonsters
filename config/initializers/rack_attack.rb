@@ -1,6 +1,6 @@
 class Rack::Attack
   # 1時間に2回までデッキ作成可能
-  throttle('limit deck creation per IP', limit: 2, period: 1.hour) do |req|
+  throttle('limit deck creation per IP', limit: 10, period: 1.hour) do |req|
     # POSTリクエストで /eigomonsters/createdeckcode にマッチする場合、IPアドレスを取得
     if req.path == '/eigomonsters/createdeckcode' && req.post?
       Rails.logger.info "Throttle check for IP: #{req.ip} with path #{req.path}"
