@@ -1,0 +1,23 @@
+class Pkpkdeckinfo < ApplicationRecord
+  validates :deckid, presence: true
+  validates :cardid1, presence: true
+  validates :cardid2, presence: true
+  validates :cardid3, presence: true
+  validates :cardid4, presence: true
+  validates :cardid5, presence: true
+  validates :cardid6, presence: true
+  validates :cardid7, presence: true
+  validates :cardid8, presence: true
+  validates :cardid9, presence: true
+  validates :cardid10, presence: true
+  validates :cardid11, presence: true
+  validates :cardid12, presence: true
+  validates :cardid13, presence: true
+  validates :cardid14, presence: true
+  validates :cardid15, presence: true
+  validates :cardid16, presence: true
+  validates :cardid17, presence: true
+  validates :cardid18, presence: true
+  validates :cardid19, presence: true
+  validates :cardid20, presence: true
+end

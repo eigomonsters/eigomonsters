@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_25_033853) do
+ActiveRecord::Schema.define(version: 2024_11_18_124421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,51 @@ ActiveRecord::Schema.define(version: 2024_08_25_033853) do
     t.string "email", null: false
     t.string "subject", null: false
     t.text "message", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pkpkcardinfos", force: :cascade do |t|
+    t.string "cardid", null: false
+    t.string "cardname", null: false
+    t.string "model", null: false
+    t.string "pack", null: false
+    t.string "url", null: false
+    t.string "category", null: false
+    t.integer "rarity", null: false
+    t.integer "hp", default: 9999, null: false
+    t.string "evolevel", default: "なし", null: false
+    t.string "poketype", default: "なし", null: false
+    t.integer "retreatcost", default: 9999, null: false
+    t.string "rule", default: "なし", null: false
+    t.string "ability", default: "なし", null: false
+    t.string "option", default: "なし", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pkpkdeckinfos", force: :cascade do |t|
+    t.string "deckid", null: false
+    t.string "cardid1", null: false
+    t.string "cardid2", null: false
+    t.string "cardid3", null: false
+    t.string "cardid4", null: false
+    t.string "cardid5", null: false
+    t.string "cardid6", null: false
+    t.string "cardid7", null: false
+    t.string "cardid8", null: false
+    t.string "cardid9", null: false
+    t.string "cardid10", null: false
+    t.string "cardid11", null: false
+    t.string "cardid12", null: false
+    t.string "cardid13", null: false
+    t.string "cardid14", null: false
+    t.string "cardid15", null: false
+    t.string "cardid16", null: false
+    t.string "cardid17", null: false
+    t.string "cardid18", null: false
+    t.string "cardid19", null: false
+    t.string "cardid20", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

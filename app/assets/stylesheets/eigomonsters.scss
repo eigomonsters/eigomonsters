@@ -53,50 +53,7 @@
         }
 
 
-    //ラジオボタンの設定
-        .inline-radio {
-          display: flex;
-          border-radius: 3px;
-          border: 1px solid #b6b6b6;
-          width:60%;
-          margin:0 auto;
-
-        
-              div {
-                position: relative;
-                flex: 1;
-              }
-            
-              input {
-                width: 100%;
-                height: 2em;
-                opacity: 0;
-              }
-            
-              label {
-                position: absolute;
-                top: 0; left: 0;
-                color: #b6b6b6;
-                width: 100%;
-                height: 100%;
-                background: #fff;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                pointer-events: none;
-                border-right: 1px solid #b6b6b6;
-              }
-
-              div:last-child label {
-                border-right: 0;
-              }
-            
-              input:checked + label {
-                color: #fff;
-                background: #87CEFA;
-                font-weight: 500;
-              }
-          }
+    
 
 
     //コース選択画面のラジオボタンホバー時の吹き出し
@@ -814,9 +771,6 @@
     .mastersrc {
       margin-top:20px;
     }
-    .inline-radio {
-      width:70%;
-    }
   }
 
   /* スマホ対応---------------------------------------------- */
@@ -827,13 +781,13 @@
       position: relative;
       margin-bottom:40px;
     }
-    .inline-radio {
-      display: block;
-      width:80%;
-      label {
-        border-right: 0;
-      }
-    }
+    //. {
+      // display: block;
+      // width:40%;
+      // label {
+      //   border-right: 0;
+      // }
+    //}
     .courseSettingWords {
       width:90%;
       margin:0 auto;
@@ -1666,11 +1620,6 @@ meter::-webkit-meter-optimum-value {
 }
 
 
-.search-form {
-  margin-bottom:30px;
-  display: flex;
-  justify-content: center;
-}
 .levelSelect {
   background-color: #ffffff;
   border:1px solid gray;
@@ -1678,17 +1627,7 @@ meter::-webkit-meter-optimum-value {
   margin-right: 10px;
   cursor: pointer;
 }
-.search-input {
-  border:1px solid #87CEFA;
-  border-radius: 3px;
-  padding:3px;
-  width: 200px;
-  margin-right: 10px;
-}
-.search-btn {
-  width: 70px;
-  cursor: pointer;
-}
+
 
 .triangle {
   color:gray;
@@ -1844,25 +1783,15 @@ meter::-webkit-meter-optimum-value {
 
     // スマホの場合
     @media (max-width: 599px) {
-      .search-form {
-        display: block;
-        text-align: center;
-      }
+      // .search-form {
+      //   display: block;
+      //   text-align: center;
+      // }
       .levelSelect {
         display: inline-block;
         width:40%;
         text-align: center;
         margin-right: 5px;
-      }
-      .search-input {
-        display: inline-block;
-        width:50%;
-        margin:3% 0;
-        margin-right: 0px;
-      }
-      .search-btn {
-        display: inline-block;
-        width:20%;
       }
       .wordlistScr {
         margin-bottom:10px;
@@ -1883,305 +1812,830 @@ meter::-webkit-meter-optimum-value {
 
 // 以下、Homeメニュー画面で使用------------------------------------------------------------------------------------------------------
 // ------------------------------------------------------------------------------------------------------------------------------
-    .topPage {
-      margin-top: 100px;
-      min-height: 640px;
-      @media (max-width: 900px) {
-        min-height: 700px;
-      }
+  .topPage {
+    margin-top: 10px;
+    min-height: 640px;
+    @media (max-width: 900px) {
+      min-height: 700px;
     }
-    .topPageTitle {
-      color: #000000;
-      font-family:'メイリオ', 'Meiryo', sans-serif;
-      font-size:40px;
-      text-align:center;
-    }
-    .titleFontSmall {
-      font-size:36px;
-    }
-    .topPageTitleEng {
-      text-align: center;
-      margin-bottom:20px;
-    }
+  }
+  .topPageTitle {
+    color: #000000;
+    font-family:'メイリオ', 'Meiryo', sans-serif;
+    font-size:40px;
+    text-align:center;
+  }
+  .titleFontSmall {
+    font-size:36px;
+  }
+  .topPageTitleEng {
+    text-align: center;
+    margin-bottom:20px;
+  }
 
+  .formAndDeckAndImageListTitle {
+    width: 800px;
+    margin: 0 auto;
+    position: sticky;
+    top: 0;  /* 画面上部に固定 */
+    z-index: 10;  /* 他の要素より前面に表示させたい場合 */
+    background-color: white; /* 背景を白に設定して、スクロール時の内容が隠れないように */
+  }
 
-    .instantPlayIllustory {
-      width:900px;
-      text-align: center;
-      margin: 0 auto;
+  .formAndImageListInDeck{
+    width: 800px;
+    // height: 200px;
+    margin: 0 auto;
+    display: flex;
+  }
+  .form-container {
+    width: 50%;
+    // height: 200px;
+    display: flex; /* 横並びに配置 */
+    align-items: top; /* 垂直方向を中央揃え */
+    justify-content: center; /* 水平方向に中央揃え */
+    margin-right: 10px; /* form-containerとimageListInDeckの間隔を調整 */
+  }
+
+  .search-form {
+    // margin-bottom:30px;
+    display: block;
+    justify-content: center;
+    text-align: center;
+  }
+  .searchTitle{
+    width: 100%;
+    height: 24px;
+    color: #fff;
+    background: #777777;
+    font-weight: 500;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .triangleSearchIcon {
+    display: none;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease; /* 回転アニメーション */
+  }
+  .rotated {
+    transform: rotate(-90deg); /* 下向き三角 */
+  }
+  .searchInfoBox {
+    max-height: 200px; /* 初期状態では非表示 */
+    overflow: hidden; /* 要素がはみ出さないように設定 */
+    transition: max-height 0.3s ease; /* スライドアニメーション */
+  }
+  .searchInfoBox.collapsed {
+    max-height: 0px; /* 必要に応じて調整 */
+  }
+  //ラジオボタンの設定
+  .radioLargeCategory {
+    display: flex;
+    border-radius: 3px;
+    border: 1px solid #b6b6b6;
+    width: 400px;
+    height: 30px;
+    margin: 0 auto;
+  
+    div {
       position: relative;
+      flex: 1;
     }
-
-    // タイピングゲームへの遷移ボタン
-    .instantPlayIllustoryPopup, .instantPlayEngPopup {
-      height: 480px;
-      min-height:440px;
-      max-height: 500px;
-      width:640px;
-      margin:0 auto;
-      border: 2px #87CEFA solid;
-      border-radius: 12px;
-      background-color: #f1f8fe;
-      background:rgba(241,248,254,0.5);
-      font-size: 24px;
-      color: rgb(70, 70, 70);
-      font-family:'メイリオ', 'Meiryo', sans-serif;
-      padding-bottom:360px;
-      font-weight: bold;
-      -webkit-appearance: none;
+  
+    input {
+      width: 100%;
+      height: 2em;
+      opacity: 0; /* ラジオボタンを非表示 */
     }
-
-    .illustoryTopPage {
-      margin-top:20px;
-      height:200px;
-    }
-    .illustoryTopPageMobile {
-      display: none;
-    }
-
-    // ボタン内部の文言、MovieのCSS
-    .instantPlayIllustoryContents, .instantPlayEngContents {
-      position:absolute;
-      width:900px;
-      text-align: center;
-      top:100px;
+  
+    label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #b6b6b6;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       pointer-events: none;
-      z-index: 1;
+      border-right: 1px solid #b6b6b6;
     }
-    .instantPlayIllustoryWords, .instantPlayEngWords {
+  
+    div:last-child label {
+      border-right: 0;
+    }
+  
+    input:checked + label {
+      color: #fff;
+      background: gray;
+      font-weight: 500;
+    }
+  }
+  
+  // 検索フォームの設定
+  .search-container {
+    position: relative;
+    width: 100%;
+  }
+  .search-input {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 3px;
+    padding-right: 60px; /* 右側にスペースを確保 */
+    width: 100%;
+    margin-right: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    height: 30px; /* 高さを明示的に設定 */
+  }
+  .clear-btn {
+    margin-top: 5px;
+    position: absolute;
+    top: 50%;
+    right: 0px; /* 右端に配置 */
+    transform: translateY(-50%); /* ボタンを縦中央揃え */
+    background: gray;
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    height: 30px; /* ボタンの高さを検索入力と一致させる */
+    display: flex;
+    align-items: center; /* テキストを縦中央揃え */
+    justify-content: center; /* テキストを横中央揃え */
+  }
+  
+  .clear-btn:hover {
+  }
+  .typeCategory {
+    display: flex;
+    flex-wrap: wrap; /* コンテンツを複数行に折り返す */
+    justify-content: center; /* 水平方向で中央揃え */
+    gap: 2px; /* ボタン間の隙間 */
+    max-width: 500px; /* コンテナ全体の幅を設定 */
+    margin: 0px auto; /* コンテナを中央に配置 */
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .poketypeImageButton {
+    display: flex;
+    justify-content: center; /* ボタン内で中央揃え */
+    align-items: center; /* ボタン内で中央揃え */
+    border: 0.2px solid #000000; /* 枠線 */
+    border-radius: 3px; /* 角丸 */
+    padding: 2px; /* 余白を調整 */
+    background-color: white; /* ボタンの背景色 */
+    cursor: pointer; /* ホバー時のポインター変更 */
+    width: calc(20% - 2px); /* 1行5つに対応する幅を設定（隙間分を引く） */
+    box-sizing: border-box; /* パディングを含めて幅を計算 */
+    transition: all 0.3s ease; /* ホバー時のスムーズな変化 */
+  }
+  .poketypeImageButton:hover {
+    background-color: #f0f0f0; /* ホバー時の背景色 */
+  }
+  .poketypeImageButton:active {
+    background-color: gray;
+  }
+  .poketypeImageButton.selected {
+    background-color: gray; /* 選択時の背景色 */
+  }
+  .poketypeImage {
+    width: 30%; /* 画像をボタン幅に合わせる */
+  }
+
+  .imageListInDeck {
+    width: 50%;
+    // height: 200px;
+    margin-left: 0;
+    margin-right: auto;
+    align-items: top; /* 垂直方向を中央揃え */
+  }
+  .adaptedDeckListTitle{
+    width: 100%;
+    height: 24px;
+    color: #fff;
+    background: #777777;
+    font-weight: 500;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .triangleDeckIcon {
+    display: none;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease; /* 回転アニメーション */
+  }
+  .deckInfoBox {
+    max-height: 200px; /* 初期状態では非表示 */
+    overflow: hidden; /* 要素がはみ出さないように設定 */
+    transition: max-height 0.3s ease; /* スライドアニメーション */
+  }
+  .deckInfoBox.collapsed {
+    max-height: 0px; /* 必要に応じて調整 */
+  }
+
+  .eachImageInDeckBox {
+    position: relative; /* 背面に表示 */
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 1 / 0.28; /* アスペクト比：幅1に対して高さ2.8 */
+    background-image: 
+      linear-gradient(to right, lightgray 0.5px, transparent 0.5px), /* 縦の罫線 */
+      linear-gradient(to bottom, lightgray 0.5px, transparent 0.5px); /* 横の罫線 */
+    background-size: 10% 50%; /* 列: 10分割、行: 2分割 */
+    background-repeat: repeat;
+    background-position: 0 0;
+    border-bottom: 0.5px solid lightgray; /* 外枠の線 */
+    border-right: 0.5px solid lightgray; /* 外枠の線 */
+  }
+  .eachImageInDeck {
+    position: relative; /* 必要に応じて変更 */
+    z-index: 2; /* 前面に表示 */
+    top: 0; /* 必要に応じて配置を調整 */
+    left: 0; /* 必要に応じて配置を調整 */
+  }
+  .eachImageInDeck img {
+    width: 10%;
+    height: auto;  /* 高さは幅に合わせて自動調整 */
+    object-fit: cover;  /* 画像が枠内に収まるようにトリミング */
+    cursor: pointer
+  }
+  .deckNumAndRegisterBtn {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .deckNumTextBox {
+    width: 30%;
+    color: #777777; /* 文字色を白に */
+    font-size: 24px; /* 文字サイズ調整 */
+    font-weight: bold; /* 文字の太さ */
+    padding: 5px 10px;
+    text-align: center;
+  }
+  .deckNumText {
+    
+  }
+  .registerBtn {
+    width: 50%;
+    font-size: 16px;
+    height: 32px;
+    cursor: pointer;
+  }
+  .resetBtn {
+    margin-left: 5px;
+    font-size: 12px;
+    height: 32px;
+    cursor: pointer;
+  }
+
+  .errorMessages {
+    text-align: center;
+    font-size: 14px;
+    color: red;
+    font-weight: lighter; /* 文字の太さを細く設定 */
+    display: none; /* 初期状態では非表示 */
+    margin-bottom: 5px;
+  }
+  .totalDeckNumError {
+    display: none;
+  }
+  .noTanePokemonError {
+    display: none;
+  }
+  .sameCardNumError {
+    display: none;
+  }
+
+
+
+  // 画面が大きい時は10枚表示
+  .cardImageList {
+    width: 800px;
+    text-align: left;
+    margin: 0 auto;
+    margin-top: 20px;
+    position: relative;
+  }
+  .cardImageListTitle {
+    width: 100%;
+    height: 24px;
+    color: #fff;
+    background: #777777;
+    font-weight: 500;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .eachImageContainer {
+    position: relative; /* ボタンを画像の上に配置するための基準 */
+    width: calc(10% - 5px); /* 画像の幅に合わせる */
+    display: inline-block;
+  }
+  
+  .cardImage {
+    display: block;
+    width: 100%; /* 画像の幅を親コンテナに合わせる */
+  }
+  .cardImage:hover {
+  }
+  .addBtn {
+    width: 100%;
+    height: 24px;
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  .adaptNum {
+    position: absolute;
+    bottom: 40px; /* 画像の下から10pxの位置に配置 */
+    left: 50%;
+    transform: translateX(-50%); /* 水平中央に配置 */
+    padding: 5px 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  .adaptNum.hidden {
+    display: none;
+  }
+  .adaptNum:empty, .adaptNum:has-text("0") {
+    display: none;
+  }
+
+
+  // デッキ画像表示のポップアップ
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    position: relative; /* 右上のボタン配置の基点を作成 */
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .createDeckCodeBtn {
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid #000000;
+    border-radius: 3px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-left: auto; /* 追加: 左右自動マージン */
+    margin-right: auto; /* 追加: 左右自動マージン */
+  }
+  .close-btn {
+    position: absolute; /* modal-content の中で位置を絶対指定 */
+    top: -20px; /* 上から10px */
+    right: -20px; /* 右から10px */
+    background: transparent; /* 背景を透明に */
+    border: none; /* ボタン枠を非表示に */
+    padding: 0; /* 余白を除去 */
+    cursor: pointer;
+  }
+  .close-btn img {
+    width: 40px; /* 適宜画像サイズを調整 */
+    height: 40px;
+    display: block; /* 画像をボタンの中で中央揃え */
+  }
+
+  .createdDeckCodeTextTitle {
+    margin-top: 20px;
+    margin-bottom: 5px;
+    display: none;
+  }
+  .copyDeckCodeBtn {
+    margin-top: 10px;
+    display: none;
+  }
+  .copySuccessMessage {
+    display: none;
+    font-size: 12px;
+  }
+  .eachImageInDeckBoxPopup {
+    position: relative; /* 背面に表示 */
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 1 / 0.28; /* アスペクト比：幅1に対して高さ2.8 */
+  }
+  .eachImageInDeckPopup {
+    position: relative; /* 必要に応じて変更 */
+    z-index: 2; /* 前面に表示 */
+    top: 0; /* 必要に応じて配置を調整 */
+    left: 0; /* 必要に応じて配置を調整 */
+  }
+  .eachImageInDeckPopup img {
+    width: 10%;
+    height: auto;  /* 高さは幅に合わせて自動調整 */
+    object-fit: cover;  /* 画像が枠内に収まるようにトリミング */
+  }
+
+  // .cardImageList > .eachImageContainer:nth-last-child(-n+2) {
+  //   margin-right: 0; /* 最後の2つに右マージンをなくす */
+  // }
+
+    // 画面のサイズに合わせて表示するカード枚数を変更
+  @media (max-width: 800px) {
+    .formAndDeckAndImageListTitle {
+      width: 95%;
+      position: sticky;
+    }
+    .formAndImageListInDeck{
+      width: 100%;
+      // height: 200px;
+      // aspect-ratio: 9 / 1;
+      display: inline-block;
+    }
+    .form-container {
+      width: 100%;
+      // display: none;
+    }
+    .deckIconImageBtn {
+    }
+    .deckIconImageBtn img {
+    }
+    .deckNumText {
+    }
+    .search-form {
+      width: 100%;
+    }
+    .toggleSearchBtn {
+      display: flex; /* 子要素を横並びに配置 */
+      align-items: center; /* 子要素を垂直方向に中央揃え */
+      position: relative; /* アイコンの位置調整用 */
+      width: 100%; /* 親の幅を占める */
+    }
+    .triangleSearchIcon {
+      display: inline-block;
+      position: absolute;
+      left: 10px;
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease; /* 回転アニメーション */
+    }
+    .searchTitleText {
+      flex-grow: 1; /* 残りのスペースを埋める */
+      text-align: center; /* 文字を中央揃え */
+    }
+    .radioLargeCategory {
+      width:100%;
       font-size: 14px;
     }
-    .japTypingMovie, .engTypingMovie {
-      margin-top:36px;
-      height:160px;
+    .search-input {
+      width:100%;
     }
-    .instantPlayIllustoryDetail, .instantPlayEngDetail {
-      margin-top: 20px;
-      font-size: 12px;
-      position: relative;
+    .search-btn {
+      //width: 15%;
     }
-    .instantPlayIllustorySetting {
-      position:absolute;
-      width:330px;
-      margin:0 auto;
-      margin-top: 90px;
-      font-size: 12px;
-      text-align: center;
+    .toggleDeckBtn {
+      display: flex; /* 子要素を横並びに配置 */
+      align-items: center; /* 子要素を垂直方向に中央揃え */
+      position: relative; /* アイコンの位置調整用 */
+      width: 100%; /* 親の幅を占める */
     }
-    .instantPlayLink {
-      color:#87CEFA ;
-      text-decoration: underline;
-      pointer-events:all;
-      cursor: pointer;
+    .triangleDeckIcon {
+      display: inline-block;
+      position: absolute;
+      left: 10px;
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease; /* 回転アニメーション */
     }
+    .deckTitleText {
+      flex-grow: 1; /* 残りのスペースを埋める */
+      text-align: center; /* 文字を中央揃え */
+    }
+    .imageListInDeck {
+      width: 100%;
+      // height: 250px;
+      // // display: none;
+    }
+    .cardImageListTitle {
+      margin-top: 0px;
+    }
+    .eachImageContainer {
+      width: calc(20% - 5px); /* 画像の幅に合わせる */
+    }
+    .cardImageList {
+      width: 95%;
+    }
+    .cardImage {
+    }
+    .adaptNum {
+      position: absolute;
+      bottom: 30px; /* 画像の下から10pxの位置に配置 */
+      left: 50%;
+      transform: translateX(-50%); /* 水平中央に配置 */
+      padding: 5px 15px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .form-container {
+    }
+    .deckIconImageBtn {
+    }
+    .deckIconImageBtn img {
+    }
+    .deckNumText {
+    }
+    .search-form {
+      width: 100%;
+    }
+    .radioLargeCategory {
+      width:100%;
+      font-size: 11px;
+    }
+    .search-input {
+      width:100%;
+    }
+    .search-btn {
+      width: 20%;
+    }
+  }
+
+  
+
+
+  .dispCardLargeCategory {
+    position: relative;
+  }
+
+    // // ボタン内部の文言、MovieのCSS
+    // .instantPlayIllustoryContents, .instantPlayEngContents {
+    //   position:absolute;
+    //   width:900px;
+    //   text-align: center;
+    //   top:100px;
+    //   pointer-events: none;
+    //   z-index: 1;
+    // }
+    // .instantPlayIllustoryWords, .instantPlayEngWords {
+    //   font-size: 14px;
+    // }
+    // .japTypingMovie, .engTypingMovie {
+    //   margin-top:36px;
+    //   height:160px;
+    // }
+    // .instantPlayIllustoryDetail, .instantPlayEngDetail {
+    //   margin-top: 20px;
+    //   font-size: 12px;
+    //   position: relative;
+    // }
+    // .instantPlayIllustorySetting {
+    //   position:absolute;
+    //   width:330px;
+    //   margin:0 auto;
+    //   margin-top: 90px;
+    //   font-size: 12px;
+    //   text-align: center;
+    // }
+    // .instantPlayLink {
+    //   color:#87CEFA ;
+    //   text-decoration: underline;
+    //   pointer-events:all;
+    //   cursor: pointer;
+    // }
     
-    // hover時の処理
-    .instantPlayIllustoryPopup:hover, .instantPlayEngPopup:hover {
-      transform: scale(1.05);
-      transition-duration: 0.3s;
-      cursor: pointer;
-    }
-    .instantPlayIllustoryPopup:hover, .instantPlayEngPopup:hover {
-      color: #fff;
-      background: #87CEFA;
-    }
-    .instantPlayIllustoryPopup:hover + .instantPlayIllustoryContents {
-      transform: scale(1.05);
-      transition-duration: 0.3s;
-    }
-    .instantPlayIllustoryPopup:hover + .instantPlayIllustoryContents {
-      color: #fff;
-    }
-    .instantPlayEngPopup:hover + .instantPlayEngContents {
-      transform: scale(1.05);
-      transition-duration: 0.3s;
-    }
-    .instantPlayEngPopup:hover + .instantPlayEngContents {
-      color: #fff;
-    }
+    // // hover時の処理
+    // .instantPlayIllustoryPopup:hover, .instantPlayEngPopup:hover {
+    //   transform: scale(1.05);
+    //   transition-duration: 0.3s;
+    //   cursor: pointer;
+    // }
+    // .instantPlayIllustoryPopup:hover, .instantPlayEngPopup:hover {
+    //   color: #fff;
+    //   background: #87CEFA;
+    // }
+    // .instantPlayIllustoryPopup:hover + .instantPlayIllustoryContents {
+    //   transform: scale(1.05);
+    //   transition-duration: 0.3s;
+    // }
+    // .instantPlayIllustoryPopup:hover + .instantPlayIllustoryContents {
+    //   color: #fff;
+    // }
+    // .instantPlayEngPopup:hover + .instantPlayEngContents {
+    //   transform: scale(1.05);
+    //   transition-duration: 0.3s;
+    // }
+    // .instantPlayEngPopup:hover + .instantPlayEngContents {
+    //   color: #fff;
+    // }
 
 
-    .mobileAppWord {
-      margin:10px auto;
-      text-align: center;
-      font-size: 18px;
-    }
-    .mobileAppLink {
-      margin:10px auto;
-      text-align: center;
-    }
-    .mobilePolicy {
-      margin:20px auto;
-      text-align: center;
-      font-size: 10px;
-    }
-    .mobilePolicyLink {
-      text-decoration: underline;
-    }
-    .mobilePolicyLink:hover{
-      cursor: pointer;
-    }
+    // .mobileAppWord {
+    //   margin:10px auto;
+    //   text-align: center;
+    //   font-size: 18px;
+    // }
+    // .mobileAppLink {
+    //   margin:10px auto;
+    //   text-align: center;
+    // }
+    // .mobilePolicy {
+    //   margin:20px auto;
+    //   text-align: center;
+    //   font-size: 10px;
+    // }
+    // .mobilePolicyLink {
+    //   text-decoration: underline;
+    // }
+    // .mobilePolicyLink:hover{
+    //   cursor: pointer;
+    // }
 
-    /* タブレット対応 */
-    @media (max-width: 1024px) {
-      .topPage {
-        margin-top: 20px;
-      }
-      .instantPlayIllustory {
-        width:100%;
-      }
-      //EigoMonstersとはの画面で使用
-      .aboutSrc {
-        margin-top: 20px;
-      }
-      .instantPlayIllustoryContents, .instantPlayEngContents {
-        width:100%;
-      }
-    }
-    // スマホの場合(縦長の時)
-    @media (orientation: portrait) {
-      @media (max-width: 599px) {
-        .topPage {
-          text-align: center;
-        }
-        .topPageTitle {
-          color:rgb(70, 70, 70);
-          font-size:24px;
-          width:90%;
-          margin:0 auto;
-        }
-        .titleFontSmall {
-          font-size:20px;
-        }
-        .topPageTitleEng {
-          margin:0 auto;
-          width:65%;
-        }
-      // タイピングゲームへの遷移ボタン
-      .instantPlayIllustoryPopup, .instantPlayEngPopup {
-        max-height: 900px;
-        height:750px;
-        width:330px;
-        padding-bottom:640px;
-        margin-top:20px;
-        margin-bottom:60px;
-      }
-        .instantPlayIllustory {
-          display: block;
-        }
+    // /* タブレット対応 */
+    // @media (max-width: 1024px) {
+    //   .topPage {
+    //     margin-top: 20px;
+    //   }
+    //   .instantPlayIllustory {
+    //     width:100%;
+    //   }
+    //   //EigoMonstersとはの画面で使用
+    //   .aboutSrc {
+    //     margin-top: 20px;
+    //   }
+    //   .instantPlayIllustoryContents, .instantPlayEngContents {
+    //     width:100%;
+    //   }
+    // }
+    // // スマホの場合(縦長の時)
+    // @media (orientation: portrait) {
+    //   @media (max-width: 599px) {
+    //     .topPage {
+    //       text-align: center;
+    //     }
+    //     .topPageTitle {
+    //       color:rgb(70, 70, 70);
+    //       font-size:24px;
+    //       width:90%;
+    //       margin:0 auto;
+    //     }
+    //     .titleFontSmall {
+    //       font-size:20px;
+    //     }
+    //     .topPageTitleEng {
+    //       margin:0 auto;
+    //       width:65%;
+    //     }
+    //   // タイピングゲームへの遷移ボタン
+    //   .instantPlayIllustoryPopup, .instantPlayEngPopup {
+    //     max-height: 900px;
+    //     height:750px;
+    //     width:330px;
+    //     padding-bottom:640px;
+    //     margin-top:20px;
+    //     margin-bottom:60px;
+    //   }
+    //     .instantPlayIllustory {
+    //       display: block;
+    //     }
 
-        // ボタン内部の文言、MovieのCSS
-        .instantPlayIllustoryContents, .instantPlayEngContents {
-          margin:0 auto;
-          width:300px;
-          bottom:100px;
-          position: relative;
-        }
-        .illustoryTopPage {
-          display: none;
-        }
-        .illustoryTopPageMobile {
-          display: block;
-          position: absolute;
-          width:80%;
-          top:-750px;
-          left:0;
-          right:0;
-          margin:auto;
-        }
-        .instantPlayIllustoryWords, .instantPlayEngWords {
-          width:100%;
-          position: absolute;
-          top:-810px;
-        }
-        .japTypingMovie, .engTypingMovie {
-          position: absolute;
-          margin-top:0;
-          top:-410px;
-          left:0;
-          right:0;
-          margin:auto;
-        }
-        .instantPlayIllustoryDetail, .instantPlayEngDetail {
-          width:100%;
-          position: absolute;
-          top: -310px;
-          font-size:10px;
-        }
-        .instantPlayIllustorySetting {
-          width:100%;
-          margin: 0 auto;
-          top:80px;
-        }
-        .restartBtn {
-          margin-right: 20px;
-        }
-      }
-    }
-    // スマホの場合(横長の時)
-    @media (orientation: landscape) {
-      @media (max-height: 420px) {
-      // タイピングゲームへの遷移ボタン
-      .instantPlayIllustoryPopup, .instantPlayEngPopup {
-        min-height:300px;
-        height:500px;
-        width:580px;
-        padding-bottom:400px;
-        margin-top:20px;
-        margin-bottom:60px;
-      }
-        .instantPlayIllustory {
-          display: block;
-        }
+    //     // ボタン内部の文言、MovieのCSS
+    //     .instantPlayIllustoryContents, .instantPlayEngContents {
+    //       margin:0 auto;
+    //       width:300px;
+    //       bottom:100px;
+    //       position: relative;
+    //     }
+    //     .illustoryTopPage {
+    //       display: none;
+    //     }
+    //     .illustoryTopPageMobile {
+    //       display: block;
+    //       position: absolute;
+    //       width:30%;
+    //       top:-750px;
+    //       // left:0;
+    //       // right:0;
+    //       // margin:auto;
+    //     }
+    //     .instantPlayIllustoryWords, .instantPlayEngWords {
+    //       width:100%;
+    //       position: absolute;
+    //       top:-810px;
+    //     }
+    //     .japTypingMovie, .engTypingMovie {
+    //       position: absolute;
+    //       margin-top:0;
+    //       top:-410px;
+    //       left:0;
+    //       right:0;
+    //       margin:auto;
+    //     }
+    //     .instantPlayIllustoryDetail, .instantPlayEngDetail {
+    //       width:100%;
+    //       position: absolute;
+    //       top: -310px;
+    //       font-size:10px;
+    //     }
+    //     .instantPlayIllustorySetting {
+    //       width:100%;
+    //       margin: 0 auto;
+    //       top:80px;
+    //     }
+    //     .restartBtn {
+    //       margin-right: 20px;
+    //     }
+    //   }
+    // }
+    // // スマホの場合(横長の時)
+    // @media (orientation: landscape) {
+    //   @media (max-height: 420px) {
+    //   // タイピングゲームへの遷移ボタン
+    //   .instantPlayIllustoryPopup, .instantPlayEngPopup {
+    //     min-height:300px;
+    //     height:500px;
+    //     width:580px;
+    //     padding-bottom:400px;
+    //     margin-top:20px;
+    //     margin-bottom:60px;
+    //   }
+    //     .instantPlayIllustory {
+    //       display: block;
+    //     }
 
-        // ボタン内部の文言、MovieのCSS
-        .instantPlayIllustoryContents, .instantPlayEngContents {
-          margin:0 auto;
-          width:460px;
-          bottom:100px;
-          position: relative;
-        }
-        .illustoryTopPage {
-          display: block;
-          position: absolute;
-          width:80%;
-          top:-530px;
-          left:0;
-          right:0;
-          margin:auto;
-        }
-        .illustoryTopPageMobile {
-          display: none;
-        }
-        .instantPlayIllustoryWords, .instantPlayEngWords {
-          width:100%;
-          position: absolute;
-          top:-580px;
-        }
-        .japTypingMovie, .engTypingMovie {
-          position: absolute;
-          margin-top:0;
-          top:-410px;
-          left:0;
-          right:0;
-          margin:auto;
-        }
-        .instantPlayIllustoryDetail, .instantPlayEngDetail {
-          width:100%;
-          position: absolute;
-          top: -320px;
-          font-size:8px;
-        }
-        .instantPlayIllustorySetting {
-          width:100%;
-          margin: 0 auto;
-          top:80px;
-        }
-        .restartBtn {
-          margin-right: 20px;
-        }
-      }
-    }
+    //     // ボタン内部の文言、MovieのCSS
+    //     .instantPlayIllustoryContents, .instantPlayEngContents {
+    //       margin:0 auto;
+    //       width:460px;
+    //       bottom:100px;
+    //       position: relative;
+    //     }
+    //     .illustoryTopPage {
+    //       display: block;
+    //       position: absolute;
+    //       width:80%;
+    //       top:-530px;
+    //       left:0;
+    //       right:0;
+    //       margin:auto;
+    //     }
+    //     .illustoryTopPageMobile {
+    //       display: none;
+    //     }
+    //     .instantPlayIllustoryWords, .instantPlayEngWords {
+    //       width:100%;
+    //       position: absolute;
+    //       top:-580px;
+    //     }
+    //     .japTypingMovie, .engTypingMovie {
+    //       position: absolute;
+    //       margin-top:0;
+    //       top:-410px;
+    //       left:0;
+    //       right:0;
+    //       margin:auto;
+    //     }
+    //     .instantPlayIllustoryDetail, .instantPlayEngDetail {
+    //       width:100%;
+    //       position: absolute;
+    //       top: -320px;
+    //       font-size:8px;
+    //     }
+    //     .instantPlayIllustorySetting {
+    //       width:100%;
+    //       margin: 0 auto;
+    //       top:80px;
+    //     }
+    //     .restartBtn {
+    //       margin-right: 20px;
+    //     }
+    //   }
+    // }
 
 
 // 以上、Homeメニュー画面で使用------------------------------------------------------------------------------------------------------
@@ -2409,8 +2863,8 @@ meter::-webkit-meter-optimum-value {
 
 .policySrc {
   margin:0 auto;
-  margin-top: 100px;
-  min-height: 650px;
+  // margin-top: 100px;
+  // min-height: 650px;
   width:750px;
 }
 .policyTitle {

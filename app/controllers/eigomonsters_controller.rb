@@ -1,404 +1,148 @@
 class EigomonstersController < ApplicationController
-  def eng_wordlist_index
-    if params['lvelSelect'] == "Level1" then
-      @wordListLevelSet = "Level1"
-      @wordListAll = Wordlist.where("id >= 1").where("id <= 300").order("id")
-    elsif params['lvelSelect'] == "Level2" then
-      @wordListLevelSet = "Level2"
-      @wordListAll = Wordlist.where("id >= 301").where("id <= 600").order("id")
-    elsif params['lvelSelect'] == "Level3" then
-      @wordListLevelSet = "Level3"
-      @wordListAll = Wordlist.where("id >= 601").where("id <= 900").order("id")
-    elsif params['lvelSelect'] == "Level4" then
-      @wordListLevelSet = "Level4"
-      @wordListAll = Wordlist.where("id >= 901").where("id <= 1200").order("id")
-    elsif params['lvelSelect'] == "すべて表示" then
-      @wordListLevelSet = "すべて表示"
-      @wordListAll = Wordlist.all.order("id")
-    else
-      @wordListLevelSet = "Level1"
-      @wordListAll = Wordlist.where("id >= 1").where("id <= 300").order("id")
-    end
-  end
+  
   def search
-    if params['lvelSelect'] == "Level1" then
-      @wordListLevelSet = "Level1"
-      @keyword = params[:keyword]
-      @wordListAll = Wordlist.search(params[:keyword]).where("id >= 1").where("id <= 300").order("id")
-    elsif params['lvelSelect'] == "Level2" then
-      @wordListLevelSet = "Level2"
-      @keyword = params[:keyword]
-      @wordListAll = Wordlist.search(params[:keyword]).where("id >= 301").where("id <= 600").order("id")
-    elsif params['lvelSelect'] == "Level3" then
-      @wordListLevelSet = "Level3"
-      @keyword = params[:keyword]
-      @wordListAll = Wordlist.search(params[:keyword]).where("id >= 601").where("id <= 900").order("id")
-    elsif params['lvelSelect'] == "Level4" then
-      @wordListLevelSet = "Level4"
-      @keyword = params[:keyword]
-      @wordListAll = Wordlist.search(params[:keyword]).where("id >= 901").where("id <= 1200").order("id")
-    elsif params['lvelSelect'] == "すべて表示" then
-      @wordListLevelSet = "すべて表示"
-      @keyword = params[:keyword]
-      @wordListAll = Wordlist.search(params[:keyword])
+    @dispCardLargeCategorySet = params[:dispCardLargeCategory] || "すべて"
+    @keyword = params[:keyword]
+    @poketype = params[:poketype].present? ? params[:poketype].split(',') : []
+  
+    normalized_keyword = @keyword.tr('ぁ-ん', 'ァ-ン')
+    reversed_keyword = @keyword.tr('ァ-ン', 'ぁ-ん')
+  
+    if @poketype.any? && @keyword.present?
+      @searchedCardList = Pkpkcardinfo.where("cardname LIKE ? OR cardname LIKE ?", "%#{normalized_keyword}%", "%#{reversed_keyword}%")
+                                          .where(poketype: @poketype)
+                                          .order(cardid: :asc)
+    elsif @keyword.present?
+      @searchedCardList = Pkpkcardinfo.where("cardname LIKE ? OR cardname LIKE ?", "%#{normalized_keyword}%", "%#{reversed_keyword}%")
+                                          .order(cardid: :asc)
+    elsif @poketype.any?
+      @searchedCardList = Pkpkcardinfo.where(poketype: @poketype)
+                                          .order(cardid: :asc)
     else
-      @wordListLevelSet = "Level1"
-      @keyword = params[:keyword]
-      @wordListAll = Wordlist.search(params[:keyword]).where("id >= 1").where("id <= 300").order("id")
+      @searchedCardList = Pkpkcardinfo.all.order(cardid: :asc)
+    end
+  
+    if @dispCardLargeCategorySet == "ポケモン"
+      @searchedCardList = @searchedCardList.where(category: "ポケモン")
+    elsif @dispCardLargeCategorySet == "トレーナーズ"
+      @searchedCardList = @searchedCardList.where.not(category: "ポケモン")
+    end
+  
+    respond_to do |format|
+      format.html { render partial: 'searched_card_list', locals: { searchedCardList: @searchedCardList } }
     end
   end
 
-  ## タイピングゲームコース選択画面。
-  def typingplay_index
-    if request.post? then
-      # タイピング種別の判定
-      if params['typingCourse'] == "英単語タイピング" then
-        @typingCourseSet = "英単語タイピング"
-      elsif params['typingCourse'] == "日本語訳タイピング" then
-        @typingCourseSet = "日本語訳タイピング"
-      else
-        @typingCourseSet = "日本語訳タイピング"
-      end
-      # 英単語の難易度の判定
-      if params['engWordsDifficulty'] == "Level1" then
-        @engWordsDifficultySet = "Level1"
-      elsif params['engWordsDifficulty'] == "Level2" then
-        @engWordsDifficultySet = "Level2"
-      elsif params['engWordsDifficulty'] == "Level3" then
-        @engWordsDifficultySet = "Level3"
-      elsif params['engWordsDifficulty'] == "Level4" then
-        @engWordsDifficultySet = "Level4"
-      elsif params['engWordsDifficulty'] == "カスタム" then
-        @engWordsDifficultySet = "カスタム"
-        @numberFrom = params['numberFrom']
-        @numberTo = params['numberTo']
-      else
-        @engWordsDifficultySet = "Level1"
-      end
-      # プレイモードの判定
-      if params['playMode'] == "練習" then
-        @playModeSet = "練習"
-      elsif params['playMode'] == "普通" then
-        @playModeSet = "普通"
-      elsif params['playMode'] == "タイムアタック" then
-        @playModeSet = "タイムアタック"
-      else
-        @playModeSet = "練習"
-      end
-      # 詳細設定
-        # 出題順の判定
-        if params['questionOrderMode'] == "番号順" then
-          @questionOrderModeSet = "番号順"
-        elsif params['questionOrderMode'] == "ランダム" then
-          @questionOrderModeSet = "ランダム"
-        else
-          @questionOrderModeSet = "ランダム"
-        end
-        # 英単語の発音有無の判定
-        if params['pronounceMode'] == "発音あり" then
-          @pronounceModeSet = "発音あり"
-        elsif params['pronounceMode'] == "発音なし" then
-          @pronounceModeSet = "発音なし"
-        else
-          @pronounceModeSet = "発音あり"
-        end
-        # BGMの有無の判定
-        if params['bgmMode'] == "BGMあり" then
-          @bgmModeSet = "BGMあり"
-        elsif params['bgmMode'] == "BGMなし" then
-          @bgmModeSet = "BGMなし"
-        else
-          @bgmModeSet = "BGMあり"
-        end
-        # タイプ音の有無の判定
-        if params['typeAudioMode'] == "タイプ音あり" then
-          @typeAudioModeSet = "タイプ音あり"
-        elsif params['typeAudioMode'] == "タイプ音なし" then
-          @typeAudioModeSet = "タイプ音なし"
-        else
-          @typeAudioModeSet = "タイプ音あり"
-        end
-        # 正解音の有無の判定
-        if params['correctAudioMode'] == "正解音あり" then
-          @correctAudioModeSet = "正解音あり"
-        elsif params['correctAudioMode'] == "正解音なし" then
-          @correctAudioModeSet = "正解音なし"
-        else
-          @correctAudioModeSet = "正解音あり"
-        end
-        # ミス音の有無の判定
-        if params['incorrectAudioMode'] == "ミス音あり" then
-          @incorrectAudioModeSet = "ミス音あり"
-        elsif params['incorrectAudioMode'] == "ミス音なし" then
-          @incorrectAudioModeSet = "ミス音なし"
-        else
-          @incorrectAudioModeSet = "ミス音あり"
-        end
-    # URLから遷移した場合のデフォルト設定
+  def index
+    @poketype = []
+    @keyword = ""
+    @searchedCardList = Pkpkcardinfo.all.order(cardid: :asc) if @searchedCardList.nil?  # 結果がnilの場合
+    @dispCardLargeCategorySet = "すべて"
+  end
+
+  def tanecheck
+    clicked_images = params[:clicked_images] || []  # clickedImagesを取得
+  
+    # もしclicked_imagesが空でない場合、evolevelが「たね」のカードをフィルタリング
+    if clicked_images.any?
+      # デッキに「たねポケモン」が含まれているかチェック
+      @adaptDeckList = Pkpkcardinfo.where(cardid: clicked_images).where(evolevel: "たね")
     else
-        @typingCourseSet = "日本語訳タイピング"
-        @engWordsDifficultySet = "Level1"
-        @playModeSet = "練習"
+      @adaptDeckList = []  # クリックされているカードがない場合は空配列
+    end
+  
+    # チェック結果をJSONとして返す（エラーメッセージを返すため）
+    respond_to do |format|
+      format.json { render json: { errorCount: @adaptDeckList.empty? ? 1 : 0 } }
     end
   end
 
-
-
-
-  ## タイピングゲームスタート前画面にコース設定画面で設定した変数を渡す。
-  def typingplay_setting
-    if request.post? then
-      # タイピング種別の判定
-      if params['typingCourse'] == "英単語タイピング" then
-        @typingCourseSet = "英単語タイピング"
-      elsif params['typingCourse'] == "日本語訳タイピング" then
-        @typingCourseSet = "日本語訳タイピング"
-      else
-        @typingCourseSet = "日本語訳タイピング"
-      end
-      # 英単語の難易度の判定
-      if params['engWordsDifficulty'] == "Level1" then
-        @engWordsDifficultySet = "Level1"
-        @numberFrom = 1
-        @numberTo = 300
-      elsif params['engWordsDifficulty'] == "Level2" then
-        @engWordsDifficultySet = "Level2"
-        @numberFrom = 301
-        @numberTo = 600
-      elsif params['engWordsDifficulty'] == "Level3" then
-        @engWordsDifficultySet = "Level3"
-        @numberFrom = 601
-        @numberTo = 900
-      elsif params['engWordsDifficulty'] == "Level4" then
-        @engWordsDifficultySet = "Level4"
-        @numberFrom = 901
-        @numberTo = 1200
-      elsif params['engWordsDifficulty'] == "カスタム" then
-        @engWordsDifficultySet = "カスタム"
-        if params['numberFrom'] != "" && params['numberFrom'] != nil && params['numberFrom'] != 0 && params['numberTo'] != "" && params['numberTo'] != nil && params['numberTo'] != 0 then
-          @numberFrom = params['numberFrom']
-          @numberTo = params['numberTo']
-        ## 初期値
-        else
-          @numberFrom = 1
-          @numberTo = 300
-        end
-      else
-        @engWordsDifficultySet = "Level1"
-      end
-      # プレイモードの判定
-      if params['playMode'] == "練習" then
-        @playModeSet = "練習"
-      elsif params['playMode'] == "普通" then
-        @playModeSet = "普通"
-      elsif params['playMode'] == "タイムアタック" then
-        @playModeSet = "タイムアタック"
-      else
-        @playModeSet = "練習"
-      end
-      # 詳細設定
-        # 出題順の判定
-        if params['questionOrderMode'] == "番号順" then
-          @questionOrderModeSet = "番号順"
-        elsif params['questionOrderMode'] == "ランダム" then
-          @questionOrderModeSet = "ランダム"
-        else
-          @questionOrderModeSet = "ランダム"
-        end
-        # 英単語の発音有無の判定
-        if params['pronounceMode'] == "発音あり" then
-          @pronounceModeSet = "発音あり"
-        elsif params['pronounceMode'] == "発音なし" then
-          @pronounceModeSet = "発音なし"
-        else
-          @pronounceModeSet = "発音あり"
-        end
-        # BGMの有無の判定
-        if params['bgmMode'] == "BGMあり" then
-          @bgmModeSet = "BGMあり"
-        elsif params['bgmMode'] == "BGMなし" then
-          @bgmModeSet = "BGMなし"
-        else
-          @bgmModeSet = "BGMあり"
-        end
-        # タイプ音の有無の判定
-        if params['typeAudioMode'] == "タイプ音あり" then
-          @typeAudioModeSet = "タイプ音あり"
-        elsif params['typeAudioMode'] == "タイプ音なし" then
-          @typeAudioModeSet = "タイプ音なし"
-        else
-          @typeAudioModeSet = "タイプ音あり"
-        end
-        # 正解音の有無の判定
-        if params['correctAudioMode'] == "正解音あり" then
-          @correctAudioModeSet = "正解音あり"
-        elsif params['correctAudioMode'] == "正解音なし" then
-          @correctAudioModeSet = "正解音なし"
-        else
-          @correctAudioModeSet = "正解音あり"
-        end
-        # ミス音の有無の判定
-        if params['incorrectAudioMode'] == "ミス音あり" then
-          @incorrectAudioModeSet = "ミス音あり"
-        elsif params['incorrectAudioMode'] == "ミス音なし" then
-          @incorrectAudioModeSet = "ミス音なし"
-        else
-          @incorrectAudioModeSet = "ミス音あり"
-        end
-    # URLから遷移した場合、タイピングコース選択画面にアクセスする。
+  def samecardcheck
+    clicked_images = params[:clicked_images] || []  # clickedImagesを取得
+  
+    if clicked_images.any?
+      # デッキに含まれるカード情報を取得
+      selected_cards = Pkpkcardinfo.where(cardid: clicked_images)
+  
+      # 各cardnameの出現回数をカウント
+      cardname_counts = selected_cards.group(:cardname).count
+  
+      # 同一cardnameが3枚以上存在する場合にエラー
+      errorCount = cardname_counts.any? { |_, count| count >= 3 } ? 1 : 0
     else
-      redirect_to action: :typingplay_index
+      errorCount = 0  # クリックされたカードがない場合はエラーなしとする
+    end
+  
+    # チェック結果をJSONとして返す
+    respond_to do |format|
+      format.json { render json: { errorCount: errorCount } }
     end
   end
 
-
-
-
-  ## 英単語タイピングゲームのコントローラー
-  def typingplay_play
-    if request.post? then
-      # タイピング種別の判定
-        if params['typingCourse'] == "英単語タイピング" then
-          @typingCourseSet = "英単語タイピング"
-          @typingCourseJavascript = "typingplay_eng"
-        elsif params['typingCourse'] == "日本語訳タイピング" then
-          @typingCourseSet = "日本語訳タイピング"
-          @typingCourseJavascript = "typingplay_jap"
-        else
-          @typingCourseSet = "日本語訳タイピング"
-          @typingCourseJavascript = "typingplay_jap"
+  def createdeckcode
+    clicked_images = params[:clicked_images] || []  # clickedImagesを取得
+    if clicked_images.any?
+      # デッキに含まれるカード情報を取得
+      selected_cards = Pkpkcardinfo.where(cardid: clicked_images)
+      # カードが20枚未満の場合はエラーを返す
+      if clicked_images.size != 20
+        respond_to do |format|
+          format.json { render json: { error: 'デッキ枚数を20枚ちょうどにしてください。' }, status: :unprocessable_entity }
         end
-      ## 英単語の絞り込み
-        ## numberFromとnumberToが数値である場合
-          if params['numberFrom'] != "" && params['numberFrom'] != nil && params['numberFrom'] != 0 && params['numberTo'] != "" && params['numberTo'] != nil && params['numberTo'] != 0 then
-            if params['numberFrom'].to_i <= params['numberTo'].to_i then
-                @wordListLevel = Wordlist.select(:id, :eng_word, :jap_trans_1, :jap_trans_1_yomi, :jap_trans_2, :jap_trans_2_yomi).where("id >= ?", params['numberFrom']).where("id <= ?", params['numberTo']).order("id")
-                gon.wordListAll = @wordListLevel
-                @numberFrom = params['numberFrom']
-                @numberTo = params['numberTo']
-                gon.numberFrom = @numberFrom
-                gon.numberTo = @numberTo
-            else
-                @wordListLevel = Wordlist.select(:id, :eng_word, :jap_trans_1, :jap_trans_1_yomi, :jap_trans_2, :jap_trans_2_yomi).where("id >= ?", params['numberTo']).where("id <= ?", params['numberFrom']).order("id")
-                gon.wordListAll = @wordListLevel
-                @numberFrom = params['numberFrom']
-                @numberTo = params['numberTo']
-                gon.numberFrom = @numberTo
-                gon.numberTo = @numberFrom
-            end
-        ## numberFromもしくはnumberToが数値でない場合(基本input type=numberで数値でない場合はエラーメッセージが表示される)
-          else
-            @wordListLevel = Wordlist.select(:id, :eng_word, :jap_trans_1, :jap_trans_1_yomi, :jap_trans_2, :jap_trans_2_yomi).where("id >= 1").where("id <= 300").order("id")
-            gon.wordListAll = @wordListLevel
-            @numberFrom = 1
-            @numberTo = 300
-            gon.numberFrom = @numberFrom
-            gon.numberTo = @numberTo
-          end
-      ## 英単語の難易度レベル
-          if params['engWordsDifficulty'] == "Level1" then
-            @engWordsDifficultySet = "Level1"
-            gon.engWordsDifficultySet = @engWordsDifficultySet
-          elsif params['engWordsDifficulty'] == "Level2" then
-            @engWordsDifficultySet = "Level2"
-            gon.engWordsDifficultySet = @engWordsDifficultySet
-          elsif params['engWordsDifficulty'] == "Level3" then
-            @engWordsDifficultySet = "Level3"
-            gon.engWordsDifficultySet = @engWordsDifficultySet
-          elsif params['engWordsDifficulty'] == "Level4" then
-            @engWordsDifficultySet = "Level4"
-            gon.engWordsDifficultySet = @engWordsDifficultySet
-          elsif params['engWordsDifficulty'] == "カスタム" then
-            @engWordsDifficultySet = "カスタム"
-            gon.engWordsDifficultySet = @engWordsDifficultySet
-          else
-            @engWordsDifficultySet = "Level1"
-            gon.engWordsDifficultySet = @engWordsDifficultySet
-          end
-      ## プレイモードによるjavascriptに渡す変数設定
-          if params['playMode'] == "練習" then
-            gon.playMode = "練習"
-            @playModeSet = "練習"
-          elsif params['playMode'] == "普通" then
-            gon.playMode = "普通"
-            @playModeSet = "普通"
-          elsif params['playMode'] == "タイムアタック" then
-            gon.playMode = "タイムアタック"
-            @playModeSet = "タイムアタック"
-          else
-            gon.playMode = "練習"
-            @playModeSet = "練習"
-          end
-      ## 詳細設定
-          # 出題順の判定
-          if params['questionOrderMode'] == "番号順" then
-            gon.questionOrderMode = "番号順"
-            @questionOrderModeSet = "番号順"
-          elsif params['questionOrderMode'] == "ランダム" then
-            gon.questionOrderMode = "ランダム"
-            @questionOrderModeSet = "ランダム"
-          else
-            gon.questionOrderMode = "ランダム"
-            @questionOrderModeSet = "ランダム"
-          end
-          # 英単語の発音有無の判定
-          if params['pronounceMode'] == "発音あり" then
-            gon.pronounceMode = "発音あり"
-            @pronounceModeSet = "発音あり"
-          elsif params['pronounceMode'] == "発音なし" then
-            gon.pronounceMode = "発音なし"
-            @pronounceModeSet = "発音なし"
-          else
-            gon.pronounceMode = "発音あり"
-            @pronounceModeSet = "発音あり"
-          end
-          # BGMの有無の判定
-          if params['bgmMode'] == "BGMあり" then
-            gon.bgmMode = "BGMあり"
-            @bgmModeSet = "BGMあり"
-          elsif params['bgmMode'] == "BGMなし" then
-            gon.bgmMode = "BGMなし"
-            @bgmModeSet = "BGMなし"
-          else
-            gon.bgmMode = "BGMあり"
-            @bgmModeSet = "BGMあり"
-          end
-          # タイプ音の有無の判定
-          if params['typeAudioMode'] == "タイプ音あり" then
-            gon.typeAudioMode = "タイプ音あり"
-            @typeAudioModeSet = "タイプ音あり"
-          elsif params['typeAudioMode'] == "タイプ音なし" then
-            gon.typeAudioMode = "タイプ音なし"
-            @typeAudioModeSet = "タイプ音なし"
-          else
-            gon.typeAudioMode = "タイプ音あり"
-            @typeAudioModeSet = "タイプ音あり"
-          end
-          # 正解音の有無の判定
-          if params['correctAudioMode'] == "正解音あり" then
-            gon.correctAudioMode = "正解音あり"
-            @correctAudioModeSet = "正解音あり"
-          elsif params['correctAudioMode'] == "正解音なし" then
-            gon.correctAudioMode = "正解音なし"
-            @correctAudioModeSet = "正解音なし"
-          else
-            gon.correctAudioMode = "正解音あり"
-            @correctAudioModeSet = "正解音あり"
-          end
-          # ミス音の有無の判定
-          if params['incorrectAudioMode'] == "ミス音あり" then
-            gon.incorrectAudioMode = "ミス音あり"
-            @incorrectAudioModeSet = "ミス音あり"
-          elsif params['incorrectAudioMode'] == "ミス音なし" then
-            gon.incorrectAudioMode = "ミス音なし"
-            @incorrectAudioModeSet = "ミス音なし"
-          else
-            gon.incorrectAudioMode = "ミス音あり"
-            @incorrectAudioModeSet = "ミス音あり"
-          end
-    # URLから遷移した場合、タイピングコース選択画面にアクセスする。
-    else
-      redirect_to action: :typingplay_index
+        return
+      end
+      # "たね"のカードが1枚以上あるかを確認
+      tane_cards = selected_cards.where(evolevel: "たね")
+      if tane_cards.empty?
+        respond_to do |format|
+          format.json { render json: { error: 'たねポケモンを1枚以上入れてください。' }, status: :unprocessable_entity }
+        end
+        return
+      end
+
+      # 同一cardnameが3枚以上存在する場合はエラー
+      cardname_counts = selected_cards.group(:cardname).count
+      if cardname_counts.any? { |_, count| count >= 3 }
+        respond_to do |format|
+          format.json { render json: { error: '同じ名前のカードは2枚までにしてください。' }, status: :unprocessable_entity }
+        end
+        return
+      end
+      # deckidをランダムに生成（一意にするためSecureRandomを使用）
+      deckid = SecureRandom.alphanumeric(16)
+
+      # cardid1 ~ cardid20のマッピング
+      deck_data = {
+        deckid: deckid,
+        cardid1: clicked_images[0],
+        cardid2: clicked_images[1],
+        cardid3: clicked_images[2],
+        cardid4: clicked_images[3],
+        cardid5: clicked_images[4],
+        cardid6: clicked_images[5],
+        cardid7: clicked_images[6],
+        cardid8: clicked_images[7],
+        cardid9: clicked_images[8],
+        cardid10: clicked_images[9],
+        cardid11: clicked_images[10],
+        cardid12: clicked_images[11],
+        cardid13: clicked_images[12],
+        cardid14: clicked_images[13],
+        cardid15: clicked_images[14],
+        cardid16: clicked_images[15],
+        cardid17: clicked_images[16],
+        cardid18: clicked_images[17],
+        cardid19: clicked_images[18],
+        cardid20: clicked_images[19]
+      }
+
+      # Pkpkdeckinfoにデータを挿入
+      Pkpkdeckinfo.create!(deck_data)
+
+      # 成功した場合のレスポンス
+      respond_to do |format|
+        format.json { render json: { success: 'デッキが作成されました', deckid: deckid }, status: :ok }
+      end
     end
   end
 

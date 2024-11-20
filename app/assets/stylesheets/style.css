@@ -39,12 +39,12 @@ a {
   .header {
     width:100%;
     background-color: #f1f8fe;
-    padding: 20px 0;
+    padding: 10px 0;
   }
 
 @media (min-width: 1024px) {
   .header {
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     z-index: 999;
   }
@@ -60,20 +60,23 @@ a {
     .nav { /*ヘダーのロゴとナビボタン_innerの子要素*/
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      /* justify-content: space-between; */
     }
 
 
     .logo { /*ヘダー左側にあるロゴ_navの子要素*/
       width: 200px;
     }
-    .nav__left {
-      font-size: 35px;
-      width: 100px;
+    .nav_center {
+      font-size: 24px;
+      width: 800px;
       font-family:'メイリオ', 'Meiryo', sans-serif;
+      text-align: center;
+      margin: 0 auto;
     }
     .nav__center {
       margin-top:10px;
+      display: none;
     }
 
 
@@ -349,7 +352,8 @@ a {
       .nav { /*ヘダーのロゴとナビボタン_innerの子要素*/
         display: block;
       }
-      .nav__left {
+      .nav_center {
+        font-size: 24px;
         width:100%;
         text-align: center;
       }
@@ -397,7 +401,8 @@ a {
       .nav { /*ヘダーのロゴとナビボタン_innerの子要素*/
         display: block;
       }
-      .nav__left {
+      .nav_center {
+        font-size: 20px;
         width:100%;
         text-align: center;
       }
@@ -408,7 +413,7 @@ a {
 
       /*　ハンバーガーメニューボタン　*/
       .hamburger {
-        display : block;
+        display : none;
         position: fixed;
         z-index : 7;
         right : 15px;

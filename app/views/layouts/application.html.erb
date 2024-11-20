@@ -8,7 +8,11 @@
     <%= csp_meta_tag %>
     <%= favicon_link_tag('favicon.ico') %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- jQuery を最初に読み込み -->
+    <%= javascript_include_tag 'jquery', 'data-turbo-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,700,900&display=swap" rel="stylesheet">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4248933013802964"
      crossorigin="anonymous"></script>
@@ -27,8 +31,8 @@
     <header class="header">
       <div class="inner">
         <div class="nav">
-          <div class="nav__left">
-            <%= link_to "EigoMonsters", root_path, method: :get, class: :meirio %>
+          <div class="nav_center">
+            <p class="meirio">いたち杯 ポケポケデッキコード作成</p>
             <div id="hamburger" class="hamburger">
               <span></span>
               <span></span>
@@ -37,13 +41,7 @@
             <div id="grayOut" class="transparent"></div>
           </div>
           <div id="nav__center" class="nav__center">
-              <%= link_to "HOME", eigomonsters_path, method: :get, class: :nav__btn %>
-              <%= link_to "イラスト×ストーリー", illustory_path, method: :get, class: :nav__btn %>
-              <%= link_to "タイピングゲーム", typingplay_index_eigomonsters_path, method: :get, class: :nav__btn %>
-              <%= link_to "英単語リスト", eng_wordlist_index_eigomonsters_path, method: :get, class: :nav__btn %>
-              <%= link_to "お問い合わせ", contacts_path, method: :get, class: :nav__btn %>
-              <%= link_to "Twitter", 'https://twitter.com/eigomonsters',target: :blank, rel: :noopener, rel: :noreferrer, class: :nav__btnForTwitter %>
-              <%= link_to 'https://twitter.com/eigomonsters',target: :blank, rel: :noopener, rel: :noreferrer do %><%= image_tag 'twitterImage.png', class: :snsIconTwitter%> <% end %>
+              
           </div>
         </div>
       </div>

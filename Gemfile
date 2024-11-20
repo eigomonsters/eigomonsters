@@ -67,3 +67,8 @@ gem "dotenv-rails"
 gem 'rails-i18n'
 
 gem 'pg'
+
+gem 'turbo-rails'
+gem 'jquery-rails' # 必要なら
+
+gem 'rack-attack'

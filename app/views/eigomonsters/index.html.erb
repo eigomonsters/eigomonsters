@@ -1,4 +1,4 @@
-<%= provide(:title, 'イラストとストーリーで覚えるTOEIC英単語')%>
+<%= provide(:title, 'ポケポケデッキレシピ作成')%>
 <meta name="description" content="TOEICで頻出な英単語を使用したストーリーとイラストで英単語を学習できます！また、覚えた単語をタイピングゲームで復習することで定着率アップ！">
 <%# <%= javascript_pack_tag 'indexTypingMovie', 'data-turbolinks-track': 'reload' %>
 <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -14,39 +14,51 @@
 
 
 <div class="topPage">
-  <h1 class="topPageTitle">イラスト<span class="titleFontSmall">×</span>ストーリー<span class="titleFontSmall">で覚える</span><span>TOEIC英単語</span></h1>
-  <p class="topPageTitleEng">〜Learning TOEIC English Words by Illustration and Story〜</p>
-  <div class="instantPlayIllustory">
-    <%= form_with(model: :illustory, url: sec1EngtoJap_path, local: true, scope: :post) do %>
-        <input id="instantPlayIllustoryPopup" type="submit" value="イラスト×ストーリー" class= "instantPlayIllustoryPopup">
-      <div class="instantPlayIllustoryContents">
-        <p class="instantPlayIllustoryWords"><span>イラスト付きのストーリーで</span><span>TOEIC英単語を学習できます。</span></p>
-        <img src="../../assets/illustoryScreenShot.png" class="illustoryTopPage">
-        <img src="../../assets/illustoryScreenShotMobile.png" class="illustoryTopPageMobile">
-        <%# Video %> 
-        <%# <video id="japTypingMovie" src="../../assets/japTypingMovie.mp4" class="japTypingMovie" playsinline>
-          <p>ご使用のブラウザでは動画再生に対応していません</p>
-        </video> %>
-        <div class="instantPlayIllustoryDetail">
-          <p>※注意※</p>
-          <p>本サイトの「イラスト×ストーリー」は</p>
-          <p>各英単語の日本語訳を気軽に覚えられることを目的としています。</p>
-          <p>その都合上各ストーリーの英文、及び使用される英単語の一部は、</p>
-          <p>英語が堪能な方から見ると違和感を感じるものが含まれます。</p>
-          <p>上記をご了承いただける方のみ「イラスト×ストーリー」をご利用ください。</p>
+  <div class="formAndDeckAndImageListTitle">
+    <div class="formAndImageListInDeck">
+      <%= render 'search_form' %>
+      <div class="imageListInDeck">
+        <div class="adaptedDeckListTitle">
+          <div class="toggleDeckBtn" disabled><img src="../../assets/triangle.png" alt="Toggle" class="triangleDeckIcon"/><span class="deckTitleText">デッキ</span></div>
+        </div>
+        <div class="deckInfoBox">
+          <div class="eachImageInDeckBox">
+            <div class="eachImageInDeck"></div>
+          </div>
+          <div class="deckNumAndRegisterBtn">
+            <p class="deckNumTextBox"><span class="deckNumText">0</span>/20</p>
+            <button class="registerBtn">デッキコード作成</button>
+            <button class="resetBtn">リセット</button>
+          </div>
         </div>
       </div>
-    <% end %>
+    </div>
+    <div class="errorMessages">
+      <p class="totalDeckNumError">デッキ枚数を20枚ちょうどにしてください。</p>
+      <p class="noTanePokemonError">たねポケモンを1枚以上入れてください。</p>
+      <p class="sameCardNumError">同じ名前のカードは2枚までにしてください。</p>
+    </div>
+    <div class="cardImageListTitle">
+    <p>カード一覧</p>
+    </div>
   </div>
-  <div class="mobileAppWord">
-    <p>SCENE6以降は</p>
-    <p>スマホアプリでお楽しみください！！</p>
+  <div id="search-results">
+    <%= render partial: 'searched_card_list', locals: { searchedCardList: @searchedCardList } %>
   </div>
-  <div class="mobileAppLink">
-    <a href="https://apps.apple.com/jp/app/eigomonsters/id1644090345?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 83px;" target="_blank"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/ja-jp?size=250x83&amp;releaseDate=1662854400&h=d1c71963a0904307b1d65eebfd26b750" alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 83px;"></a>
-  </div>
-  <div class="mobilePolicy">
-    <p>スマホアプリの</p>
-    <p class="mobilePolicyLink"><%= link_to "ご利用規約・プライバシーポリシー", mobilePolicy_eigomonsters_path, method: :get, class: :mobliePolicyLink %></p>
+  <div class="modal" id="popupModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal">
+        <img src="../../assets/closeBtn.png" alt="閉じる" />
+      </button>
+      <h3>以下の内容でデッキコードを作成しますか。</h3>
+        <div class="eachImageInDeckBoxPopup">
+          <div class="eachImageInDeckPopup"></div>
+        </div>
+        <button class="createDeckCodeBtn">デッキコード作成</button>
+        <p class="createdDeckCodeTextTitle">作成したデッキコード(有効期間1ヶ月)</p>
+        <p class="createdDeckCode"></p>
+        <button class="copyDeckCodeBtn">コピー</button>
+        <p class="copySuccessMessage">デッキコードがコピーされました！<br>トナメルに貼り付けしエントリーしてください。</p> 
+    </div>
   </div>
 </div>

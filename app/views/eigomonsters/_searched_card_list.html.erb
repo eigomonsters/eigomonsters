@@ -1,0 +1,14 @@
+<div class="cardImageList">
+  <% searchedCardList.each do |card| %>
+    <div class="eachImageContainer">
+      <!-- 画像が存在するかをチェック -->
+      <% if File.exist?(Rails.root.join('app', 'assets', 'images', "#{card.cardid}.png")) %>
+        <img src="../../assets/<%= card.cardid %>.png" class="cardImage">
+      <% else %>
+        <!-- 画像がない場合の表示 -->
+      <% end %>
+      <span class="adaptNum">0</span>
+      <button class="addBtn">追加</button>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,51 @@
+<div class="form-container">
+  <%= form_with(url: search_eigomonsters_path, local: true, method: :get, class: "search-form") do |form| %>
+    <div class="searchTitle">
+      <div class="toggleSearchBtn" disabled><img src="../../assets/triangle.png" alt="Toggle" class="triangleSearchIcon"/><span class="searchTitleText">検索条件</span></div>
+    </div>
+    <div class="searchInfoBox">
+      <div class="radioLargeCategory">
+          <div class="dispCardLargeCategory"><input type="radio" name="dispCardLargeCategory" value="すべて" <% if @dispCardLargeCategorySet == "すべて" then %> checked <%end%>><label>すべて</label></div>
+          <div class="dispCardLargeCategory"><input type="radio" name="dispCardLargeCategory" value="ポケモン" <% if @dispCardLargeCategorySet == "ポケモン" then %> checked <%end%>><label>ポケモン</label></div>
+          <div class="dispCardLargeCategory"><input type="radio" name="dispCardLargeCategory" value="トレーナーズ" <% if @dispCardLargeCategorySet == "トレーナーズ" then %> checked <%end%>><label>トレーナーズ</label></div>
+      </div>
+      <div class="search-container">
+        <%= form.text_field :keyword, placeholder: "カード名", value: @keyword, class: "search-input" %>
+        <button type="button" class="clear-btn">×</button>
+      </div>
+      <div class="typeCategory">
+        <button type="button" class="poketypeImageButton <%= 'selected' if @poketype.to_a.include?('草') %>" data-poketype="草">
+          <img src="../../assets/kusaEne.png" alt="Type Image" class="poketypeImage">
+        </button>
+        <button type="button" class="poketypeImageButton <%= 'selected' if @poketype.to_a.include?('炎') %>" data-poketype="炎">
+          <img src="../../assets/honoEne.png" alt="Type Image" class="poketypeImage">
+        </button>
+        <button type="button" class="poketypeImageButton <%= 'selected' if @poketype.to_a.include?('水') %>" data-poketype="水">
+          <img src="../../assets/mizuEne.png" alt="Type Image" class="poketypeImage">
+        </button>
+        <button type="button" class="poketypeImageButton <%= 'selected' if @poketype.to_a.include?('雷') %>" data-poketype="雷">
+          <img src="../../assets/kaminariEne.png" alt="Type Image" class="poketypeImage">
+        </button>
+        <button type="button" class="poketypeImageButton <%= 'selected' if @poketype.to_a.include?('超') %>" data-poketype="超">
+          <img src="../../assets/choEne.png" alt="Type Image" class="poketypeImage">
+        </button>
+        <button type="button" class="poketypeImageButton <%= 'selected' if @poketype.to_a.include?('闘') %>" data-poketype="闘">
+          <img src="../../assets/touEne.png" alt="Type Image" class="poketypeImage">
+        </button>
+        <button type="button" class="poketypeImageButton <%= 'selected' if @poketype.to_a.include?('悪') %>" data-poketype="悪">
+          <img src="../../assets/akuEne.png" alt="Type Image" class="poketypeImage">
+        </button>
+        <button type="button" class="poketypeImageButton <%= 'selected' if @poketype.to_a.include?('鋼') %>" data-poketype="鋼">
+          <img src="../../assets/haganeEne.png" alt="Type Image" class="poketypeImage">
+        </button>
+        <button type="button" class="poketypeImageButton <%= 'selected' if @poketype.to_a.include?('竜') %>" data-poketype="竜">
+          <img src="../../assets/ryuEne.png" alt="Type Image" class="poketypeImage">
+        </button>
+        <button type="button" class="poketypeImageButton <%= 'selected' if @poketype.to_a.include?('無') %>" data-poketype="無">
+          <img src="../../assets/muEne.png" alt="Type Image" class="poketypeImage">
+        </button>
+      </div>
+      <%= form.hidden_field :poketype, value: @poketype.to_a.join(','), id: "poketypeField" %>
+    </div>
+  <% end %>
+</div>
