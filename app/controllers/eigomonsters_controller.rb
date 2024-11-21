@@ -108,6 +108,40 @@ class EigomonstersController < ApplicationController
         end
         return
       end
+
+      # カード内容が同じデッキを検索
+      existing_deck = Pkpkdeckinfo.find_by(
+        cardid1: clicked_images[0],
+        cardid2: clicked_images[1],
+        cardid3: clicked_images[2],
+        cardid4: clicked_images[3],
+        cardid5: clicked_images[4],
+        cardid6: clicked_images[5],
+        cardid7: clicked_images[6],
+        cardid8: clicked_images[7],
+        cardid9: clicked_images[8],
+        cardid10: clicked_images[9],
+        cardid11: clicked_images[10],
+        cardid12: clicked_images[11],
+        cardid13: clicked_images[12],
+        cardid14: clicked_images[13],
+        cardid15: clicked_images[14],
+        cardid16: clicked_images[15],
+        cardid17: clicked_images[16],
+        cardid18: clicked_images[17],
+        cardid19: clicked_images[18],
+        cardid20: clicked_images[19]
+      )
+
+      if existing_deck
+        # 一致するデッキが既に存在する場合、そのdeckidを返す
+        respond_to do |format|
+          format.json { render json: { success: 'デッキが作成されました', deckid: existing_deck.deckid }, status: :ok }
+        end
+        return
+      end
+
+      
       # deckidをランダムに生成（一意にするためSecureRandomを使用）
       deckid = SecureRandom.alphanumeric(16)
 

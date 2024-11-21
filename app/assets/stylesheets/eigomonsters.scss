@@ -2039,6 +2039,11 @@ meter::-webkit-meter-optimum-value {
     overflow: hidden; /* 要素がはみ出さないように設定 */
     transition: max-height 0.3s ease; /* スライドアニメーション */
   }
+  .deckNumInTitle {
+    display: none;
+    width: 60px;
+    height: 20px;
+  }
   .deckInfoBox.collapsed {
     max-height: 0px; /* 必要に応じて調整 */
   }
@@ -2333,6 +2338,14 @@ meter::-webkit-meter-optimum-value {
       flex-grow: 1; /* 残りのスペースを埋める */
       text-align: center; /* 文字を中央揃え */
     }
+    .deckNumInTitle {
+      display: none;
+      position: absolute;
+      right: 5px;
+      width: 60px;
+      height: 20px;
+      transition: transform 0.3s ease; /* 回転アニメーション */
+    }
     .imageListInDeck {
       width: 100%;
       // height: 250px;
@@ -2351,7 +2364,7 @@ meter::-webkit-meter-optimum-value {
     }
     .adaptNum {
       position: absolute;
-      bottom: 30px; /* 画像の下から10pxの位置に配置 */
+      bottom: 40px; /* 画像の下から10pxの位置に配置 */
       left: 50%;
       transform: translateX(-50%); /* 水平中央に配置 */
       padding: 5px 15px;
@@ -2360,6 +2373,9 @@ meter::-webkit-meter-optimum-value {
       border: none;
       border-radius: 5px;
     }
+    .resetBtn {
+      font-size: 9px;
+      }
   }
 
   @media (max-width: 599px) {

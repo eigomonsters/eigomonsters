@@ -114,6 +114,7 @@ import './search';
     const createDeckCodeBtn = document.querySelector(".createDeckCodeBtn");
     const toggleDeckBtn = document.querySelector(".toggleDeckBtn");
     const triangleDeckIcon = document.querySelector(".triangleDeckIcon");
+    const deckNumInTitle = document.querySelector(".deckNumInTitle");
     const deckInfoBox = document.querySelector(".deckInfoBox");
     const toggleSearchBtn = document.querySelector(".toggleSearchBtn");
     const triangleSearchIcon = document.querySelector(".triangleSearchIcon");
@@ -371,8 +372,10 @@ import './search';
       // 三角形の向きを切り替え
       if (isExpanded) {
         triangleDeckIcon.classList.remove("rotated");
+        deckNumInTitle.style.display = "none";
       } else {
         triangleDeckIcon.classList.add("rotated");
+        deckNumInTitle.style.display = "inline-block";
       }
     });
 
