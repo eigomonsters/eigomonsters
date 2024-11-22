@@ -93,11 +93,12 @@ import './search';
     });
 
     // その他の処理（追加ボタン、画像の管理など）についてはそのまま...
-    const addButtons = document.querySelectorAll('.addBtn');
+    // const addButtons = document.querySelectorAll('.addBtn');
     const deckNumText = document.querySelector('.deckNumText');
     const clickedImages = [];
     const eachImageInDeck = document.querySelector('.eachImageInDeck');
     const form = document.querySelector('.search-form');
+    const typeCategory = document.querySelector('.typeCategory');
     const poketypeButtons = document.querySelectorAll('.poketypeImageButton');
     const poketypeField = document.getElementById('poketypeField');
     const largeCategoryRadios = document.querySelectorAll('input[name="dispCardLargeCategory"]');
@@ -150,7 +151,7 @@ import './search';
         debounceTimeout = setTimeout(func, delay);
     }
 
-    initAddButtons();
+    initCardImageClicks();
 
     // 初期表示ではすべてのpoketypeを表示
     poketypeButtons.forEach(button => {
@@ -182,7 +183,30 @@ import './search';
     // ラジオボタン変更時のイベント
     largeCategoryRadios.forEach(radio => {
       radio.addEventListener('change', function() {
-          sendAjaxRequest();
+        // ラジオボタンの値を取得
+        const selectedValue = this.value;
+
+        // "トレーナーズ"が選択された場合、全てのpoketypeButtonsからselectedをremove
+        if (selectedValue === "トレーナーズ") {
+            poketypeButtons.forEach(button => {
+              button.classList.remove('selected');
+              button.disabled = true; // ボタンを無効化
+              button.classList.add('disabled'); // 透明化用のCSSクラスを追加
+            });
+
+            // poketypeFieldの値もクリア
+            const poketypeField = document.getElementById("poketypeField");
+            if (poketypeField) {
+                poketypeField.value = '';
+            }
+        } else {
+            poketypeButtons.forEach(button => {
+            button.disabled = false; // ボタンを有効化
+            button.classList.remove('disabled'); // CSSクラスを削除
+        });
+        }
+
+        sendAjaxRequest();
       });
     });
 
@@ -431,101 +455,107 @@ import './search';
     // adaptNumの更新処理を別の関数として切り分け
     function updateAdaptNum(clickedImages) {
       // 各画像IDの出現回数をカウントする
-      const imageCount = clickedImages.reduce(function(counts, imageSrc) {
-          counts[imageSrc] = (counts[imageSrc] || 0) + 1;
-          return counts;
+      const imageCount = clickedImages.reduce(function (counts, imageSrc) {
+        counts[imageSrc] = (counts[imageSrc] || 0) + 1;
+        return counts;
       }, {});
-  
+    
       // 各カードの adaptNum を更新
       const allEachImageContainers = document.querySelectorAll('.eachImageContainer');
-      allEachImageContainers.forEach(function(container) {
-          const imgInContainer = container.querySelector('img');
-          const adaptNum = container.querySelector('.adaptNum');
-          const addBtn = container.querySelector('.addBtn');
-          const imageId = imgInContainer.getAttribute('src').split('/').pop().replace('.png', ''); // 画像IDを取得
-  
-          // clickedImages内での出現回数に基づいてadaptNumを更新
-          const currentCount = imageCount[imageId] || 0;  // clickedImages内での出現回数を取得（なければ0）
-  
-          adaptNum.textContent = currentCount; // adaptNumを更新
-
-          // 0の場合は非表示
-          if (parseInt(adaptNum.textContent) === 0) {
-            adaptNum.classList.add('hidden');
-          } else {
-              adaptNum.classList.remove('hidden');
-          }
-          // 2の場合はボタンを無効化
-          if (parseInt(adaptNum.textContent) === 2) {
-            addBtn.disabled = true;
-          } else {
-            addBtn.disabled = false;
-          }
+      allEachImageContainers.forEach(function (container) {
+        const imgInContainer = container.querySelector('img');
+        const adaptNum = container.querySelector('.adaptNum');
+        const imageId = imgInContainer.getAttribute('src').split('/').pop().replace('.png', ''); // 画像IDを取得
+    
+        // clickedImages内での出現回数に基づいてadaptNumを更新
+        const currentCount = imageCount[imageId] || 0; // clickedImages内での出現回数を取得（なければ0）
+    
+        adaptNum.textContent = currentCount; // adaptNumを更新
+    
+        // adaptNumが0の場合は非表示、それ以外は表示
+        if (currentCount === 0) {
+          adaptNum.classList.add('hidden');
+        } else {
+          adaptNum.classList.remove('hidden');
+        }
+    
+        // クリック可能状態の制御
+        if (currentCount === 2) {
+          imgInContainer.classList.add('disabled'); // クリック不可状態を視覚的に反映
+          imgInContainer.style.pointerEvents = 'none'; // クリックイベントを無効化
+        } else {
+          imgInContainer.classList.remove('disabled');
+          imgInContainer.style.pointerEvents = 'auto'; // クリックイベントを有効化
+        }
       });
     }
 
     function updateDeckNumText() {
       const total = clickedImages.length; // clickedImages の要素数で total を設定
-      const addButtons = document.querySelectorAll('.addBtn');
       deckNumText.textContent = total; // total を表示
-  
-      // deckNumText の値が 20 の場合、すべての addBtn を無効化
+    
+      // total が 20 の場合、すべての画像をクリック不可にする
+      const allImages = document.querySelectorAll('.eachImageContainer img');
+      
       if (total === 20) {
-          addButtons.forEach(function(button) {
-              button.disabled = true;
-          });
+        allImages.forEach(function (img) {
+          img.style.pointerEvents = 'none'; // クリックイベントを無効化
+          img.classList.add('disabled'); // 視覚的にクリック不可状態にする
+        });
       } else {
-          addButtons.forEach(function(button) {
-              const container = button.closest('.eachImageContainer');
-              const adaptNum = container.querySelector('.adaptNum');
-              const currentValue = parseInt(adaptNum.textContent) || 0;
-  
-              // adaptNum の値が 2 未満の場合はボタンを有効化
-              if (currentValue < 2) {
-                  button.disabled = false;
-              } else {
-                button.disabled = true;
-              }
-          });
+        allImages.forEach(function (img) {
+          const container = img.closest('.eachImageContainer');
+          const adaptNum = container.querySelector('.adaptNum');
+          const currentValue = parseInt(adaptNum.textContent) || 0;
+    
+          // adaptNum の値が 2 未満の場合はクリック可能にする
+          if (currentValue < 2) {
+            img.style.pointerEvents = 'auto'; // クリックイベントを有効化
+            img.classList.remove('disabled'); // 視覚的にクリック可能にする
+          } else {
+            img.style.pointerEvents = 'none'; // クリックイベントを無効化
+            img.classList.add('disabled'); // 視覚的にクリック不可状態にする
+          }
+        });
       }
     }
 
 
-    // 初期化の処理 (カードの追加ボタンのイベント)
-    function initAddButtons() {
-      const addButtons = document.querySelectorAll('.addBtn');
-      addButtons.forEach(function(button) {
-          button.addEventListener('click', function() {
-              const container = this.closest('.eachImageContainer');
-              const adaptNum = container.querySelector('.adaptNum');
-              const imgElement = container.querySelector('img');
-  
-              // imgのsrcからファイル名の番号部分を抽出
-              const src = imgElement.getAttribute('src');
-              const fileNumber = src.match(/(\d+)\.png$/);
-  
-              if (fileNumber) {
-                const fileName = fileNumber[1];
-                clickedImages.push(fileName);
+    // 初期化の処理 (画像のクリックイベント)
+  function initCardImageClicks() {
+    const cardImages = document.querySelectorAll('.cardImage.clickable');
 
-                // ソート（数値順）
-                clickedImages.sort(function(a, b) {
-                    const numA = parseInt(a.match(/\d+/)[0], 10);
-                    const numB = parseInt(b.match(/\d+/)[0], 10);
-                    return numA - numB;
-                });
-              }
-  
-              // adaptNum を更新
-              updateAdaptNum(clickedImages);
-  
-              // deckNumText の値を更新
-              updateDeckNumText();
-  
-              // クリックされた画像を表示
-              updateImageDisplay();
+    cardImages.forEach(function (image) {
+      image.addEventListener('click', function () {
+        const container = this.closest('.eachImageContainer');
+        const adaptNum = container.querySelector('.adaptNum');
+
+        // imgのsrcからファイル名の番号部分を抽出
+        const src = image.getAttribute('src');
+        const fileNumber = src.match(/(\d+)\.png$/);
+
+        if (fileNumber) {
+          const fileName = fileNumber[1];
+          clickedImages.push(fileName);
+
+          // ソート（数値順）
+          clickedImages.sort(function (a, b) {
+            const numA = parseInt(a.match(/\d+/)[0], 10);
+            const numB = parseInt(b.match(/\d+/)[0], 10);
+            return numA - numB;
           });
+        }
+
+        // adaptNum を更新
+        updateAdaptNum(clickedImages);
+
+        // deckNumText の値を更新
+        updateDeckNumText();
+
+        // クリックされた画像を表示
+        updateImageDisplay();
       });
+    });
   }
 
   // Ajaxリクエストを送信する関数
@@ -547,7 +577,7 @@ import './search';
         document.getElementById('search-results').innerHTML = data;
         
         // addBtnの無効化解除を含む処理を呼び出す
-        initAddButtons();   // addBtnのイベントリスナーを再バインド
+        initCardImageClicks();   // addBtnのイベントリスナーを再バインド
         // adaptNum を更新
         updateAdaptNum(clickedImages);
         updateDeckNumText();

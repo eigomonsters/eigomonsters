@@ -7,25 +7,30 @@ class EigomonstersController < ApplicationController
   
     normalized_keyword = @keyword.tr('ぁ-ん', 'ァ-ン')
     reversed_keyword = @keyword.tr('ァ-ン', 'ぁ-ん')
-  
-    if @poketype.any? && @keyword.present?
-      @searchedCardList = Pkpkcardinfo.where("cardname LIKE ? OR cardname LIKE ?", "%#{normalized_keyword}%", "%#{reversed_keyword}%")
-                                          .where(poketype: @poketype)
-                                          .order(cardid: :asc)
-    elsif @keyword.present?
-      @searchedCardList = Pkpkcardinfo.where("cardname LIKE ? OR cardname LIKE ?", "%#{normalized_keyword}%", "%#{reversed_keyword}%")
-                                          .order(cardid: :asc)
-    elsif @poketype.any?
-      @searchedCardList = Pkpkcardinfo.where(poketype: @poketype)
-                                          .order(cardid: :asc)
+
+    # カテゴリーで絞り込み
+    if @dispCardLargeCategorySet == "ポケモン"
+      @searchedCardList = Pkpkcardinfo.where(category: "ポケモン")
+    elsif @dispCardLargeCategorySet == "トレーナーズ"
+      @searchedCardList = Pkpkcardinfo.where.not(category: "ポケモン")
+      @poketype = []
     else
       @searchedCardList = Pkpkcardinfo.all.order(cardid: :asc)
     end
   
-    if @dispCardLargeCategorySet == "ポケモン"
-      @searchedCardList = @searchedCardList.where(category: "ポケモン")
-    elsif @dispCardLargeCategorySet == "トレーナーズ"
-      @searchedCardList = @searchedCardList.where.not(category: "ポケモン")
+    # タイプと検索ワードで絞り込み
+    if @poketype.any? && @keyword.present?
+      @searchedCardList = @searchedCardList.where("cardname LIKE ? OR cardname LIKE ?", "%#{normalized_keyword}%", "%#{reversed_keyword}%")
+                                          .where(poketype: @poketype)
+                                          .order(cardid: :asc)
+    elsif @keyword.present?
+      @searchedCardList = @searchedCardList.where("cardname LIKE ? OR cardname LIKE ?", "%#{normalized_keyword}%", "%#{reversed_keyword}%")
+                                          .order(cardid: :asc)
+    elsif @poketype.any?
+      @searchedCardList = @searchedCardList.where(poketype: @poketype)
+                                          .order(cardid: :asc)
+    else
+      @searchedCardList = @searchedCardList.all.order(cardid: :asc)
     end
   
     respond_to do |format|
@@ -141,7 +146,7 @@ class EigomonstersController < ApplicationController
         return
       end
 
-      
+
       # deckidをランダムに生成（一意にするためSecureRandomを使用）
       deckid = SecureRandom.alphanumeric(16)
 
