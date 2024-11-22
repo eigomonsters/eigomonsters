@@ -95,6 +95,7 @@ import './search';
     // その他の処理（追加ボタン、画像の管理など）についてはそのまま...
     // const addButtons = document.querySelectorAll('.addBtn');
     const deckNumText = document.querySelector('.deckNumText');
+    const deckNumTextInTitle = document.querySelector('.deckNumTextInTitle');
     const clickedImages = [];
     const eachImageInDeck = document.querySelector('.eachImageInDeck');
     const form = document.querySelector('.search-form');
@@ -493,6 +494,7 @@ import './search';
     function updateDeckNumText() {
       const total = clickedImages.length; // clickedImages の要素数で total を設定
       deckNumText.textContent = total; // total を表示
+      deckNumTextInTitle.textContent = total; // total を表示
     
       // total が 20 の場合、すべての画像をクリック不可にする
       const allImages = document.querySelectorAll('.eachImageContainer img');
