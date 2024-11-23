@@ -45,9 +45,41 @@ class EigomonstersController < ApplicationController
     @dispCardLargeCategorySet = "すべて"
   end
 
+  def decklistsort
+    # ソート順
+    category_order = ["ポケモン", "グッズ", "サポート"];
+    poketype_order = ["草", "炎", "水", "雷", "超", "闘", "悪", "鋼", "竜", "無"];
+    @clicked_images = params[:clicked_images] || []  # clickedImagesを取得
+    # SQLのFIELD関数を利用してカスタム順序でソート
+    if @clicked_images.any?
+      @pkpkcardinfos = Pkpkcardinfo
+      .where(cardid: @clicked_images)
+      .select(:cardid, :category, :poketype)
+      .order(
+        Arel.sql(
+          "CASE category " +
+          category_order.map.with_index { |cat, idx| "WHEN '#{cat}' THEN #{idx}" }.join(" ") +
+          " END ASC, " +
+          "CASE poketype " +
+          poketype_order.map.with_index { |type, idx| "WHEN '#{type}' THEN #{idx}" }.join(" ") +
+          " END ASC, " +
+          "cardid ASC"
+        )
+      )
+      # ソートされたカード情報を元に重複を保持した@clicked_imagesを作成
+      sorted_cardids = @pkpkcardinfos.map(&:cardid)
+      # クリックされた順番に並べ直す
+      @clicked_images = @clicked_images.sort_by { |cardid| sorted_cardids.index(cardid) }
+    end
+  
+    # 成功した場合のレスポンス
+    respond_to do |format|
+      format.json { render json: { success: 'ソート成功', clicked_images: @clicked_images }, status: :ok }
+    end
+  end
+
   def tanecheck
     clicked_images = params[:clicked_images] || []  # clickedImagesを取得
-  
     # もしclicked_imagesが空でない場合、evolevelが「たね」のカードをフィルタリング
     if clicked_images.any?
       # デッキに「たねポケモン」が含まれているかチェック
@@ -68,10 +100,13 @@ class EigomonstersController < ApplicationController
     if clicked_images.any?
       # デッキに含まれるカード情報を取得
       selected_cards = Pkpkcardinfo.where(cardid: clicked_images)
-  
-      # 各cardnameの出現回数をカウント
-      cardname_counts = selected_cards.group(:cardname).count
-  
+
+      # `clicked_images` 内のcardidと対応するcardnameを取得
+      cardid_to_cardname = selected_cards.pluck(:cardid, :cardname).to_h
+
+      # `clicked_images` に基づいてcardnameの出現回数をカウント
+      cardname_counts = clicked_images.map { |cardid| cardid_to_cardname[cardid] }.tally
+
       # 同一cardnameが3枚以上存在する場合にエラー
       errorCount = cardname_counts.any? { |_, count| count >= 3 } ? 1 : 0
     else

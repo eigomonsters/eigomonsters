@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       post 'tanecheck'
       post 'samecardcheck'
       post 'createdeckcode'
+      post 'decklistsort'
       # get 'mobilePolicy'
     end
   end

@@ -96,7 +96,7 @@ import './search';
     // const addButtons = document.querySelectorAll('.addBtn');
     const deckNumText = document.querySelector('.deckNumText');
     const deckNumTextInTitle = document.querySelector('.deckNumTextInTitle');
-    const clickedImages = [];
+    let clickedImages = [];
     const eachImageInDeck = document.querySelector('.eachImageInDeck');
     const form = document.querySelector('.search-form');
     const typeCategory = document.querySelector('.typeCategory');
@@ -121,6 +121,7 @@ import './search';
     const toggleSearchBtn = document.querySelector(".toggleSearchBtn");
     const triangleSearchIcon = document.querySelector(".triangleSearchIcon");
     const searchInfoBox = document.querySelector(".searchInfoBox");
+
 
     // ポップアップを閉じるボタンの処理
     closeModal.addEventListener("click", () => {
@@ -539,23 +540,40 @@ import './search';
         if (fileNumber) {
           const fileName = fileNumber[1];
           clickedImages.push(fileName);
+          // console.log(clickedImages);
 
-          // ソート（数値順）
-          clickedImages.sort(function (a, b) {
-            const numA = parseInt(a.match(/\d+/)[0], 10);
-            const numB = parseInt(b.match(/\d+/)[0], 10);
-            return numA - numB;
+          // ソート
+          // サーバーにリクエストを送信するPromise
+          const deckListSortedPromise = fetch('/eigomonsters/decklistsort', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              clicked_images: clickedImages,
+            }),
+          })
+          .then((response) => response.json())
+          .then((data) => {
+            clickedImages = data.clicked_images;
+          });
+
+          // 全ての非同期処理を待機
+          Promise.all([deckListSortedPromise])
+          .then(() => {
+            // adaptNum を更新
+            updateAdaptNum(clickedImages);
+
+            // deckNumText の値を更新
+            updateDeckNumText();
+
+            // クリックされた画像を表示
+            updateImageDisplay();
+          })
+          .catch((error) => {
+            // console.error('エラーが発生しました:', error);
           });
         }
-
-        // adaptNum を更新
-        updateAdaptNum(clickedImages);
-
-        // deckNumText の値を更新
-        updateDeckNumText();
-
-        // クリックされた画像を表示
-        updateImageDisplay();
       });
     });
   }
