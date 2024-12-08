@@ -2030,8 +2030,13 @@ meter::-webkit-meter-optimum-value {
     font-weight: 500;
     text-align: center;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     margin-bottom: 10px;
+    display: flex;
+  }
+  .toggleDeckBtn {
+    align-items: center; /* 子要素を垂直方向に中央揃え */
+    width: 100%; /* 親の幅を占める */
   }
   .triangleDeckIcon {
     display: none;
@@ -2039,6 +2044,21 @@ meter::-webkit-meter-optimum-value {
     height: 20px;
     transition: transform 0.3s ease; /* 回転アニメーション */
   }
+  .searchDeckContainer {
+    display: flex;
+    flex-direction: column; /* 垂直方向に要素を並べる */
+  }
+  .searchDeckForm {
+    display: flex;
+    align-items: center;
+  }
+  .searchDeckInput {
+    // background: rgb(255, 255, 255);
+    width:160px;
+  }
+  .searchDeckInput:focus {
+    outline: none; /* 独自のフォーカススタイルを適用 */
+}
   .deckInfoBox {
     max-height: 200px; /* 初期状態では非表示 */
     overflow: hidden; /* 要素がはみ出さないように設定 */
@@ -2049,6 +2069,12 @@ meter::-webkit-meter-optimum-value {
     width: 60px;
     height: 20px;
   }
+  .deckSearchBtn {
+    cursor: pointer;
+    font-size: 12px;
+    width: 40px;
+  }
+  
   .deckInfoBox.collapsed {
     max-height: 0px; /* 必要に応じて調整 */
   }

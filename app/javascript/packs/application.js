@@ -8,6 +8,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 //= require search
+//= require rails-ujs
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -76,6 +77,9 @@ import './search';
     });
   });
 
+  // デッキコード検索
+  // document.querySelector('#deck').innerHTML = "<%= escape_javascript(render partial: 'result', locals: { keyword: @deckKeyword }) %>";
+
 
 
   document.addEventListener("DOMContentLoaded", function() {
@@ -110,6 +114,7 @@ import './search';
     const totalDeckNumError = document.querySelector('.totalDeckNumError');
     const noTanePokemonError = document.querySelector('.noTanePokemonError');
     const sameCardNumError = document.querySelector('.sameCardNumError');
+    const notFoundDeckError = document.querySelector('.notFoundDeckError');
     const modal = document.getElementById('popupModal');
     const closeModal = document.getElementById('closeModal');
     const eachImageInDeckPopup = document.querySelector('.eachImageInDeckPopup');
@@ -121,6 +126,9 @@ import './search';
     const toggleSearchBtn = document.querySelector(".toggleSearchBtn");
     const triangleSearchIcon = document.querySelector(".triangleSearchIcon");
     const searchInfoBox = document.querySelector(".searchInfoBox");
+    const deckSearchBtn = document.querySelector(".deckSearchBtn");
+    const deckKeyword = document.querySelector('.searchDeckInput').value = "";
+    const searchDeckInput = document.querySelector('.searchDeckInput');
 
 
     // ポップアップを閉じるボタンの処理
@@ -226,6 +234,7 @@ import './search';
       totalDeckNumError.style.display = 'none';
       noTanePokemonError.style.display = 'none';
       sameCardNumError.style.display = 'none';
+      notFoundDeckError.style.display = 'none';
       errorMessages.style.display = 'none';
     
       // 20枚以下の場合
@@ -410,7 +419,7 @@ import './search';
       eachImageInDeckPopup.innerHTML = ''; // 一度クリア
       clickedImages.forEach((imageId) => {
         // 画像のパスを作成
-        const imageSrc = `../../assets/${imageId}.png`;
+        const imageSrc = `https://itachihai-card-images.s3.ap-northeast-1.amazonaws.com/cardimages/${imageId}.png`;
 
         // 画像要素を生成
         const imgElement = document.createElement('img');
@@ -427,7 +436,7 @@ import './search';
   
       clickedImages.forEach(function(imageId, index) {
           // 画像のパスを作成
-          const imageSrc = `../../assets/${imageId}.png`;
+          const imageSrc = `https://itachihai-card-images.s3.ap-northeast-1.amazonaws.com/cardimages/${imageId}.png`;
   
           const imgElement = document.createElement('img');
           imgElement.src = imageSrc;
@@ -452,8 +461,70 @@ import './search';
       updateDeckNumText();
     }
 
+
+    // デッキ検索押下時の処理
+    deckSearchBtn.addEventListener('click', function () {
+      const deckKeyword = document.querySelector('.searchDeckInput').value; // キーワードを取得
+      // エラーメッセージを非表示に変更
+      errorMessages.style.display = 'none';
+      notFoundDeckError.style.display = 'none';
+
+      // キーワードが空でない場合にのみリクエストを送信
+      if (deckKeyword) {
+        // サーバーにリクエストを送信するPromise
+        fetch('/eigomonsters/searchdeck', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            deckKeyword: deckKeyword,
+          }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.clicked_images && data.clicked_images.length > 0) {
+            // 入力済みのカードをクリア
+            eachImageInDeck.innerHTML = '';
+            clickedImages.length = 0; 
+            // 要素を一つずつデッキに格納
+            data.clicked_images.forEach(function (imageId, index) {
+              // 画像のパスを作成
+              const imageSrc = `https://itachihai-card-images.s3.ap-northeast-1.amazonaws.com/cardimages/${imageId}.png`;
+      
+              const imgElement = document.createElement('img');
+              imgElement.src = imageSrc;
+              imgElement.alt = 'クリックした画像';
+      
+              eachImageInDeck.appendChild(imgElement);
+              clickedImages.push(imageId);
+            });
+            // adaptNum を更新
+            updateAdaptNum(clickedImages);
+
+            // deckNumText の値を更新
+            updateDeckNumText();
+
+            // クリックされた画像を表示
+            updateImageDisplay();
+          } else {
+            errorMessages.style.display = 'block';
+            notFoundDeckError.style.display = 'block';
+          }
+        });
+      }
+    });
+
+    // デッキ検索Enterキー押下時に検索ボタンのクリック処理を呼び出す
+    searchDeckInput.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+        deckSearchBtn.click();
+      }
+    });
+
     // 初期処理として実施
     updateAdaptNum(clickedImages);
+
     // adaptNumの更新処理を別の関数として切り分け
     function updateAdaptNum(clickedImages) {
       // 各画像IDの出現回数をカウントする
@@ -491,7 +562,7 @@ import './search';
         }
       });
     }
-
+    // 採用カード枚数を更新
     function updateDeckNumText() {
       const total = clickedImages.length; // clickedImages の要素数で total を設定
       deckNumText.textContent = total; // total を表示

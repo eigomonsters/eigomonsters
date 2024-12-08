@@ -38,6 +38,29 @@ class EigomonstersController < ApplicationController
     end
   end
 
+  def searchdeck
+    @deckKeyword = params[:deckKeyword]
+    clicked_images = []
+
+    if @deckKeyword.present?
+      deck_cards = Pkpkdeckinfo.where(deckid: @deckKeyword)
+      if deck_cards.any?
+        # 各カードのcardid1~cardid20を抽出
+        deck_cards.each do |deck|
+          (1..20).each do |i|
+            card_id = deck.send("cardid#{i}")
+            # 値が存在すれば配列に追加
+            clicked_images << card_id if card_id.present?
+          end
+        end
+      end
+    end
+    # チェック結果をJSONとして返す（エラーメッセージを返すため）
+    respond_to do |format|
+      format.json { render json: { success: 'デッキが見つかりました', clicked_images: clicked_images }, status: :ok }
+    end
+  end
+
   def index
     @poketype = []
     @keyword = ""

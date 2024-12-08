@@ -7,7 +7,14 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  // // Rubyから渡されたclicked_imagesをJavaScript変数に代入
+  // const clickedDeckImages = <%= j @clicked_images_json %>;
 
+  // // デバッグ用にconsole.logを使用
+  // console.log(clickedDeckImages);
+
+  // // 必要なJavaScript関数を呼び出す
+  // updateSearchedDeckImageDisplay(clickedDeckImages);
   gtag('config', 'G-SCT4G2G6T4');
 </script>
 
@@ -20,6 +27,12 @@
       <div class="imageListInDeck">
         <div class="adaptedDeckListTitle">
           <div class="toggleDeckBtn" disabled><img src="../../assets/triangle.png" alt="Toggle" class="triangleDeckIcon"/><span class="deckTitleText">デッキ<span class="deckNumInTitle"><span class="deckNumTextInTitle">0</span>/20</span></span></div>
+            <div class="searchDeckContainer">
+            <%= form_with(url: searchdeck_eigomonsters_path, local: true, method: :get, class: "searchDeckForm", data: { remote: true }) do |form| %>
+              <%= form.text_field :keyword, placeholder: "デッキコード検索", value: @deckKeyword, class: "searchDeckInput" %>
+              <button type="button" class="deckSearchBtn">検索</button>
+            <% end %>
+          </div>
         </div>
         <div class="deckInfoBox">
           <div class="eachImageInDeckBox">
@@ -37,6 +50,7 @@
       <p class="totalDeckNumError">デッキ枚数を20枚ちょうどにしてください。</p>
       <p class="noTanePokemonError">たねポケモンを1枚以上入れてください。</p>
       <p class="sameCardNumError">同じ名前のカードは2枚までにしてください。</p>
+      <p class="notFoundDeckError">デッキが見つかりませんでした。</p>
     </div>
     <div class="cardImageListTitle">
     <p>カード一覧</p>
