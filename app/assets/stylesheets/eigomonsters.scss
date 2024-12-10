@@ -31,14 +31,14 @@
     border-radius: 30px;
     padding: 5px 10px;
     font-size: 12px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    // transition: background-color 0.3s ease, color 0.3s ease;
     min-width: 120px;
   }
-  .noteLinkButton:hover {
-    background-color: rgb(71, 202, 71);
-    color: white;
-    font-weight: bold;
-  }
+  // .noteLinkButton:hover {
+  //   background-color: rgb(71, 202, 71);
+  //   color: white;
+  //   font-weight: bold;
+  // }
 
   .formAndDeckAndImageListTitle {
     width: 800px;
@@ -279,7 +279,7 @@
   .deckSearchBtn {
     cursor: pointer;
     font-size: 12px;
-    width: 48px;
+    width: 54px;
     color: #000000;
   }
   
@@ -581,10 +581,12 @@
     .deckNumInTitle {
       display: none;
       position: absolute;
-      right: 5px;
       width: 60px;
       height: 20px;
       transition: transform 0.3s ease; /* 回転アニメーション */
+    }
+    .searchDeckContainer {
+      margin-left: 5px;
     }
     .imageListInDeck {
       width: 100%;
