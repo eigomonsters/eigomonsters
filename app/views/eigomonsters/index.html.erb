@@ -26,7 +26,7 @@
       <%= render 'search_form' %>
       <div class="imageListInDeck">
         <div class="adaptedDeckListTitle">
-          <div class="toggleDeckBtn" disabled><img src="../../assets/triangle.png" alt="Toggle" class="triangleDeckIcon"/><span class="deckTitleText">デッキ<span class="deckNumInTitle"><span class="deckNumTextInTitle">0</span>/20</span></span></div>
+          <div class="toggleDeckBtn" disabled><img src="../../assets/triangle.png" alt="Toggle" class="triangleDeckIcon"><span class="deckTitleText">デッキ<span class="deckNumInTitle"><span class="deckNumTextInTitle">0</span>/20</span></span></div>
             <div class="searchDeckContainer">
             <%= form_with(url: searchdeck_eigomonsters_path, local: true, method: :get, class: "searchDeckForm", data: { remote: true }) do |form| %>
               <%= form.text_field :keyword, placeholder: "デッキコード検索", value: @deckKeyword, class: "searchDeckInput" %>

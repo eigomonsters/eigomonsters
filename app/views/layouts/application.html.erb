@@ -32,7 +32,14 @@
       <div class="inner">
         <div class="nav">
           <div class="nav_center">
-            <p class="meirio">いたち杯 ポケポケデッキコード作成</p>
+            <div class="topPageTitle">
+              <p class="webTitle">いたち杯 ポケポケデッキコード作成</p>
+              <% unless controller_name == "eigomonsters" && action_name == "policy" %>
+                <button class="noteLinkButton" onclick="window.open('https://note.com/itachihai/', '_blank')">
+                  大会考察記事 ＞
+                </button>
+              <% end %>
+            </div>
             <div id="hamburger" class="hamburger">
               <span></span>
               <span></span>
