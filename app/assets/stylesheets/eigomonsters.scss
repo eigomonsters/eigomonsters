@@ -615,7 +615,7 @@
       transition: transform 0.3s ease; /* 回転アニメーション */
     }
     .searchTitle {
-      margin-bottom: 2px;
+      margin-bottom: 5px;
     }
     .searchTitleText {
       flex-grow: 1; /* 残りのスペースを埋める */
@@ -636,7 +636,7 @@
       margin-bottom: 5px;
     }
     .adaptedDeckListTitle{
-      margin-bottom: 2px;
+      margin-bottom: 5px;
     }
     .toggleDeckBtn {
       display: flex; /* 子要素を横並びに配置 */
