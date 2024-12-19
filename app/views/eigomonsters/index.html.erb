@@ -7,14 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  // // Rubyから渡されたclicked_imagesをJavaScript変数に代入
-  // const clickedDeckImages = <%= j @clicked_images_json %>;
-
-  // // デバッグ用にconsole.logを使用
-  // console.log(clickedDeckImages);
-
-  // // 必要なJavaScript関数を呼び出す
-  // updateSearchedDeckImageDisplay(clickedDeckImages);
   gtag('config', 'G-SCT4G2G6T4');
 </script>
 
@@ -29,7 +21,7 @@
           <div class="toggleDeckBtn" disabled><img src="../../assets/triangle.png" alt="Toggle" class="triangleDeckIcon"><span class="deckTitleText">デッキ<span class="deckNumInTitle"><span class="deckNumTextInTitle">0</span>/20</span></span></div>
             <div class="searchDeckContainer">
             <%= form_with(url: searchdeck_eigomonsters_path, local: true, method: :get, class: "searchDeckForm", data: { remote: true }) do |form| %>
-              <%= form.text_field :keyword, placeholder: "デッキコード検索", value: @deckKeyword, class: "searchDeckInput" %>
+              <%= form.text_field :keyword, placeholder: "デッキコード検索", value: @deckKeyword, class: "searchDeckInput" , maxlength: 20%>
               <button type="button" class="deckSearchBtn">検索</button>
             <% end %>
           </div>
@@ -40,8 +32,10 @@
           </div>
           <div class="deckNumAndRegisterBtn">
             <p class="deckNumTextBox"><span class="deckNumText">0</span>/20</p>
+            <button class="templateDispBtn">テンプレート</button>
             <button class="registerBtn">デッキコード作成</button>
             <button class="resetBtn">リセット</button>
+            <%# <img src="../../assets/resetBtnIcon.png" alt="リセット" class="resetBtn"> %>
           </div>
         </div>
       </div>

@@ -1,8 +1,15 @@
 <div class="cardImageList">
-  <% searchedCardList.each do |card| %>
-    <div class="eachImageContainer">
-      <img src="https://itachihai-card-images.s3.ap-northeast-1.amazonaws.com/cardimages/<%= card.cardid %>.png" class="cardImage clickable">
-      <span class="adaptNum">0</span>
+  <div class="imageInSelectableBox">
+    <div class="eachImageInSelectableBox"></div>
+  </div>
+  <% num_buttons = (@searchedCardListTotalCount.to_f / 100).ceil %>
+  <% current_page = (params[:page] || 1).to_i %>
+
+  <% if num_buttons > 1 %>
+    <div class="pageBtns">
+      <% (1..num_buttons).each do |i| %>
+        <button class="pageBtn" data-page="<%= i %>"><%= i %></button>
+      <% end %>
     </div>
   <% end %>
 </div>

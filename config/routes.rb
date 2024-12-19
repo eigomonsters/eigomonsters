@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :eigomonsters, except: :show do
     collection do
       get 'search'
+      get 'fetch_images'
       post 'searchdeck'
       # get 'about'
       get 'policy'

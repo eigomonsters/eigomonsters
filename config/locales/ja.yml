@@ -8,3 +8,12 @@ ja:
         email: メールアドレス
         subject: 件名
         message: お問い合わせ内容
+
+ja:
+  views:
+    pagination:
+      first: "最初"
+      last: "最後"
+      previous: "＜"
+      next: "＞"
+      truncate: "..."

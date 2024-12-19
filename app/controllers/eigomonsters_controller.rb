@@ -1,12 +1,23 @@
 class EigomonstersController < ApplicationController
   
   def search
-    @dispCardLargeCategorySet = params[:dispCardLargeCategory] || "すべて"
-    @keyword = params[:keyword]
+    # binding.pry
+    @dispCardLargeCategorySet = params[:dispCardLargeCategory].presence || "すべて"
+    @keyword = params[:keyword] || ""
     @poketype = params[:poketype].present? ? params[:poketype].split(',') : []
   
     normalized_keyword = @keyword.tr('ぁ-ん', 'ァ-ン')
     reversed_keyword = @keyword.tr('ァ-ン', 'ぁ-ん')
+
+    pack_order = ["幻のいる島", "最強の遺伝子", "その他"];
+    category_order = ["ポケモン", "グッズ", "サポート"];
+    poketype_order = ["草", "炎", "水", "雷", "超", "闘", "悪", "鋼", "竜", "無"];
+
+    # 1ページあたりに表示する画像枚数
+    imageNumPerPage = 100
+    page_number = params[:page].to_i || 1
+    page_number = 1 if page_number < 1
+    offset_value = (page_number - 1) * imageNumPerPage
 
     # カテゴリーで絞り込み
     if @dispCardLargeCategorySet == "ポケモン"
@@ -15,27 +26,48 @@ class EigomonstersController < ApplicationController
       @searchedCardList = Pkpkcardinfo.where.not(category: "ポケモン")
       @poketype = []
     else
-      @searchedCardList = Pkpkcardinfo.all.order(cardid: :asc)
+      @searchedCardList = Pkpkcardinfo.all
     end
   
     # タイプと検索ワードで絞り込み
     if @poketype.any? && @keyword.present?
       @searchedCardList = @searchedCardList.where("cardname LIKE ? OR cardname LIKE ?", "%#{normalized_keyword}%", "%#{reversed_keyword}%")
                                           .where(poketype: @poketype)
-                                          .order(cardid: :asc)
     elsif @keyword.present?
       @searchedCardList = @searchedCardList.where("cardname LIKE ? OR cardname LIKE ?", "%#{normalized_keyword}%", "%#{reversed_keyword}%")
-                                          .order(cardid: :asc)
     elsif @poketype.any?
       @searchedCardList = @searchedCardList.where(poketype: @poketype)
-                                          .order(cardid: :asc)
     else
-      @searchedCardList = @searchedCardList.all.order(cardid: :asc)
+      @searchedCardList = @searchedCardList.all
     end
-  
-    respond_to do |format|
-      format.html { render partial: 'searched_card_list', locals: { searchedCardList: @searchedCardList } }
-    end
+
+    # 絞り込み前の全件数を取得
+    @searchedCardListTotalCount = @searchedCardList.count
+
+    # データを取得 (limit と offset を使用)
+    images = @searchedCardList
+      .all
+      .order(
+        Arel.sql(
+          "CASE pack " +
+          pack_order.map.with_index { |cat, idx| "WHEN '#{cat}' THEN #{idx}" }.join(" ") +
+          " END ASC, " +
+          "CASE category " +
+          category_order.map.with_index { |cat, idx| "WHEN '#{cat}' THEN #{idx}" }.join(" ") +
+          " END ASC, " +
+          "CASE poketype " +
+          poketype_order.map.with_index { |type, idx| "WHEN '#{type}' THEN #{idx}" }.join(" ") +
+          " END ASC, " +
+          "cardid ASC"
+        )
+      )
+      .limit(imageNumPerPage)
+      .offset(offset_value)
+
+      render json: { 
+        images: images.map { |img| { id: img.cardid, url: "https://itachihai-card-images.s3.ap-northeast-1.amazonaws.com/cardimages/#{img.cardid}.png" } },
+        total_count: @searchedCardListTotalCount
+      }
   end
 
   def searchdeck
@@ -64,12 +96,45 @@ class EigomonstersController < ApplicationController
   def index
     @poketype = []
     @keyword = ""
-    @searchedCardList = Pkpkcardinfo.all.order(cardid: :asc) if @searchedCardList.nil?  # 結果がnilの場合
+    # @searchedCardList = Pkpkcardinfo.all.order(cardid: :asc) if @searchedCardList.nil?  # 結果がnilの場合
+    pack_order = ["幻のいる島", "最強の遺伝子", "その他"];
+    category_order = ["ポケモン", "グッズ", "サポート"];
+    poketype_order = ["草", "炎", "水", "雷", "超", "闘", "悪", "鋼", "竜", "無"];
+    # ページ番号に応じて表示する範囲を決定
+    # 1ページあたりに表示する画像枚数
+    imageNumPerPage = 100
+    page_number = params[:page].to_i
+    page_number = 1 if page_number < 1
+    offset_value = (page_number - 1) * imageNumPerPage  # 100件ずつ表示
+
+    # 絞り込み前の全件数を取得
+    @searchedCardListTotalCount = Pkpkcardinfo.count
+    
+
+    @searchedCardList = Pkpkcardinfo
+      .all
+      .order(
+        Arel.sql(
+          "CASE pack " +
+          pack_order.map.with_index { |cat, idx| "WHEN '#{cat}' THEN #{idx}" }.join(" ") +
+          " END ASC, " +
+          "CASE category " +
+          category_order.map.with_index { |cat, idx| "WHEN '#{cat}' THEN #{idx}" }.join(" ") +
+          " END ASC, " +
+          "CASE poketype " +
+          poketype_order.map.with_index { |type, idx| "WHEN '#{type}' THEN #{idx}" }.join(" ") +
+          " END ASC, " +
+          "cardid ASC"
+        )
+      )
+      .limit(imageNumPerPage) # 一度に取得するのは100件に制限
+      .offset(offset_value) # ページ番号に応じて表示範囲を決定
     @dispCardLargeCategorySet = "すべて"
   end
 
   def decklistsort
     # ソート順
+    pack_order = ["幻のいる島", "最強の遺伝子", "その他"];
     category_order = ["ポケモン", "グッズ", "サポート"];
     poketype_order = ["草", "炎", "水", "雷", "超", "闘", "悪", "鋼", "竜", "無"];
     @clicked_images = params[:clicked_images] || []  # clickedImagesを取得
@@ -85,6 +150,9 @@ class EigomonstersController < ApplicationController
           " END ASC, " +
           "CASE poketype " +
           poketype_order.map.with_index { |type, idx| "WHEN '#{type}' THEN #{idx}" }.join(" ") +
+          " END ASC, " +
+          "CASE pack " +
+          pack_order.map.with_index { |type, idx| "WHEN '#{type}' THEN #{idx}" }.join(" ") +
           " END ASC, " +
           "cardid ASC"
         )

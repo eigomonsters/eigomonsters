@@ -77,12 +77,10 @@ import './search';
     });
   });
 
-  // デッキコード検索
-  // document.querySelector('#deck').innerHTML = "<%= escape_javascript(render partial: 'result', locals: { keyword: @deckKeyword }) %>";
-
 
 
   document.addEventListener("DOMContentLoaded", function() {
+
     // clearInput関数を定義
     function clearInput() {
         const keywordInput = document.querySelector('.search-input');
@@ -101,7 +99,12 @@ import './search';
     const deckNumText = document.querySelector('.deckNumText');
     const deckNumTextInTitle = document.querySelector('.deckNumTextInTitle');
     let clickedImages = [];
+    let paramsCategory = "すべて";
+    let paramsKeyword = "";
+    let paramsPoketype = [];
+    let paramsPage = 1;
     const eachImageInDeck = document.querySelector('.eachImageInDeck');
+    const eachImageInSelectableBox = document.querySelector('.eachImageInSelectableBox');
     const form = document.querySelector('.search-form');
     const typeCategory = document.querySelector('.typeCategory');
     const poketypeButtons = document.querySelectorAll('.poketypeImageButton');
@@ -130,6 +133,11 @@ import './search';
     const deckKeyword = document.querySelector('.searchDeckInput').value = "";
     const searchDeckInput = document.querySelector('.searchDeckInput');
 
+    // 1ページあたりに表示する画像枚数
+    const imageNumPerPage = 100;
+
+    // 初期ページを取得 (1ページ目)
+    fetchImages(paramsPage);
 
     // ポップアップを閉じるボタンの処理
     closeModal.addEventListener("click", () => {
@@ -161,7 +169,162 @@ import './search';
         debounceTimeout = setTimeout(func, delay);
     }
 
-    initCardImageClicks();
+
+    function fetchImages(page) {
+      const url = new URL(`/eigomonsters/search`, window.location.href);
+      url.searchParams.append('page', page);
+      if (paramsCategory) {
+          url.searchParams.append('dispCardLargeCategory', paramsCategory);
+      }
+      if (paramsKeyword) {
+        url.searchParams.append('keyword', paramsKeyword);
+      }
+      if (paramsPoketype) {
+        url.searchParams.append('poketype', paramsPoketype.join(','));
+      }
+  
+      // サーバーからデータを取得
+      fetch(url)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              return response.json();
+          })
+          .then(data => {
+              // 画像データを更新
+              updateImageSelectableDisplay(data.images);
+          })
+          .catch(error => console.error('Error fetching images:', error));
+    }
+    
+    // 全体画像リストの表示を更新・ボタンを定義
+    function updateImageSelectableDisplay(images) {
+      // 現在の画像をクリア
+      eachImageInSelectableBox.innerHTML = '';
+    
+      // 新しい画像を追加
+      images.forEach(image => {
+        const imgElement = document.createElement('img');
+        imgElement.src = image.url;
+        imgElement.alt = '';
+        imgElement.classList.add('cardImage');
+
+        const imageContainer = document.createElement('div');
+        imageContainer.classList.add('imageContainer');
+        imageContainer.style.position = 'relative'; // 親要素に relative を設定
+
+        const adaptNumPerImage = document.createElement('div');
+        adaptNumPerImage.classList.add('adaptNum');
+        adaptNumPerImage.style.display = 'none';
+        adaptNumPerImage.style.position = 'absolute'; // adaptNum を絶対配置
+    
+        // 必要に応じてクリックイベントなどを追加
+        imgElement.addEventListener('click', () => {
+          // image.url からファイル名の番号部分を抽出
+          const src = image.url; // image.url を直接使用
+          const fileNumber = src.match(/(\d+)\.png$/); // 正規表現で番号部分を抽出
+
+          if (fileNumber) {
+            const fileName = fileNumber[1];
+            clickedImages.push(fileName);
+
+            // ソート
+            // サーバーにリクエストを送信するPromise
+            const deckListSortedPromise = fetch('/eigomonsters/decklistsort', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                clicked_images: clickedImages,
+              }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+              clickedImages = data.clicked_images;
+            });
+
+            // 全ての非同期処理を待機
+            Promise.all([deckListSortedPromise])
+            .then(() => {
+              // deckNumText の値を更新
+              updateDeckNumText();
+              // クリックされた画像を表示
+              updateImageDisplay();
+              // クリック可能状態を更新
+              updateImageClickState();
+            })
+            .catch((error) => {
+              // console.error('エラーが発生しました:', error);
+            });
+          }
+        });
+
+        // 親要素に画像とadaptNumを追加
+        imageContainer.appendChild(imgElement);
+        imageContainer.appendChild(adaptNumPerImage);
+
+        // 最後に親要素を選択ボックスに追加
+        eachImageInSelectableBox.appendChild(imageContainer);
+      });
+      // 初期状態でクリック可能状態を更新
+      updateImageClickState();
+    }
+
+
+    // 画像のクリック可能状態を更新する関数
+    function updateImageClickState() {
+      const allImages = document.querySelectorAll('.cardImage');
+
+      if (clickedImages.length >= 20) {
+        allImages.forEach(img => {
+          img.classList.add('disabled')
+          // 各画像のファイル名を取得
+          const fileName = img.src.match(/(\d+)\.png$/)[1];
+          // clickedImagesで該当画像のクリック回数をカウント
+          const count = clickedImages.filter(img => img === fileName).length;
+          // adaptNum要素を画像の親要素から取得
+          const adaptNumElement = img.closest('.imageContainer').querySelector('.adaptNum');
+          // countをadaptNumに設定
+          adaptNumElement.innerText = count;
+          // countが1以上なら表示、0の場合は非表示
+          if (count >= 1) {
+            adaptNumElement.style.display = 'block';
+          } else {
+            adaptNumElement.style.display = 'none';
+          }
+        });
+      } else {
+        allImages.forEach(img => {
+          // 各画像のファイル名を取得
+          const fileName = img.src.match(/(\d+)\.png$/)[1];
+          // clickedImagesで該当画像のクリック回数をカウント
+          const count = clickedImages.filter(img => img === fileName).length;
+          // adaptNum要素を画像の親要素から取得
+          const adaptNumElement = img.closest('.imageContainer').querySelector('.adaptNum');
+          // countをadaptNumに設定
+          adaptNumElement.innerText = count;
+          // countが1以上なら表示、0の場合は非表示
+          if (count >= 1) {
+            adaptNumElement.style.display = 'block';
+          } else {
+            adaptNumElement.style.display = 'none';
+          }
+          
+          // クリック回数が2回以上の場合、その画像をクリック不可にする
+          if (count >= 2) {
+            img.classList.add('disabled');
+            img.style.pointerEvents = 'none'; // クリックイベントを無効にする
+          } else {
+            img.classList.remove('disabled');
+            img.style.pointerEvents = ''; // クリックイベントを有効にする
+          }
+        });
+      }
+    }
+
+    pageButtonsFunc();
 
     // 初期表示ではすべてのpoketypeを表示
     poketypeButtons.forEach(button => {
@@ -173,31 +336,31 @@ import './search';
     poketypeButtons.forEach(button => {
       button.addEventListener('click', function() {
           const selectedPoketype = button.getAttribute('data-poketype');
-          let currentValue = poketypeField.value.split(',');
 
-          if (currentValue.includes(selectedPoketype)) {
-              currentValue = currentValue.filter(poketype => poketype !== selectedPoketype);
-              button.classList.remove('selected');
+          if (paramsPoketype.includes(selectedPoketype)) {
+            // 既に選択されている場合は削除
+            paramsPoketype = paramsPoketype.filter(poketype => poketype !== selectedPoketype);
+            button.classList.remove('selected');
           } else {
-              currentValue.push(selectedPoketype);
+              // 選択されていない場合は追加
+              paramsPoketype.push(selectedPoketype);
               button.classList.add('selected');
           }
-
-          poketypeField.value = currentValue.join(',');
+          poketypeField.value = paramsPoketype.join(',');
 
           debounce(sendAjaxRequest, 200);  // 500msの遅延を設けてリクエストを送信
       });
     });
 
-    
+
     // ラジオボタン変更時のイベント
     largeCategoryRadios.forEach(radio => {
       radio.addEventListener('change', function() {
         // ラジオボタンの値を取得
-        const selectedValue = this.value;
+        paramsCategory = this.value;
 
         // "トレーナーズ"が選択された場合、全てのpoketypeButtonsからselectedをremove
-        if (selectedValue === "トレーナーズ") {
+        if (paramsCategory === "トレーナーズ") {
             poketypeButtons.forEach(button => {
               button.classList.remove('selected');
               button.disabled = true; // ボタンを無効化
@@ -205,9 +368,9 @@ import './search';
             });
 
             // poketypeFieldの値もクリア
-            const poketypeField = document.getElementById("poketypeField");
             if (poketypeField) {
                 poketypeField.value = '';
+                paramsPoketype = [];
             }
         } else {
             poketypeButtons.forEach(button => {
@@ -229,20 +392,20 @@ import './search';
     registerBtn.addEventListener('click', function () {
       const totalDeckNum = clickedImages.length;
       let errorCount = 0;
-    
+
       // エラーメッセージ要素の初期化
       totalDeckNumError.style.display = 'none';
       noTanePokemonError.style.display = 'none';
       sameCardNumError.style.display = 'none';
       notFoundDeckError.style.display = 'none';
       errorMessages.style.display = 'none';
-    
-      // 20枚以下の場合
+
+      // 20枚以下の場合のエラーチェック
       if (totalDeckNum !== 20) {
         errorCount += 1;
         totalDeckNumError.style.display = 'block';
       }
-    
+
       // サーバーにリクエストを送信するPromise
       const taneCheckPromise = fetch('/eigomonsters/tanecheck', {
         method: 'POST',
@@ -253,14 +416,24 @@ import './search';
           clicked_images: clickedImages,
         }),
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Tanecheck API error: ${response.status}`);
+          }
+          return response.json();
+        })
         .then((data) => {
           if (data.errorCount > 0) {
             errorCount += 1;
             noTanePokemonError.style.display = 'block';
           }
+        })
+        .catch((error) => {
+          console.error('Tanecheckエラー:', error);
+          errorCount += 1;
+          notFoundDeckError.style.display = 'block'; // APIエラー用のエラーメッセージを表示
         });
-    
+
       const sameCardCheckPromise = fetch('/eigomonsters/samecardcheck', {
         method: 'POST',
         headers: {
@@ -270,14 +443,24 @@ import './search';
           clicked_images: clickedImages,
         }),
       })
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Samecardcheck API error: ${response.status}`);
+          }
+          return response.json();
+        })
         .then((data) => {
           if (data.errorCount > 0) {
             errorCount += 1;
             sameCardNumError.style.display = 'block';
           }
+        })
+        .catch((error) => {
+          console.error('Samecardcheckエラー:', error);
+          errorCount += 1;
+          notFoundDeckError.style.display = 'block'; // APIエラー用のエラーメッセージを表示
         });
-    
+
       // 全ての非同期処理を待機
       Promise.all([taneCheckPromise, sameCardCheckPromise])
         .then(() => {
@@ -287,15 +470,18 @@ import './search';
           } else {
             errorMessages.style.display = 'none';
             // デッキ画像のポップアップを表示
-            // デッキ画像のポップアップを更新して表示
             updatePopupImages();
             modal.style.display = 'block';
           }
         })
         .catch((error) => {
-          // console.error('エラーが発生しました:', error);
+          // fetchの共通エラー処理（Promise.all内でキャッチされるエラー）
+          console.error('非同期処理中のエラー:', error);
+          errorMessages.style.display = 'block';
+          notFoundDeckError.style.display = 'block'; // 汎用エラー表示
         });
     });
+
 
     // リセットボタン押下時の処理
     resetBtn.addEventListener('click', function () {
@@ -446,10 +632,6 @@ import './search';
           imgElement.addEventListener('click', function() {
               // clickedImages から削除
               clickedImages.splice(index, 1);
-  
-              // adaptNum の更新処理
-              updateAdaptNum(clickedImages);
-  
               // 表示を更新
               updateImageDisplay();
           });
@@ -459,6 +641,8 @@ import './search';
   
       // deckNumText の値を更新
       updateDeckNumText();
+      // 画像のクリック可否を判定
+      updateImageClickState();
     }
 
 
@@ -499,12 +683,8 @@ import './search';
               eachImageInDeck.appendChild(imgElement);
               clickedImages.push(imageId);
             });
-            // adaptNum を更新
-            updateAdaptNum(clickedImages);
-
             // deckNumText の値を更新
             updateDeckNumText();
-
             // クリックされた画像を表示
             updateImageDisplay();
           } else {
@@ -521,133 +701,14 @@ import './search';
         deckSearchBtn.click();
       }
     });
-
-    // 初期処理として実施
-    updateAdaptNum(clickedImages);
-
-    // adaptNumの更新処理を別の関数として切り分け
-    function updateAdaptNum(clickedImages) {
-      // 各画像IDの出現回数をカウントする
-      const imageCount = clickedImages.reduce(function (counts, imageSrc) {
-        counts[imageSrc] = (counts[imageSrc] || 0) + 1;
-        return counts;
-      }, {});
     
-      // 各カードの adaptNum を更新
-      const allEachImageContainers = document.querySelectorAll('.eachImageContainer');
-      allEachImageContainers.forEach(function (container) {
-        const imgInContainer = container.querySelector('img');
-        const adaptNum = container.querySelector('.adaptNum');
-        const imageId = imgInContainer.getAttribute('src').split('/').pop().replace('.png', ''); // 画像IDを取得
-    
-        // clickedImages内での出現回数に基づいてadaptNumを更新
-        const currentCount = imageCount[imageId] || 0; // clickedImages内での出現回数を取得（なければ0）
-    
-        adaptNum.textContent = currentCount; // adaptNumを更新
-    
-        // adaptNumが0の場合は非表示、それ以外は表示
-        if (currentCount === 0) {
-          adaptNum.classList.add('hidden');
-        } else {
-          adaptNum.classList.remove('hidden');
-        }
-    
-        // クリック可能状態の制御
-        if (currentCount === 2) {
-          imgInContainer.classList.add('disabled'); // クリック不可状態を視覚的に反映
-          imgInContainer.style.pointerEvents = 'none'; // クリックイベントを無効化
-        } else {
-          imgInContainer.classList.remove('disabled');
-          imgInContainer.style.pointerEvents = 'auto'; // クリックイベントを有効化
-        }
-      });
-    }
-    // 採用カード枚数を更新
-    function updateDeckNumText() {
-      const total = clickedImages.length; // clickedImages の要素数で total を設定
-      deckNumText.textContent = total; // total を表示
-      deckNumTextInTitle.textContent = total; // total を表示
-    
-      // total が 20 の場合、すべての画像をクリック不可にする
-      const allImages = document.querySelectorAll('.eachImageContainer img');
-      
-      if (total === 20) {
-        allImages.forEach(function (img) {
-          img.style.pointerEvents = 'none'; // クリックイベントを無効化
-          img.classList.add('disabled'); // 視覚的にクリック不可状態にする
-        });
-      } else {
-        allImages.forEach(function (img) {
-          const container = img.closest('.eachImageContainer');
-          const adaptNum = container.querySelector('.adaptNum');
-          const currentValue = parseInt(adaptNum.textContent) || 0;
-    
-          // adaptNum の値が 2 未満の場合はクリック可能にする
-          if (currentValue < 2) {
-            img.style.pointerEvents = 'auto'; // クリックイベントを有効化
-            img.classList.remove('disabled'); // 視覚的にクリック可能にする
-          } else {
-            img.style.pointerEvents = 'none'; // クリックイベントを無効化
-            img.classList.add('disabled'); // 視覚的にクリック不可状態にする
-          }
-        });
-      }
-    }
-
-
-    // 初期化の処理 (画像のクリックイベント)
-  function initCardImageClicks() {
-    const cardImages = document.querySelectorAll('.cardImage.clickable');
-
-    cardImages.forEach(function (image) {
-      image.addEventListener('click', function () {
-        const container = this.closest('.eachImageContainer');
-        const adaptNum = container.querySelector('.adaptNum');
-
-        // imgのsrcからファイル名の番号部分を抽出
-        const src = image.getAttribute('src');
-        const fileNumber = src.match(/(\d+)\.png$/);
-
-        if (fileNumber) {
-          const fileName = fileNumber[1];
-          clickedImages.push(fileName);
-          // console.log(clickedImages);
-
-          // ソート
-          // サーバーにリクエストを送信するPromise
-          const deckListSortedPromise = fetch('/eigomonsters/decklistsort', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              clicked_images: clickedImages,
-            }),
-          })
-          .then((response) => response.json())
-          .then((data) => {
-            clickedImages = data.clicked_images;
-          });
-
-          // 全ての非同期処理を待機
-          Promise.all([deckListSortedPromise])
-          .then(() => {
-            // adaptNum を更新
-            updateAdaptNum(clickedImages);
-
-            // deckNumText の値を更新
-            updateDeckNumText();
-
-            // クリックされた画像を表示
-            updateImageDisplay();
-          })
-          .catch((error) => {
-            // console.error('エラーが発生しました:', error);
-          });
-        }
-      });
-    });
+  // 採用カード枚数を更新
+  function updateDeckNumText() {
+    const total = clickedImages.length; // clickedImages の要素数で total を設定
+    deckNumText.textContent = total; // total を表示
+    deckNumTextInTitle.textContent = total; // total を表示
   }
+
 
   // Ajaxリクエストを送信する関数
   function sendAjaxRequest() {
@@ -655,6 +716,7 @@ import './search';
     const url = new URL(form.action, window.location.href);
     formData.forEach((value, key) => {
         url.searchParams.append(key, value);
+
     });
 
     fetch(url, {
@@ -663,22 +725,75 @@ import './search';
             'X-Requested-With': 'XMLHttpRequest'
         }
     })
-    .then(response => response.text())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json(); // JSONとしてパース
+    })
     .then(data => {
-        document.getElementById('search-results').innerHTML = data;
-        
-        // addBtnの無効化解除を含む処理を呼び出す
-        initCardImageClicks();   // addBtnのイベントリスナーを再バインド
-        // adaptNum を更新
-        updateAdaptNum(clickedImages);
-        updateDeckNumText();
+        // サーバーからのレスポンスデータをチェック
+        if (data.images && Array.isArray(data.images)) {
+            updateImageSelectableDisplay(data.images);
+        } else {
+            console.error("Invalid response format: 'images' property is missing or not an array.");
+        }
+
+        // ページネーションの更新
+        if (data.total_count !== undefined) {
+            updatePagination(data.total_count);
+        }
+
+      pageButtonsFunc();
+      
+    })
+    .catch(error => {
+        console.error("An error occurred:", error);
     });
+  }
+
+  function pageButtonsFunc() {
+    const pageButtons = document.querySelectorAll(".pageBtn");
+    // 初期表示時に1ページ目のボタンに `active` クラスを追加
+    const firstPageButton = document.querySelector(".pageBtn[data-page='1']");
+    if (firstPageButton) {
+        firstPageButton.classList.add("active");
+    }
+    pageButtons.forEach(button => {
+      button.addEventListener("click", function () {
+          const page = this.getAttribute("data-page");
+          // 全てのボタンから active クラスを削除
+          pageButtons.forEach(btn => btn.classList.remove("active"));
+          // 押下されたボタンに active クラスを追加
+          this.classList.add("active");
+          // サーバーから該当ページのデータを取得
+          fetchImages(page);
+      });
+    });
+  }
+
+  function updatePagination(totalCount) {
+      const numButtons = Math.ceil(totalCount / imageNumPerPage); // ページ数を計算
+      const currentPage = parseInt(new URLSearchParams(window.location.search).get('page') || 1);
+      const paginationContainer = document.querySelector('.pageBtns');
+
+      paginationContainer.innerHTML = ''; // 現在のページネーションをクリア
+
+      for (let i = 1; i <= numButtons; i++) {
+          const button = document.createElement('button');
+          button.classList.add('pageBtn');
+          if (i === currentPage) {
+              button.classList.add('active');
+          }
+          button.dataset.page = i;
+          button.textContent = i;
+          paginationContainer.appendChild(button);
+      }
   }
 
   // クリアボタンによる初期化処理
   function clearDeckList() {
     clickedImages.length = 0;  
-    updateAdaptNum(clickedImages);
     updateDeckNumText();
     updateImageDisplay();
   }
@@ -691,6 +806,7 @@ import './search';
     });
 
   });
+
 
 
   
