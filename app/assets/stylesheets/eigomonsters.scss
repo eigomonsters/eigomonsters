@@ -568,6 +568,9 @@
 
     // 画面のサイズに合わせて表示するカード枚数を変更
   @media (max-width: 800px) {
+    .topPage {
+      margin-top: 2px;
+    }
     .topPageTitle {
       display: inline-block;
     }
@@ -591,6 +594,9 @@
     }
     .deckNumText {
     }
+    .search-container {
+      margin-bottom: 2px;
+    }
     .search-form {
       width: 100%;
     }
@@ -608,6 +614,9 @@
       height: 20px;
       transition: transform 0.3s ease; /* 回転アニメーション */
     }
+    .searchTitle {
+      margin-bottom: 2px;
+    }
     .searchTitleText {
       flex-grow: 1; /* 残りのスペースを埋める */
       text-align: center; /* 文字を中央揃え */
@@ -617,10 +626,17 @@
       font-size: 14px;
     }
     .search-input {
+      margin-top: 2px;
       width:100%;
     }
     .search-btn {
       //width: 15%;
+    }
+    .typeCategory {
+      margin-bottom: 5px;
+    }
+    .adaptedDeckListTitle{
+      margin-bottom: 2px;
     }
     .toggleDeckBtn {
       display: flex; /* 子要素を横並びに配置 */
@@ -649,6 +665,10 @@
     }
     .searchDeckContainer {
       margin-left: 5px;
+    }
+    .deckNumAndRegisterBtn {
+      margin-top: 0px;
+      margin-bottom: 0px;
     }
     .imageListInDeck {
       width: 100%;

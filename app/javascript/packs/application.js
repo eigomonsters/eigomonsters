@@ -593,10 +593,10 @@ import './search';
       // 三角形の向きを切り替え
       if (isExpanded) {
         triangleDeckIcon.classList.remove("rotated");
-        deckNumInTitle.style.display = "none";
+        // deckNumInTitle.style.display = "none";
       } else {
         triangleDeckIcon.classList.add("rotated");
-        deckNumInTitle.style.display = "inline-block";
+        // deckNumInTitle.style.display = "none";
       }
     });
 
