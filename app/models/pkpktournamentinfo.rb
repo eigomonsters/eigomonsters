@@ -1,0 +1,2 @@
+class Pkpktournamentinfo < ApplicationRecord
+end
