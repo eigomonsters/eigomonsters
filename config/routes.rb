@@ -49,4 +49,7 @@ Rails.application.routes.draw do
   get 'ptcgopodeckcategoryinfos/count'
   get 'ptcgopodeckcategoryinfos/getinfo'
 
+  resources :pkpktournamentinfos, only: [:index, :count]
+  get 'pkpktournamentinfos/getinfo'
+
 end
