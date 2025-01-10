@@ -52,4 +52,10 @@ Rails.application.routes.draw do
   resources :pkpktournamentinfos, only: [:index]
   get 'pkpktournamentinfos/index'
 
+  resources :pkpkparticipantinfos, only: [:index]
+  get 'pkpkparticipantinfos/index'
+
+  resources :pkpkmatchresultinfos, only: [:index]
+  get 'pkpkmatchresultinfos/index'
+
 end

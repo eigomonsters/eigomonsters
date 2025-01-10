@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_12_30_102021) do
+ActiveRecord::Schema.define(version: 2024_12_30_180713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,44 @@ ActiveRecord::Schema.define(version: 2024_12_30_102021) do
     t.string "cardid18", null: false
     t.string "cardid19", null: false
     t.string "cardid20", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pkpkmatchresultinfos", primary_key: "match_result_id", id: :string, force: :cascade do |t|
+    t.string "tournament_id", null: false
+    t.string "win_deck_code", null: false
+    t.string "lose_deck_code", null: false
+    t.string "win_deck_name", null: false
+    t.string "lose_deck_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pkpkparticipantinfos", primary_key: "participant_id", id: :string, force: :cascade do |t|
+    t.string "tournament_id", null: false
+    t.string "deck_code", null: false
+    t.string "card_name_1", null: false
+    t.string "card_name_2", null: false
+    t.string "card_name_3", null: false
+    t.string "card_name_4", null: false
+    t.string "card_name_5", null: false
+    t.string "card_name_6", null: false
+    t.string "card_name_7", null: false
+    t.string "card_name_8", null: false
+    t.string "card_name_9", null: false
+    t.string "card_name_10", null: false
+    t.string "card_name_11", null: false
+    t.string "card_name_12", null: false
+    t.string "card_name_13", null: false
+    t.string "card_name_14", null: false
+    t.string "card_name_15", null: false
+    t.string "card_name_16", null: false
+    t.string "card_name_17", null: false
+    t.string "card_name_18", null: false
+    t.string "card_name_19", null: false
+    t.string "card_name_20", null: false
+    t.string "deck_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

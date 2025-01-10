@@ -1,0 +1,2 @@
+class Pkpkparticipantinfo < ApplicationRecord
+end
