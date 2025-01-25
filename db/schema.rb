@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_12_30_180713) do
+ActiveRecord::Schema.define(version: 2025_01_25_090519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,17 +27,10 @@ ActiveRecord::Schema.define(version: 2024_12_30_180713) do
   create_table "pkpkcardinfos", force: :cascade do |t|
     t.string "cardid", null: false
     t.string "cardname", null: false
-    t.string "model", null: false
     t.string "pack", null: false
-    t.string "url", null: false
     t.string "category", null: false
-    t.integer "rarity", null: false
-    t.integer "hp", default: 9999, null: false
     t.string "evolevel", default: "なし", null: false
     t.string "poketype", default: "なし", null: false
-    t.integer "retreatcost", default: 9999, null: false
-    t.string "rule", default: "なし", null: false
-    t.string "ability", default: "なし", null: false
     t.string "option", default: "なし", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -105,6 +98,28 @@ ActiveRecord::Schema.define(version: 2024_12_30_180713) do
     t.string "deck_name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pkpksampledecklistinfos", force: :cascade do |t|
+    t.integer "pattern_ver", null: false
+    t.string "pattern_name", null: false
+    t.integer "pattern_id", null: false
+    t.string "deck_name", null: false
+    t.string "deck_image"
+    t.integer "deck_color", null: false
+    t.string "first_card_name"
+    t.string "first_card_num"
+    t.string "second_card_name"
+    t.string "second_card_num"
+    t.string "third_card_name"
+    t.string "third_card_num"
+    t.string "fourth_card_name"
+    t.string "fourth_card_num"
+    t.string "fifth_card_name"
+    t.string "fifth_card_num"
+    t.integer "deck_order", null: false
+    t.integer "editable_flag", null: false
+    t.datetime "timestamp"
   end
 
   create_table "pkpktournamentinfos", force: :cascade do |t|

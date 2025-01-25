@@ -1,0 +1,2 @@
+class Pkpksampledecklistinfo < ApplicationRecord
+end

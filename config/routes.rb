@@ -58,4 +58,7 @@ Rails.application.routes.draw do
   resources :pkpkmatchresultinfos, only: [:index]
   get 'pkpkmatchresultinfos/index'
 
+  resources :pkpksampledecklistinfos, only: [:index]
+  get 'pkpksampledecklistinfos/index'
+
 end
