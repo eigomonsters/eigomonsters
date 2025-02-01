@@ -1,0 +1,2 @@
+class Pkpkcardnameinfo < ApplicationRecord
+end

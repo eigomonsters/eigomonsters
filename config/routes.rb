@@ -61,4 +61,7 @@ Rails.application.routes.draw do
   resources :pkpksampledecklistinfos, only: [:index]
   get 'pkpksampledecklistinfos/index'
 
+  resources :pkpkcardnameinfos, only: [:index]
+  get 'pkpkcardnameinfos/index'
+
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_01_25_090519) do
+ActiveRecord::Schema.define(version: 2025_02_01_024635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 2025_01_25_090519) do
     t.string "evolevel", default: "なし", null: false
     t.string "poketype", default: "なし", null: false
     t.string "option", default: "なし", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pkpkcardnameinfos", force: :cascade do |t|
+    t.integer "suggest_ver", null: false
+    t.string "card_name_jp", null: false
+    t.string "card_name_en", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

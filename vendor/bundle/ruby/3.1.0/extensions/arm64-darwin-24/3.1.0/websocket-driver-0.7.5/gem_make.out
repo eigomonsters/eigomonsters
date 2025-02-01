@@ -1,0 +1,15 @@
+current directory: /Users/mondenhiroki/projects/eigomonsters/vendor/bundle/ruby/3.1.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+/Users/mondenhiroki/.rbenv/versions/3.1.0/bin/ruby -I /Users/mondenhiroki/.rbenv/versions/3.1.0/lib/ruby/3.1.0 -r ./siteconf20250130-26100-s15hqk.rb extconf.rb
+creating Makefile
+
+current directory: /Users/mondenhiroki/projects/eigomonsters/vendor/bundle/ruby/3.1.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\= clean
+
+current directory: /Users/mondenhiroki/projects/eigomonsters/vendor/bundle/ruby/3.1.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\=
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+
+current directory: /Users/mondenhiroki/projects/eigomonsters/vendor/bundle/ruby/3.1.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\= install
+/opt/homebrew/bin/ginstall -c -m 0755 websocket_mask.bundle ./.gem.20250130-26100-ludchq

@@ -360,7 +360,7 @@ Plain flags are added to the default flags, while flags prefixed with `-`
 
 ### Using Active Record's database.yml
 
-Active Record typically reads its configuration from a file named `database.yml` or an environment variable `CLEARDB_DATABASE_URL`.
+Active Record typically reads its configuration from a file named `database.yml` or an environment variable `DATABASE_URL`.
 Use the value `mysql2` as the adapter name. For example:
 
 ``` yaml
@@ -381,13 +381,13 @@ development:
 
 In this example, the compression flag is negated with `-COMPRESS`.
 
-### Using Active Record's CLEARDB_DATABASE_URL
+### Using Active Record's DATABASE_URL
 
-Active Record typically reads its configuration from a file named `database.yml` or an environment variable `CLEARDB_DATABASE_URL`.
+Active Record typically reads its configuration from a file named `database.yml` or an environment variable `DATABASE_URL`.
 Use the value `mysql2` as the protocol name. For example:
 
 ``` sh
-CLEARDB_DATABASE_URL=mysql2://sql_user:sql_pass@sql_host_name:port/sql_db_name?option1=value1&option2=value2
+DATABASE_URL=mysql2://sql_user:sql_pass@sql_host_name:port/sql_db_name?option1=value1&option2=value2
 ```
 
 ### Reading a MySQL config file
