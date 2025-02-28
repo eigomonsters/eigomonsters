@@ -9,7 +9,7 @@ class EigomonstersController < ApplicationController
     normalized_keyword = @keyword.tr('ぁ-ん', 'ァ-ン')
     reversed_keyword = @keyword.tr('ァ-ン', 'ぁ-ん')
 
-    pack_order = ["時空の激闘", "幻のいる島", "最強の遺伝子", "その他"];
+    pack_order = ["超克の光", "時空の激闘", "幻のいる島", "最強の遺伝子", "その他"];
     category_order = ["ポケモン", "グッズ", "サポート"];
     poketype_order = ["草", "炎", "水", "雷", "超", "闘", "悪", "鋼", "竜", "無"];
 
@@ -97,7 +97,7 @@ class EigomonstersController < ApplicationController
     @poketype = []
     @keyword = ""
     # @searchedCardList = Pkpkcardinfo.all.order(cardid: :asc) if @searchedCardList.nil?  # 結果がnilの場合
-    pack_order = ["時空の激闘", "幻のいる島", "最強の遺伝子", "その他"];
+    pack_order = ["超克の光", "時空の激闘", "幻のいる島", "最強の遺伝子", "その他"];
     category_order = ["ポケモン", "グッズ", "サポート"];
     poketype_order = ["草", "炎", "水", "雷", "超", "闘", "悪", "鋼", "竜", "無"];
     # ページ番号に応じて表示する範囲を決定
@@ -134,7 +134,7 @@ class EigomonstersController < ApplicationController
 
   def decklistsort
     # ソート順
-    pack_order = ["時空の激闘", "幻のいる島", "最強の遺伝子", "その他"];
+    pack_order = ["超克の光", "時空の激闘", "幻のいる島", "最強の遺伝子", "その他"];
     category_order = ["ポケモン", "グッズ", "サポート"];
     poketype_order = ["草", "炎", "水", "雷", "超", "闘", "悪", "鋼", "竜", "無"];
     @clicked_images = params[:clicked_images] || []  # clickedImagesを取得
