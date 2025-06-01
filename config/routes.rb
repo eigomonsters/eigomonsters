@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'pkpkusermatchresultinfos/index'
+  get 'pkpkusermatchresultinfos/show'
+  get 'pkpkusermatchresultinfos/new'
+  get 'pkpkusermatchresultinfos/create'
+  get 'pkpkusermatchresultinfos/edit'
+  get 'pkpkusermatchresultinfos/update'
+  get 'pkpkusermatchresultinfos/destroy'
   get 'eigomonsters/index'
   devise_for :users
   root to: 'eigomonsters#index'
@@ -63,5 +70,12 @@ Rails.application.routes.draw do
 
   resources :pkpkcardnameinfos, only: [:index]
   get 'pkpkcardnameinfos/index'
+
+  resources :pkpkusermatchresultinfos, only: [:create] do
+    collection do
+      post :delete_by_match_id
+      get :count
+    end
+  end
 
 end

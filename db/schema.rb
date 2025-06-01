@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_02_01_024635) do
+ActiveRecord::Schema.define(version: 2025_05_12_105640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,38 @@ ActiveRecord::Schema.define(version: 2025_02_01_024635) do
     t.datetime "timestamp"
   end
 
+  create_table "pkpkstandingdeckinfos", primary_key: "standing_deck_id", id: :string, force: :cascade do |t|
+    t.string "tournament_id", null: false
+    t.string "deck_code", null: false
+    t.string "card_id_1", null: false
+    t.string "card_id_2", null: false
+    t.string "card_id_3", null: false
+    t.string "card_id_4", null: false
+    t.string "card_id_5", null: false
+    t.string "card_id_6", null: false
+    t.string "card_id_7", null: false
+    t.string "card_id_8", null: false
+    t.string "card_id_9", null: false
+    t.string "card_id_10", null: false
+    t.string "card_id_11", null: false
+    t.string "card_id_12", null: false
+    t.string "card_id_13", null: false
+    t.string "card_id_14", null: false
+    t.string "card_id_15", null: false
+    t.string "card_id_16", null: false
+    t.string "card_id_17", null: false
+    t.string "card_id_18", null: false
+    t.string "card_id_19", null: false
+    t.string "card_id_20", null: false
+    t.string "energy_1", null: false
+    t.string "energy_2", null: false
+    t.string "energy_3", null: false
+    t.integer "place", null: false
+    t.string "feature_1", null: false
+    t.string "feature_2", null: false
+    t.datetime "timestamp"
+  end
+
   create_table "pkpktournamentinfos", force: :cascade do |t|
     t.string "tournament_id", null: false
     t.string "tournament_name", null: false
@@ -137,6 +169,20 @@ ActiveRecord::Schema.define(version: 2025_02_01_024635) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "tournament_date"
     t.index ["tournament_id"], name: "index_pkpktournamentinfos_on_tournament_id", unique: true
+  end
+
+  create_table "pkpkusermatchresultinfos", id: false, force: :cascade do |t|
+    t.string "match_id", null: false
+    t.string "user_id", null: false
+    t.date "match_date", null: false
+    t.string "competition_type", null: false
+    t.string "competition_name", null: false
+    t.string "user_deck_name", null: false
+    t.string "opo_deck_name", null: false
+    t.string "attack_order", null: false
+    t.string "match_result", null: false
+    t.string "password", default: "All", null: false
+    t.datetime "timestamp"
   end
 
   create_table "ptcgcardallinfos", force: :cascade do |t|
