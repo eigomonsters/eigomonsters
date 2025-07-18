@@ -39,10 +39,6 @@ class PkpkusermatchdatainfoSummarize
       normalized_user_deck_name = self.normalize_deck_name(record.user_deck_name)
       converted_user_deck_name = self.convert_deck_name(normalized_user_deck_name, base_convert_map)
       final_user_deck_name = category_map[converted_user_deck_name]
-      puts "元デッキ名（ユーザー）: #{record.user_deck_name}"
-      puts "正規化後デッキ名（ユーザー）: #{normalized_user_deck_name}"
-      puts "変換後デッキ名（ユーザー）: #{converted_user_deck_name}"
-      puts "カテゴリ変換後デッキ名（ユーザー）: #{final_user_deck_name}"
       next nil if final_user_deck_name.nil?
 
       normalized_opo_deck_name = self.normalize_deck_name(record.opo_deck_name)
