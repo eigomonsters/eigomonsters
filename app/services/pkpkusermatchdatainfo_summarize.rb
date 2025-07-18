@@ -1,4 +1,8 @@
 # app/services/pkpkusermatchdatainfo_summarize.rb
+
+require 'nkf'
+
+
 class PkpkusermatchdatainfoSummarize
   def self.check(threshold_date_str)
     threshold_date = Date.parse(threshold_date_str)

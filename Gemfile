@@ -74,3 +74,5 @@ gem 'jquery-rails' # 必要なら
 gem 'rack-attack'
 
 gem 'kaminari'
+
+gem 'nkf'
