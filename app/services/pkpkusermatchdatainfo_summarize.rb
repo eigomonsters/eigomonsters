@@ -1,5 +1,6 @@
 # app/services/pkpkusermatchdatainfo_summarize.rb
-require 'nkf'
+# require 'nkf'
+require 'moji'
 
 class PkpkusermatchdatainfoSummarize
   def self.check(threshold_date_str)
@@ -150,14 +151,14 @@ class PkpkusermatchdatainfoSummarize
   def self.normalize_deck_name(name)
     return '' unless name.is_a?(String)
     name = name.downcase
-    name = NKF.nkf('-w -W', name) # ひらがな → 全角カタカナ
+    name = Moji.hira_to_zen_kata(name)  # ← ここでひらがな→全角カタカナ
     name.gsub!(/（.*?）/, ' ')
     name.gsub!(/\(.*?\)/, ' ')
     name.gsub!(/[／\/&?・（）()✖️,'雷闘新旧＆？+＋〜！!、➕']/, '')
     name.gsub!(/単騎/, '')
     name.gsub!(/単/, '')
     name.gsub!(/[0-9０-９]/, ' ')
-    name.gsub!(/[[:space:]　]+/, '') # ← 半角・全角スペースをすべて削除
+    name.gsub!(/[[:space:]　]+/, '')
     name
   end
 
