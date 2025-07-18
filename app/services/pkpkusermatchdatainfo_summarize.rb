@@ -147,7 +147,7 @@ class PkpkusermatchdatainfoSummarize
   def self.normalize_deck_name(name)
     return '' unless name.is_a?(String)
     name = name.downcase
-    name = NKF.nkf('-w -X -Z4 --katakana', name)
+    name = NKF.nkf('-w -W', name) # ひらがな → 全角カタカナ
     name.gsub!(/（.*?）/, ' ')
     name.gsub!(/\(.*?\)/, ' ')
     name.gsub!(/[／\/&?・（）()✖️,'雷闘新旧＆？+＋〜！!、➕]/, '')
