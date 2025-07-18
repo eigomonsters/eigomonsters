@@ -1,7 +1,5 @@
 # app/services/pkpkusermatchdatainfo_summarize.rb
-
 require 'nkf'
-
 
 class PkpkusermatchdatainfoSummarize
   def self.check(threshold_date_str)
@@ -161,9 +159,13 @@ class PkpkusermatchdatainfoSummarize
   def self.convert_deck_name(original_name, base_convert_map)
     return '' if original_name.nil?
     converted = original_name.dup
+
     base_convert_map.sort_by { |base, _| -base.length }.each do |base_name, converted_name|
+      # 変換後の文字列をすでに含んでいればスキップ
+      next if converted.include?(converted_name)
       converted.gsub!(base_name, converted_name)
     end
+
     converted
   end
 end
