@@ -1,5 +1,5 @@
 # app/services/pkpkusermatchdatainfo_summarize.rb
-# require 'nkf'
+require 'nkf'
 require 'moji'
 
 class PkpkusermatchdatainfoSummarize
