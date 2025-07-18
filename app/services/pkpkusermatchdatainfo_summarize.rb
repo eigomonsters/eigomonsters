@@ -38,16 +38,17 @@ class PkpkusermatchdatainfoSummarize
 
       normalized_user_deck_name = self.normalize_deck_name(record.user_deck_name)
       converted_user_deck_name = self.convert_deck_name(normalized_user_deck_name, base_convert_map)
-      final_user_deck_name = category_map[converted_user_deck_name]
-      next nil if final_user_deck_name.nil?
+      semi_final_user_deck_name = category_map[converted_user_deck_name]
+      next nil if semi_final_user_deck_name.nil?
 
       normalized_opo_deck_name = self.normalize_deck_name(record.opo_deck_name)
       converted_opo_deck_name = self.convert_deck_name(normalized_opo_deck_name, base_convert_map)
-      final_opo_deck_name = category_map[converted_opo_deck_name]
-      next nil if final_opo_deck_name.nil?
+      semi_final_opo_deck_name = category_map[converted_opo_deck_name]
+      next nil if semi_final_opo_deck_name.nil?
 
       # final_user_deck_name を summary_conditions で更新、合致しなければ "その他"
       matched_user = false
+      final_user_deck_name = semi_final_user_deck_name
       summary_conditions.each do |condition|
         if condition[:cards].all? { |card| final_user_deck_name.include?(card) }
           final_user_deck_name = condition[:summary_deck_name]
@@ -59,10 +60,11 @@ class PkpkusermatchdatainfoSummarize
 
       # final_opo_deck_name を summary_conditions で更新、合致しなければ "その他"
       matched_opo = false
+      final_opo_deck_name = semi_final_opo_deck_name
       summary_conditions.each do |condition|
         if condition[:cards].all? { |card| final_opo_deck_name.include?(card) }
           final_opo_deck_name = condition[:summary_deck_name]
-          matched_opo = true
+          matched_user = true
           break
         end
       end
@@ -70,16 +72,15 @@ class PkpkusermatchdatainfoSummarize
 
       record.attributes.merge(
         'rounded_match_time' => rounded_time,
-        'converted_user_deck_name' => converted_user_deck_name,
         'final_user_deck_name' => final_user_deck_name,
-        'converted_opo_deck_name' => converted_opo_deck_name,
         'final_opo_deck_name' => final_opo_deck_name
       )
     end
 
     puts "生きているレコード数: #{work.count}"
     work.each do |record_hash|
-      puts record_hash['final_user_deck_name']
+      puts record_hash['semi_final_user_deck_name']
+      puts record_hash['semi_final_opo_deck_name']
     end
 
     # Step 6: レコードの複製（攻守入れ替え & 結果反転）
@@ -88,8 +89,6 @@ class PkpkusermatchdatainfoSummarize
         **original,
         'final_user_deck_name' => original['final_opo_deck_name'],
         'final_opo_deck_name' => original['final_user_deck_name'],
-        'converted_user_deck_name' => original['converted_opo_deck_name'],
-        'converted_opo_deck_name' => original['converted_user_deck_name'],
         'user_deck_name' => original['opo_deck_name'],
         'opo_deck_name' => original['user_deck_name'],
         'attack_order' => case original['attack_order']
