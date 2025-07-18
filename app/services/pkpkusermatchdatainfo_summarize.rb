@@ -104,6 +104,8 @@ class PkpkusermatchdatainfoSummarize
 
     # Step 7: 勝率データへ集計 & 洗い替え用データ作成
     all_records = work + duplicated
+    puts "all_record:"
+    puts all_records.to_json
     grouped = all_records.group_by do |r|
       [r['match_date'], r['rounded_match_time'], r['final_user_deck_name'], r['final_opo_deck_name'], r['attack_order']]
     end
