@@ -150,7 +150,7 @@ class PkpkusermatchdatainfoSummarize
     name.gsub!(/単騎/, '')
     name.gsub!(/単/, '')
     name.gsub!(/[0-9０-９]/, ' ')
-    name.gsub!(/\s+/, '')
+    name.gsub!(/[[:space:]　]+/, '') # ← 半角・全角スペースをすべて削除
     name
   end
 
