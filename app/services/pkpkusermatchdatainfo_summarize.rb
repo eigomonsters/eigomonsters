@@ -125,8 +125,8 @@ class PkpkusermatchdatainfoSummarize
       }
     end
 
-    puts "ランクマッチ用集計データ:"
-    puts ranked_summary.to_json
+    # puts "ランクマッチ用集計データ:"
+    # puts ranked_summary.to_json
 
     # ✅ ここで洗い替えを実行する
     ActiveRecord::Base.transaction do
@@ -144,7 +144,7 @@ class PkpkusermatchdatainfoSummarize
     name = NKF.nkf('-w -W', name) # ひらがな → 全角カタカナ
     name.gsub!(/（.*?）/, ' ')
     name.gsub!(/\(.*?\)/, ' ')
-    name.gsub!(/[／\/&?・（）()✖️,'雷闘新旧＆？+＋〜！!、➕]/, '')
+    name.gsub!(/[／\/&?・（）()✖️,'雷闘新旧＆？+＋〜！!、➕']/, '')
     name.gsub!(/単騎/, '')
     name.gsub!(/単/, '')
     name.gsub!(/[0-9０-９]/, ' ')
