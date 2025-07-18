@@ -78,6 +78,9 @@ class PkpkusermatchdatainfoSummarize
     end
 
     puts "生きているレコード数: #{work.count}"
+    work.each do |record_hash|
+      puts record_hash['final_user_deck_name']
+    end
 
     # Step 6: レコードの複製（攻守入れ替え & 結果反転）
     duplicated = work.map do |original|
