@@ -20,7 +20,7 @@ class PkpkusermatchdatainfoSummarize
       hash[entry.base_name] = entry.converted_name
     end
 
-    # Step 3: deck_category_dictテーブルの完全一致変換用辞書
+    # Step 3: deck_category_dictテーブルの完全一致変換用辞書を作成
     category_map = PkpkDeckCategoryDict.all.each_with_object({}) do |entry, hash|
       hash[entry.deck_name_by_user] = entry.official_category
     end
@@ -41,6 +41,10 @@ class PkpkusermatchdatainfoSummarize
       normalized_user_deck_name = self.normalize_deck_name(record.user_deck_name)
       converted_user_deck_name = self.convert_deck_name(normalized_user_deck_name, base_convert_map)
       final_user_deck_name = category_map[converted_user_deck_name]
+      puts "元デッキ名（ユーザー）: #{record.user_deck_name}"
+      puts "正規化後デッキ名（ユーザー）: #{normalized_user_deck_name}"
+      puts "変換後デッキ名（ユーザー）: #{converted_user_deck_name}"
+      puts "カテゴリ変換後デッキ名（ユーザー）: #{final_user_deck_name}"
       next nil if final_user_deck_name.nil?
 
       normalized_opo_deck_name = self.normalize_deck_name(record.opo_deck_name)
@@ -104,8 +108,6 @@ class PkpkusermatchdatainfoSummarize
 
     # Step 7: 勝率データへ集計 & 洗い替え用データ作成
     all_records = work + duplicated
-    puts "all_record:"
-    puts all_records.to_json
     grouped = all_records.group_by do |r|
       [r['match_date'], r['rounded_match_time'], r['final_user_deck_name'], r['final_opo_deck_name'], r['attack_order']]
     end
