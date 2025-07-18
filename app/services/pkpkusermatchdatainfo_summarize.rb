@@ -31,7 +31,7 @@ class PkpkusermatchdatainfoSummarize
         cards: [entry.first_card, entry.second_card, entry.third_card, entry.fourth_card, entry.fifth_card].reject(&:blank?),
         summary_deck_name: entry.summary_deck_name
       }
-    end.sort_by { |c| -c[:cards].size }
+    end
 
     # Step 4〜5: 加工処理
     work = records.filter_map do |record|
@@ -48,18 +48,27 @@ class PkpkusermatchdatainfoSummarize
       final_opo_deck_name = category_map[converted_opo_deck_name]
       next nil if final_opo_deck_name.nil?
 
+      # final_user_deck_name を summary_conditions で更新、合致しなければ "その他"
+      matched_user = false
       summary_conditions.each do |condition|
         if condition[:cards].all? { |card| final_user_deck_name.include?(card) }
           final_user_deck_name = condition[:summary_deck_name]
+          matched_user = true
           break
         end
       end
+      final_user_deck_name = "その他" unless matched_user
+
+      # final_opo_deck_name を summary_conditions で更新、合致しなければ "その他"
+      matched_opo = false
       summary_conditions.each do |condition|
         if condition[:cards].all? { |card| final_opo_deck_name.include?(card) }
           final_opo_deck_name = condition[:summary_deck_name]
+          matched_opo = true
           break
         end
       end
+      final_opo_deck_name = "その他" unless matched_opo
 
       record.attributes.merge(
         'rounded_match_time' => rounded_time,
@@ -123,8 +132,8 @@ class PkpkusermatchdatainfoSummarize
 
     # ✅ ここで洗い替えを実行する
     ActiveRecord::Base.transaction do
-      Pkpkrankedmatchdata.delete_all
-      Pkpkrankedmatchdata.insert_all(ranked_summary)
+      PkpkRankedMatchData.delete_all
+      PkpkRankedMatchData.insert_all(ranked_summary)
     end
 
     ranked_summary
