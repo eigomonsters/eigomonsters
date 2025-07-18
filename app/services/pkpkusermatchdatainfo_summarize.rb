@@ -46,6 +46,8 @@ class PkpkusermatchdatainfoSummarize
       semi_final_opo_deck_name = category_map[converted_opo_deck_name]
       next nil if semi_final_opo_deck_name.nil?
 
+      puts "user: #{semi_final_user_deck_name}, opo: #{semi_final_opo_deck_name}"
+
       # final_user_deck_name を summary_conditions で更新、合致しなければ "その他"
       matched_user = false
       final_user_deck_name = semi_final_user_deck_name
@@ -78,10 +80,6 @@ class PkpkusermatchdatainfoSummarize
     end
 
     puts "生きているレコード数: #{work.count}"
-    work.each do |record_hash|
-      puts record_hash['semi_final_user_deck_name']
-      puts record_hash['semi_final_opo_deck_name']
-    end
 
     # Step 6: レコードの複製（攻守入れ替え & 結果反転）
     duplicated = work.map do |original|
