@@ -77,6 +77,8 @@ class PkpkusermatchdatainfoSummarize
       )
     end
 
+    puts "生きているレコード数: #{work.count}"
+
     # Step 6: レコードの複製（攻守入れ替え & 結果反転）
     duplicated = work.map do |original|
       {
