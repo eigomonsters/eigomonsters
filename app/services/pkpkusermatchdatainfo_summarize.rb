@@ -151,7 +151,7 @@ class PkpkusermatchdatainfoSummarize
   def self.normalize_deck_name(name)
     return '' unless name.is_a?(String)
     name = name.downcase
-    name = Moji.hira_to_zen_kata(name)  # ← ここでひらがな→全角カタカナ
+    name = Moji.hira_to_kata(Moji.han_to_zen(name, :kana))
     name.gsub!(/（.*?）/, ' ')
     name.gsub!(/\(.*?\)/, ' ')
     name.gsub!(/[／\/&?・（）()✖️,'雷闘新旧＆？+＋〜！!、➕']/, '')
