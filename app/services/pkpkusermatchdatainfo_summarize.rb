@@ -64,7 +64,7 @@ class PkpkusermatchdatainfoSummarize
       summary_conditions.each do |condition|
         if condition[:cards].all? { |card| final_opo_deck_name.include?(card) }
           final_opo_deck_name = condition[:summary_deck_name]
-          matched_user = true
+          matched_opo = true
           break
         end
       end
