@@ -39,6 +39,13 @@ class PkpkusermatchdatainfoSummarize
       normalized_user_deck_name = self.normalize_deck_name(record.user_deck_name)
       converted_user_deck_name = self.convert_deck_name(normalized_user_deck_name, base_convert_map)
       semi_final_user_deck_name = category_map[converted_user_deck_name]
+      # --- 条件を満たす場合のみログ出力 ---
+      if record.user_deck_name.start_with?('高火力')
+        puts "[DEBUG] user_deck_name         : #{record.user_deck_name}"
+        puts "[DEBUG] normalized_user_deck  : #{normalized_user_deck_name}"
+        puts "[DEBUG] converted_user_deck   : #{converted_user_deck_name}"
+        puts "[DEBUG] semi_final_user_deck  : #{semi_final_user_deck_name}"
+      end
       next nil if semi_final_user_deck_name.nil?
 
       normalized_opo_deck_name = self.normalize_deck_name(record.opo_deck_name)
