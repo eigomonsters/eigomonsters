@@ -76,3 +76,5 @@ gem 'rack-attack'
 gem 'kaminari'
 
 gem 'nkf'
+
+gem 'unicode_normalize'
