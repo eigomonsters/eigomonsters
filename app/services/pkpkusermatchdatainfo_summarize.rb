@@ -1,5 +1,5 @@
 # app/services/pkpkusermatchdatainfo_summarize.rb
-require 'nkf'
+require 'unicode_normalize'
 class PkpkusermatchdatainfoSummarize
   def self.check(threshold_date_str)
     threshold_date = Date.parse(threshold_date_str)
@@ -152,7 +152,7 @@ class PkpkusermatchdatainfoSummarize
     name = name.downcase
 
     # name = NKF.nkf('-w -Z4', name)   # 半角カタカナ → 全角カタカナ
-    name = name.mb_chars.normalize(:nfkc).to_s   # 半角カタカナ → 全角カタカナ
+    name = name.unicode_normalize(:nfkc)   # 半角カタカナ → 全角カタカナ
     name = name.tr('ぁ-ん', 'ァ-ン') # ひらがな → 全角カタカナ
 
     name.gsub!(/（.*?）/, ' ')
