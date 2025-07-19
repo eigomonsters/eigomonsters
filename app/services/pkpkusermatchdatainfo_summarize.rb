@@ -151,7 +151,7 @@ class PkpkusermatchdatainfoSummarize
 
     name = name.downcase
 
-    name = NKF.nkf('-w -Z4', name)   # 半角カタカナ → 全角カタカナ
+    # name = NKF.nkf('-w -Z4', name)   # 半角カタカナ → 全角カタカナ
     name = name.tr('ぁ-ん', 'ァ-ン') # ひらがな → 全角カタカナ
 
     name.gsub!(/（.*?）/, ' ')
