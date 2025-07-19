@@ -1,7 +1,4 @@
 # app/services/pkpkusermatchdatainfo_summarize.rb
-require 'nkf'
-require 'moji'
-
 class PkpkusermatchdatainfoSummarize
   def self.check(threshold_date_str)
     threshold_date = Date.parse(threshold_date_str)
@@ -24,7 +21,7 @@ class PkpkusermatchdatainfoSummarize
       hash[entry.deck_name_by_user] = entry.official_category
     end
 
-    # Step 5: summary_deck変換条件を準備（カード数が多い順にソート）
+    # Step 5: summary_deck変換条件を準備
     summary_conditions = PkpkSummaryDeckCategory.all.map do |entry|
       {
         cards: [entry.first_card, entry.second_card, entry.third_card, entry.fourth_card, entry.fifth_card].reject(&:blank?),
@@ -150,15 +147,19 @@ class PkpkusermatchdatainfoSummarize
   # --- ヘルパー関数 ---
   def self.normalize_deck_name(name)
     return '' unless name.is_a?(String)
+
     name = name.downcase
-    name = Moji.hira_to_kata(Moji.han_to_zen(name, :kana))
+
+    # すべてのひらがなを全角カタカナに変換
+    name = name.tr('ぁ-ん', 'ァ-ン')
+
     name.gsub!(/（.*?）/, ' ')
     name.gsub!(/\(.*?\)/, ' ')
     name.gsub!(/[／\/&?・（）()✖️,'雷闘新旧＆？+＋〜！!、➕']/, '')
     name.gsub!(/単騎/, '')
     name.gsub!(/単/, '')
     name.gsub!(/[0-9０-９]/, ' ')
-    name.gsub!(/[[:space:]　]+/, '')
+    name.gsub!(/[[:space:]　]+/, '') # ← 半角・全角スペースをすべて削除
     name
   end
 
