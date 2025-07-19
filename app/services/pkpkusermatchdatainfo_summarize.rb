@@ -1,4 +1,5 @@
 # app/services/pkpkusermatchdatainfo_summarize.rb
+require 'nkf'
 class PkpkusermatchdatainfoSummarize
   def self.check(threshold_date_str)
     threshold_date = Date.parse(threshold_date_str)
@@ -38,7 +39,7 @@ class PkpkusermatchdatainfoSummarize
       converted_user_deck_name = self.convert_deck_name(normalized_user_deck_name, base_convert_map)
       semi_final_user_deck_name = category_map[converted_user_deck_name]
       # --- 条件を満たす場合のみログ出力 ---
-      if record.user_deck_name.start_with?('高火力')
+      if record.user_deck_name.start_with?('セレビィ')
         puts "[DEBUG] user_deck_name         : #{record.user_deck_name}"
         puts "[DEBUG] normalized_user_deck  : #{normalized_user_deck_name}"
         puts "[DEBUG] converted_user_deck   : #{converted_user_deck_name}"
@@ -150,8 +151,8 @@ class PkpkusermatchdatainfoSummarize
 
     name = name.downcase
 
-    # すべてのひらがなを全角カタカナに変換
-    name = name.tr('ぁ-ん', 'ァ-ン')
+    name = NKF.nkf('-w -Z4', name)   # 半角カタカナ → 全角カタカナ
+    name = name.tr('ぁ-ん', 'ァ-ン') # ひらがな → 全角カタカナ
 
     name.gsub!(/（.*?）/, ' ')
     name.gsub!(/\(.*?\)/, ' ')
