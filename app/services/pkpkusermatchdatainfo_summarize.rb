@@ -1,5 +1,4 @@
 # app/services/pkpkusermatchdatainfo_summarize.rb
-# require 'unicode_normalize'
 class PkpkusermatchdatainfoSummarize
   def self.check(threshold_date_str)
     threshold_date = Date.parse(threshold_date_str)
@@ -38,13 +37,6 @@ class PkpkusermatchdatainfoSummarize
       normalized_user_deck_name = self.normalize_deck_name(record.user_deck_name)
       converted_user_deck_name = self.convert_deck_name(normalized_user_deck_name, base_convert_map)
       semi_final_user_deck_name = category_map[converted_user_deck_name]
-      # --- 条件を満たす場合のみログ出力 ---
-      if record.user_deck_name.start_with?('ダダリン')
-        puts "[DEBUG] user_deck_name         : #{record.user_deck_name}"
-        puts "[DEBUG] normalized_user_deck  : #{normalized_user_deck_name}"
-        puts "[DEBUG] converted_user_deck   : #{converted_user_deck_name}"
-        puts "[DEBUG] semi_final_user_deck  : #{semi_final_user_deck_name}"
-      end
       next nil if semi_final_user_deck_name.nil?
 
       normalized_opo_deck_name = self.normalize_deck_name(record.opo_deck_name)
@@ -52,7 +44,7 @@ class PkpkusermatchdatainfoSummarize
       semi_final_opo_deck_name = category_map[converted_opo_deck_name]
       next nil if semi_final_opo_deck_name.nil?
 
-      puts "user: #{semi_final_user_deck_name}, opo: #{semi_final_opo_deck_name}"
+      # puts "user: #{semi_final_user_deck_name}, opo: #{semi_final_opo_deck_name}"
 
       # final_user_deck_name を summary_conditions で更新、合致しなければ "その他"
       matched_user = false
