@@ -12,17 +12,17 @@ class PkpkusermatchdatainfoSummarize
     puts "抽出レコード数: #{records.count}"
 
     # Step 2: base_convertテーブルの変換辞書を作成
-    base_convert_map = PkpkBaseConvert.all.each_with_object({}) do |entry, hash|
+    base_convert_map = Pkpkbaseconvert.all.each_with_object({}) do |entry, hash|
       hash[entry.base_name] = entry.converted_name
     end
 
     # Step 3: deck_category_dictテーブルの完全一致変換用辞書を作成
-    category_map = PkpkDeckCategoryDict.all.each_with_object({}) do |entry, hash|
+    category_map = PkpkdeckcategoryDict.all.each_with_object({}) do |entry, hash|
       hash[entry.deck_name_by_user] = entry.official_category
     end
 
     # Step 5: summary_deck変換条件を準備
-    summary_conditions = PkpkSummaryDeckCategory.all.map do |entry|
+    summary_conditions = Pkpksummarydeckcategory.all.map do |entry|
       {
         cards: [entry.first_card, entry.second_card, entry.third_card, entry.fourth_card, entry.fifth_card].reject(&:blank?),
         summary_deck_name: entry.summary_deck_name
@@ -130,8 +130,8 @@ class PkpkusermatchdatainfoSummarize
 
     # ✅ ここで洗い替えを実行する
     ActiveRecord::Base.transaction do
-      PkpkRankedMatchData.delete_all
-      PkpkRankedMatchData.insert_all(ranked_summary)
+      Pkpkrankedmatchdata.delete_all
+      Pkpkrankedmatchdata.insert_all(ranked_summary)
     end
 
     ranked_summary

@@ -78,4 +78,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :pkpkrankedmatchdatas, only: [:index]
+  get 'pkpkrankedmatchdatas/index'
+
 end
