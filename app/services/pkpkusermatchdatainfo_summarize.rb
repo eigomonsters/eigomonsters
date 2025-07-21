@@ -17,7 +17,7 @@ class PkpkusermatchdatainfoSummarize
     end
 
     # Step 3: deck_category_dictテーブルの完全一致変換用辞書を作成
-    category_map = PkpkdeckcategoryDict.all.each_with_object({}) do |entry, hash|
+    category_map = Pkpkdeckcategorydict.all.each_with_object({}) do |entry, hash|
       hash[entry.deck_name_by_user] = entry.official_category
     end
 
