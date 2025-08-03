@@ -38,11 +38,13 @@ class PkpkusermatchdatainfoSummarize
       converted_user_deck_name = self.convert_deck_name(normalized_user_deck_name, base_convert_map)
       semi_final_user_deck_name = category_map[converted_user_deck_name]
       next nil if semi_final_user_deck_name.nil?
+      # next nil if semi_final_user_deck_name.nil? || semi_final_user_deck_name == "不明"
 
       normalized_opo_deck_name = self.normalize_deck_name(record.opo_deck_name)
       converted_opo_deck_name = self.convert_deck_name(normalized_opo_deck_name, base_convert_map)
       semi_final_opo_deck_name = category_map[converted_opo_deck_name]
       next nil if semi_final_opo_deck_name.nil?
+      # next nil if semi_final_opo_deck_name.nil? || semi_final_opo_deck_name == "不明"
 
       # puts "user: #{semi_final_user_deck_name}, opo: #{semi_final_opo_deck_name}"
 
