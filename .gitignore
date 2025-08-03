@@ -32,5 +32,4 @@ yarn-debug.log*
 .Ds_Store
 
 /.env
-/config/gcp_key.json
 

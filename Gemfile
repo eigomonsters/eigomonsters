@@ -76,6 +76,3 @@ gem 'rack-attack'
 gem 'kaminari'
 
 gem 'nkf'
-
-gem 'google-cloud-firestore'
-gem 'google-cloud-storage'
