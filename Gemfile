@@ -80,4 +80,4 @@ gem 'nkf'
 gem 'google-cloud-firestore'
 gem 'google-cloud-storage'
 
-gem 'google-protobuf', '< 4.31.1'
+gem 'google-protobuf', '< 4.31.1', require: false
