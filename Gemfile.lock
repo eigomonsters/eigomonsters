@@ -163,7 +163,7 @@ GEM
       googleauth (~> 1.9)
       mini_mime (~> 1.0)
     google-logging-utils (0.2.0)
-    google-protobuf (4.31.1)
+    google-protobuf (4.31.0)
       bigdecimal
       rake (>= 13)
     googleapis-common-protos (1.8.0)
@@ -296,7 +296,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
-    rake (13.0.6)
+    rake (13.3.0)
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -396,6 +396,7 @@ DEPENDENCIES
   gon
   google-cloud-firestore
   google-cloud-storage
+  google-protobuf (< 4.31.1)
   jbuilder (~> 2.7)
   jquery-rails
   kaminari
